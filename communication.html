@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Motion Design / Jin's Portfolio</title>
+    <meta name="description" content="Motion design, video, and visual storytelling projects by Jin.">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html"><span class="brand-mark">PD</span><span class="brand-name">Jin's Portfolio</span></a>
+      <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span></button>
+      <nav class="site-nav tubelight-static" id="site-nav" aria-label="Primary navigation">
+        <a href="index.html"><span class="nav-icon">⌂</span><span>Home</span></a>
+        <a href="about.html"><span class="nav-icon">◐</span><span>About</span></a>
+        <div class="nav-projects">
+          <button class="nav-projects-trigger" type="button" aria-expanded="false" aria-current="page">
+            <span class="nav-icon">□</span><span>Projects</span>
+          </button>
+          <div class="nav-projects-menu" aria-label="Project categories">
+            <a href="work.html">Product Design</a>
+            <a href="communication.html">Motion Design</a>
+            <a href="visual-communication.html">Visual Communication</a>
+          </div>
+        </div>
+        <a class="nav-resume" href="resume.html"><span class="nav-icon">≡</span><span>Resume</span></a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="page-hero section-pad">
+        <p class="eyebrow">Selected Work</p>
+        <h1 class="project-title-animate">
+          <span class="word-animate" data-delay="120">MOTION</span>
+          <span class="word-animate" data-delay="320">DESIGN</span>
+        </h1>
+        <p>
+          Motion, video and visual storytelling designed to communicate products, ideas and experiences.
+        </p>
+      </section>
+
+      <section class="communication-section section-pad">
+        <div class="video-browser" data-video-browser>
+          <aside class="video-list" aria-label="Video selection">
+            <div class="video-category-list" role="tablist" aria-label="Video categories">
+              <button class="video-category is-active" type="button" data-video-category="exploded">Exploded View Animations</button>
+              <div class="video-category-panel is-active" data-video-panel="exploded">
+                <button
+                  class="video-select is-active"
+                  type="button"
+                  data-video-title="Valves"
+                  data-video-kicker="Exploded View / Valve Assembly"
+                  data-video-description="An exploded-view animation focused on valve structure, component order, and clear mechanical assembly logic."
+                  data-video-poster="assets/comm-motion-identity.svg"
+                  data-video-src="assets/Valves.mp4"
+                >
+                  <video src="assets/Valves.mp4#t=0.1" aria-label="Exploded assembly video preview" muted playsinline preload="metadata"></video>
+                  <span>
+                    <strong>Valves</strong>
+                    <small>Exploded View / Valve Assembly</small>
+                  </span>
+                </button>
+                <button
+                  class="video-select"
+                  type="button"
+                  data-video-title="Subsea"
+                  data-video-kicker="Exploded View / Subsea System"
+                  data-video-description="A technical animation presenting subsea components through staged separation, alignment, and readable assembly motion."
+                  data-video-poster="assets/comm-editing-rhythm.svg"
+                  data-video-src="assets/subsea-128.mp4"
+                >
+                  <video src="assets/subsea-128.mp4#t=0.1" aria-label="Component flow video preview" muted playsinline preload="metadata"></video>
+                  <span>
+                    <strong>Subsea</strong>
+                    <small>Exploded View / Subsea System</small>
+                  </span>
+                </button>
+                <button
+                  class="video-select"
+                  type="button"
+                  data-video-title="Pompa Vapore"
+                  data-video-kicker="Exploded View / Pump Assembly"
+                  data-video-description="A pump-focused exploded animation showing motion timing, part hierarchy, and assembly sequence with clear pacing."
+                  data-video-poster="assets/comm-editing-rhythm.svg"
+                  data-video-src="assets/Pompa-vapore-97.mp4"
+                >
+                  <video src="assets/Pompa-vapore-97.mp4#t=0.1" aria-label="Assembly timing test video preview" muted playsinline preload="metadata"></video>
+                  <span>
+                    <strong>Pompa Vapore</strong>
+                    <small>Exploded View / Pump Assembly</small>
+                  </span>
+                </button>
+                <button
+                  class="video-select"
+                  type="button"
+                  data-video-title="Jetech Valvola"
+                  data-video-kicker="Exploded View / Valve Flow Direction"
+                  data-video-description="An exploded-view valve animation using directional arrows to clarify internal flow, component placement, and mechanical operation."
+                  data-video-poster="assets/comm-motion-identity.svg"
+                  data-video-src="assets/JetechValvola_Freccia.mp4"
+                >
+                  <video src="assets/JetechValvola_Freccia.mp4#t=0.1" aria-label="Jetech Valvola video preview" muted playsinline preload="metadata"></video>
+                  <span>
+                    <strong>Jetech Valvola</strong>
+                    <small>Exploded View / Valve Flow Direction</small>
+                  </span>
+                </button>
+                <button
+                  class="video-select"
+                  type="button"
+                  data-video-title="5160M.76"
+                  data-video-kicker="Exploded View / Mechanical Assembly"
+                  data-video-description="A technical exploded-view animation presenting the 5160M.76 assembly through separated components, clear motion timing, and readable construction logic."
+                  data-video-poster="assets/comm-editing-rhythm.svg"
+                  data-video-src="assets/5160M.76.mp4"
+                >
+                  <video src="assets/5160M.76.mp4#t=0.1" aria-label="5160M.76 video preview" muted playsinline preload="metadata"></video>
+                  <span>
+                    <strong>5160M.76</strong>
+                    <small>Exploded View / Mechanical Assembly</small>
+                  </span>
+                </button>
+              </div>
+
+              <button class="video-category" type="button" data-video-category="demo">Product Demonstration Animations</button>
+              <div class="video-category-panel" data-video-panel="demo">
+                <button
+                  class="video-select"
+                  type="button"
+                  data-video-title="2G008"
+                  data-video-kicker="Product Demo / Operating Sequence"
+                  data-video-description="A product demonstration animation showing the operating logic through clear movement, timing, and component behavior."
+                  data-video-poster="assets/comm-process-interview.svg"
+                  data-video-src="assets/2G008.mp4"
+                >
+                  <video src="assets/2G008.mp4#t=0.1" aria-label="Use scenario video preview" muted playsinline preload="metadata"></video>
+                  <span>
+                    <strong>2G008</strong>
+                    <small>Product Demo / Operating Sequence</small>
+                  </span>
+                </button>
+                <button
+                  class="video-select"
+                  type="button"
+                  data-video-title="3130N DRL Verticale"
+                  data-video-kicker="Product Demo / Vertical Configuration"
+                  data-video-description="A product demonstration animation presenting the 3130N DRL vertical configuration through clear rotation, form detail, and technical product communication."
+                  data-video-poster="assets/comm-process-interview.svg"
+                  data-video-src="assets/3130N-drl-verticale.mp4"
+                >
+                  <video src="assets/3130N-drl-verticale.mp4#t=0.1" aria-label="3130N DRL Verticale video preview" muted playsinline preload="metadata"></video>
+                  <span>
+                    <strong>3130N DRL Verticale</strong>
+                    <small>Product Demo / Vertical Configuration</small>
+                  </span>
+                </button>
+                <button
+                  class="video-select"
+                  type="button"
+                  data-video-title="Jetech"
+                  data-video-kicker="Product Demo / Technical Function"
+                  data-video-description="A technical demonstration animation presenting product function with controlled pacing and direct visual explanation."
+                  data-video-poster="assets/comm-exhibition-loop.svg"
+                  data-video-src="assets/Jetech.mp4"
+                >
+                  <video src="assets/Jetech.mp4#t=0.1" aria-label="Feature walkthrough video preview" muted playsinline preload="metadata"></video>
+                  <span>
+                    <strong>Jetech</strong>
+                    <small>Product Demo / Technical Function</small>
+                  </span>
+                </button>
+                <button
+                  class="video-select"
+                  type="button"
+                  data-video-title="Pompa Vapore"
+                  data-video-kicker="Product Demo / Flow Direction"
+                  data-video-description="A pump demonstration animation clarifying flow direction, internal motion, and functional transitions."
+                  data-video-poster="assets/comm-process-interview.svg"
+                  data-video-src="assets/PompaVapore-CambiatoColotreDIFreccia.mp4"
+                >
+                  <video src="assets/PompaVapore-CambiatoColotreDIFreccia.mp4#t=0.1" aria-label="Interaction close-up video preview" muted playsinline preload="metadata"></video>
+                  <span>
+                    <strong>Pompa Vapore</strong>
+                    <small>Product Demo / Flow Direction</small>
+                  </span>
+                </button>
+                <button
+                  class="video-select"
+                  type="button"
+                  data-video-title="Pompa Membrana"
+                  data-video-kicker="Product Demo / Membrane System"
+                  data-video-description="A product demonstration animation showing membrane pump motion, pressure transfer, and internal flow behavior."
+                  data-video-poster="assets/comm-process-interview.svg"
+                  data-video-src="assets/Pompa-menbrara.mp4"
+                >
+                  <video src="assets/Pompa-menbrara.mp4#t=0.1" aria-label="Pompa Membrana video preview" muted playsinline preload="metadata"></video>
+                  <span>
+                    <strong>Pompa Membrana</strong>
+                    <small>Product Demo / Membrane System</small>
+                  </span>
+                </button>
+                <button
+                  class="video-select"
+                  type="button"
+                  data-video-title="Sabi Pegaso"
+                  data-video-kicker="Product Demo / Function Walkthrough"
+                  data-video-description="A concise function walkthrough showing the product's use logic through simplified motion and readable sequencing."
+                  data-video-poster="assets/comm-exhibition-loop.svg"
+                  data-video-src="assets/Sabi-pegaso-Funzionamento-2.mp4"
+                >
+                  <video src="assets/Sabi-pegaso-Funzionamento-2.mp4#t=0.1" aria-label="Setup sequence video preview" muted playsinline preload="metadata"></video>
+                  <span>
+                    <strong>Sabi Pegaso</strong>
+                    <small>Product Demo / Function Walkthrough</small>
+                  </span>
+                </button>
+                <button
+                  class="video-select"
+                  type="button"
+                  data-video-title="Tenuta Finale"
+                  data-video-kicker="Product Demo / Final Validation"
+                  data-video-description="A final demonstration video focused on sealing performance, product behavior, and clear technical validation."
+                  data-video-poster="assets/comm-process-interview.svg"
+                  data-video-src="assets/Tenuta-Finale.mp4"
+                >
+                  <video src="assets/Tenuta-Finale.mp4#t=0.1" aria-label="Tenuta Finale video preview" muted playsinline preload="metadata"></video>
+                  <span>
+                    <strong>Tenuta Finale</strong>
+                    <small>Product Demo / Final Validation</small>
+                  </span>
+                </button>
+              </div>
+
+              <button class="video-category" type="button" data-video-category="promo">Exhibition Promotion Videos</button>
+              <div class="video-category-panel" data-video-panel="promo">
+                <button
+                  class="video-select"
+                  type="button"
+                  data-video-title="Japan Exhibition Film"
+                  data-video-kicker="Promotion Video / Exhibition Story"
+                  data-video-description="An exhibition promotion video presenting event atmosphere, project context, and visual storytelling with concise pacing."
+                  data-video-poster="assets/comm-exhibition-loop.svg"
+                  data-video-src="assets/Video-Giappone-2.mp4"
+                >
+                  <video src="assets/Video-Giappone-2.mp4#t=0.1" aria-label="Japan exhibition film video preview" muted playsinline preload="metadata"></video>
+                  <span>
+                    <strong>Japan Exhibition Film</strong>
+                    <small>Promotion Video / Exhibition Story</small>
+                  </span>
+                </button>
+                <button
+                  class="video-select"
+                  type="button"
+                  data-video-title="Pompa CO2"
+                  data-video-kicker="Promotion Video / Product Highlight"
+                  data-video-description="A product-focused promotion video using clear motion, technical detail, and visual emphasis for exhibition communication."
+                  data-video-poster="assets/comm-motion-identity.svg"
+                  data-video-src="assets/PompaC02-1.mp4"
+                >
+                  <video src="assets/PompaC02-1.mp4#t=0.1" aria-label="Pompa CO2 video preview" muted playsinline preload="metadata"></video>
+                  <span>
+                    <strong>Pompa CO2</strong>
+                    <small>Promotion Video / Product Highlight</small>
+                  </span>
+                </button>
+                <button
+                  class="video-select"
+                  type="button"
+                  data-video-title="Australia Exhibition Film"
+                  data-video-kicker="Promotion Video / Exhibition Story"
+                  data-video-description="An exhibition promotion video for the Australia event, presenting booth atmosphere, product communication, and brand presence with clear pacing."
+                  data-video-poster="assets/comm-exhibition-loop.svg"
+                  data-video-src="assets/Video_Australia_1205.mp4"
+                >
+                  <video src="assets/Video_Australia_1205.mp4#t=0.1" aria-label="Australia exhibition film video preview" muted playsinline preload="metadata"></video>
+                  <span>
+                    <strong>Australia Exhibition Film</strong>
+                    <small>Promotion Video / Exhibition Story</small>
+                  </span>
+                </button>
+              </div>
+
+              <button class="video-category" type="button" data-video-category="other">Other</button>
+              <div class="video-category-panel" data-video-panel="other">
+                <button
+                  class="video-select"
+                  type="button"
+                  data-video-title="Jetech Website Motion"
+                  data-video-kicker="Other / Website Interaction"
+                  data-video-description="A web interaction capture showing landing-page rhythm, scroll behavior, and motion communication for a technical product brand."
+                  data-video-poster="assets/sitoprova1.webp"
+                  data-video-image="assets/sitoprova1.webp"
+                >
+                  <img src="assets/sitoprova1.webp" alt="Jetech website motion preview">
+                  <span>
+                    <strong>Jetech Website Motion</strong>
+                    <small>Other / Website Interaction</small>
+                  </span>
+                </button>
+                <button
+                  class="video-select"
+                  type="button"
+                  data-video-title="Melody Adventurer Product Introduction"
+                  data-video-kicker="Other / Product Introduction"
+                  data-video-description="A product introduction video presenting the Melody Adventurer panel, interaction flow, and physical play experience."
+                  data-video-poster="assets/melody-adventurer-pages/melody-adventurer-page-01.webp"
+                  data-video-src="assets/melody-adventurer-product-introduction.mp4"
+                  data-video-link="https://www.youtube.com/watch?v=OvGgjPhKf54"
+                  data-video-link-label="Open on YouTube"
+                >
+                  <img src="assets/melody-adventurer-pages/melody-adventurer-page-01.webp" alt="Melody Adventurer product introduction video preview">
+                  <span>
+                    <strong>Melody Adventurer</strong>
+                    <small>Other / Product Introduction</small>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </aside>
+
+          <article class="video-viewer">
+            <div class="video-frame is-video-active">
+              <img src="assets/comm-motion-identity.svg" alt="Selected video preview" data-video-poster hidden>
+              <video src="assets/Valves.mp4" controls playsinline preload="metadata" data-video-player aria-label="Selected motion design video"></video>
+              <span class="video-play-mark" aria-hidden="true"></span>
+            </div>
+            <div class="video-copy">
+              <p class="eyebrow" data-video-kicker>Exploded View / Valve Assembly</p>
+              <h2 data-video-title>Valves</h2>
+              <p data-video-description>
+                An exploded-view animation focused on valve structure, component order, and clear mechanical assembly logic.
+              </p>
+              <a class="visual-file-link" href="#" target="_blank" rel="noopener noreferrer" data-video-link-target hidden>Open on YouTube</a>
+            </div>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Product Designer / Industrial Design / Visualization / Motion</p>
+      <a href="contact.html">Start a conversation</a>
+    </footer>
+
+    <script src="script.js?v=20260706"></script>
+  </body>
+</html>
