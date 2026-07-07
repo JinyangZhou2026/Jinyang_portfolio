@@ -234,10 +234,42 @@ videoBrowsers.forEach((browser) => {
   const poster = viewer?.querySelector("[data-video-poster]");
   const pdfViewer = viewer?.querySelector("[data-video-pdf-viewer]");
   const player = viewer?.querySelector("[data-video-player]");
+  const galleryControls = viewer?.querySelector("[data-video-gallery-controls]");
+  const galleryPrevious = viewer?.querySelector("[data-video-gallery-prev]");
+  const galleryNext = viewer?.querySelector("[data-video-gallery-next]");
+  const galleryCurrent = viewer?.querySelector("[data-video-gallery-current]");
+  const galleryTotal = viewer?.querySelector("[data-video-gallery-total]");
   const kicker = viewer?.querySelector("[data-video-kicker]");
   const title = viewer?.querySelector("[data-video-title]");
   const description = viewer?.querySelector("[data-video-description]");
   const fileLink = viewer?.querySelector("[data-video-link-target]");
+  let gallerySlides = [];
+  let galleryIndex = 0;
+
+  const parseGallerySlides = (selector) => (selector.getAttribute("data-video-gallery") || "")
+    .split(";")
+    .map((item) => {
+      const [src, alt, position] = item.split("|");
+      return { src, alt, position };
+    })
+    .filter((slide) => slide.src && slide.alt);
+
+  const renderGallerySlide = () => {
+    if (!poster || gallerySlides.length === 0) return;
+
+    const slide = gallerySlides[galleryIndex];
+    poster.src = slide.src;
+    poster.alt = slide.alt;
+    poster.style.objectPosition = slide.position || "50% 50%";
+
+    if (galleryCurrent) galleryCurrent.textContent = String(galleryIndex + 1);
+    if (galleryTotal) galleryTotal.textContent = String(gallerySlides.length);
+  };
+
+  const setGalleryVisible = (isVisible) => {
+    if (galleryControls) galleryControls.hidden = !isVisible;
+    frame?.classList.toggle("is-gallery-active", isVisible);
+  };
 
   const updateVideo = (selector) => {
     selectors.forEach((item) => item.classList.toggle("is-active", item === selector));
@@ -245,6 +277,9 @@ videoBrowsers.forEach((browser) => {
     const videoSrc = selector.getAttribute("data-video-src") || "";
     const imageSrc = selector.getAttribute("data-video-image") || "";
     const pdfSrc = selector.getAttribute("data-video-pdf") || "";
+    gallerySlides = parseGallerySlides(selector);
+    galleryIndex = 0;
+    setGalleryVisible(gallerySlides.length > 1);
 
     if (player) {
       if (videoSrc) {
@@ -266,8 +301,13 @@ videoBrowsers.forEach((browser) => {
     }
 
     if (poster) {
-      poster.src = imageSrc || selector.getAttribute("data-video-poster") || poster.src;
-      poster.alt = `${selector.getAttribute("data-video-title") || "Selected video"} preview`;
+      if (gallerySlides.length > 0) {
+        renderGallerySlide();
+      } else {
+        poster.src = imageSrc || selector.getAttribute("data-video-poster") || poster.src;
+        poster.alt = `${selector.getAttribute("data-video-title") || "Selected video"} preview`;
+        poster.style.removeProperty("object-position");
+      }
       poster.hidden = Boolean(pdfSrc) || (Boolean(videoSrc) && !imageSrc);
     }
 
@@ -295,6 +335,20 @@ videoBrowsers.forEach((browser) => {
       fileLink.hidden = !linkSrc;
     }
   };
+
+  galleryPrevious?.addEventListener("click", () => {
+    if (gallerySlides.length === 0) return;
+
+    galleryIndex = (galleryIndex - 1 + gallerySlides.length) % gallerySlides.length;
+    renderGallerySlide();
+  });
+
+  galleryNext?.addEventListener("click", () => {
+    if (gallerySlides.length === 0) return;
+
+    galleryIndex = (galleryIndex + 1) % gallerySlides.length;
+    renderGallerySlide();
+  });
 
   categories.forEach((category) => {
     category.addEventListener("click", () => {

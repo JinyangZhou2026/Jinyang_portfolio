@@ -1387,6 +1387,10 @@ h3 {
   opacity: 1;
 }
 
+.visual-preview-frame.is-gallery-active .carousel-controls {
+  z-index: 2;
+}
+
 .visual-pdf-frame {
   border: 0;
   background: #ffffff;
@@ -1434,6 +1438,10 @@ h3 {
   letter-spacing: 0.1em;
   text-decoration: none;
   text-transform: uppercase;
+}
+
+.visual-file-link[hidden] {
+  display: none;
 }
 
 .visual-file-link:hover,
