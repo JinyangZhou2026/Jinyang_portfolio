@@ -239,6 +239,9 @@ videoBrowsers.forEach((browser) => {
   const galleryNext = viewer?.querySelector("[data-video-gallery-next]");
   const galleryCurrent = viewer?.querySelector("[data-video-gallery-current]");
   const galleryTotal = viewer?.querySelector("[data-video-gallery-total]");
+  const confidentialNote = viewer?.querySelector("[data-video-confidential-note]");
+  const videoStatus = viewer?.querySelector("[data-video-status]");
+  const playToggle = viewer?.querySelector("[data-video-play-toggle]");
   const kicker = viewer?.querySelector("[data-video-kicker]");
   const title = viewer?.querySelector("[data-video-title]");
   const description = viewer?.querySelector("[data-video-description]");
@@ -271,15 +274,37 @@ videoBrowsers.forEach((browser) => {
     frame?.classList.toggle("is-gallery-active", isVisible);
   };
 
+  const renderConfidentialNote = (text) => {
+    if (!confidentialNote) return;
+
+    confidentialNote.replaceChildren();
+    confidentialNote.hidden = true;
+    if (!text) return;
+
+    const lines = text.split(/\n+/).map((line) => line.trim()).filter(Boolean);
+    confidentialNote.setAttribute("aria-label", lines.join(" "));
+  };
+
+  const renderVideoStatus = (isConfidential) => {
+    if (!videoStatus) return;
+    videoStatus.hidden = !isConfidential;
+  };
+
   const updateVideo = (selector) => {
     selectors.forEach((item) => item.classList.toggle("is-active", item === selector));
 
     const videoSrc = selector.getAttribute("data-video-src") || "";
     const imageSrc = selector.getAttribute("data-video-image") || "";
     const pdfSrc = selector.getAttribute("data-video-pdf") || "";
+    const confidentialText = selector.getAttribute("data-video-confidential") || "";
+    const isConfidential = Boolean(confidentialText);
     gallerySlides = parseGallerySlides(selector);
     galleryIndex = 0;
     setGalleryVisible(gallerySlides.length > 1);
+    frame?.classList.toggle("is-confidential", isConfidential);
+
+    renderConfidentialNote(confidentialText);
+    renderVideoStatus(isConfidential);
 
     if (player) {
       if (videoSrc) {
@@ -288,6 +313,7 @@ videoBrowsers.forEach((browser) => {
           player.load();
         }
         player.hidden = false;
+        player.controls = !isConfidential;
         frame?.classList.add("is-video-active");
         frame?.classList.remove("is-image-active");
       } else {
@@ -295,6 +321,7 @@ videoBrowsers.forEach((browser) => {
         player.removeAttribute("src");
         player.load();
         player.hidden = true;
+        player.controls = false;
         frame?.classList.remove("is-video-active");
         frame?.classList.add("is-image-active");
       }
@@ -334,6 +361,26 @@ videoBrowsers.forEach((browser) => {
       fileLink.textContent = linkLabel;
       fileLink.hidden = !linkSrc;
     }
+
+    updatePlayToggleLabel();
+  };
+
+  const updatePlayToggleLabel = () => {
+    if (!playToggle || !player) return;
+
+    playToggle.setAttribute("aria-label", player.paused ? "Play selected video" : "Pause selected video");
+    frame?.classList.toggle("is-playing", !player.paused);
+  };
+
+  const toggleVideoPlayback = () => {
+    if (!player || player.hidden) return;
+
+    if (player.paused) {
+      player.play().then(updatePlayToggleLabel).catch(updatePlayToggleLabel);
+    } else {
+      player.pause();
+      updatePlayToggleLabel();
+    }
   };
 
   galleryPrevious?.addEventListener("click", () => {
@@ -365,6 +412,18 @@ videoBrowsers.forEach((browser) => {
   selectors.forEach((selector) => {
     selector.addEventListener("click", () => updateVideo(selector));
   });
+
+  playToggle?.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    toggleVideoPlayback();
+  });
+
+  player?.addEventListener("play", updatePlayToggleLabel);
+  player?.addEventListener("pause", updatePlayToggleLabel);
+  player?.addEventListener("ended", updatePlayToggleLabel);
+  player?.addEventListener("loadedmetadata", updatePlayToggleLabel);
+  updatePlayToggleLabel();
 });
 
 const caseStudyNavs = document.querySelectorAll("[data-case-study-nav]");
