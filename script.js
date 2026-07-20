@@ -46,6 +46,20 @@ if (greetingLines.length > 1) {
 
 const magicText = document.querySelector(".magic-static-text");
 const magicWords = magicText ? Array.from(magicText.querySelectorAll("span")) : [];
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const homepageRevealItems = Array.from(document.querySelectorAll([
+  ".positioning-statement > .eyebrow",
+  ".positioning-statement-copy > *",
+  ".experience-highlights-heading h2",
+  ".featured-project-previews-heading h2",
+  ".more-work-explorer-heading h2",
+  ".about-preview h2"
+].join(", ")));
+const countUpElements = Array.from(document.querySelectorAll("[data-count-to]"));
+
+if (!reduceMotion.matches) {
+  homepageRevealItems.forEach((item) => item.classList.add("homepage-scroll-reveal"));
+}
 
 const updateMagicTextReveal = () => {
   if (!magicText || magicWords.length === 0) return;
@@ -65,9 +79,143 @@ const updateMagicTextReveal = () => {
   });
 };
 
+const updateHomepageTextReveal = () => {
+  if (homepageRevealItems.length === 0 || reduceMotion.matches) return;
+
+  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+  const revealStart = viewportHeight * 0.92;
+  const revealEnd = viewportHeight * 0.46;
+
+  homepageRevealItems.forEach((item) => {
+    const rect = item.getBoundingClientRect();
+    const itemProgress = Math.min(Math.max((revealStart - rect.top) / (revealStart - revealEnd), 0), 1);
+    item.style.setProperty("--reveal-progress", itemProgress.toFixed(3));
+  });
+};
+
+const animateCountUp = (element) => {
+  const target = Number(element.dataset.countTo || 0);
+  const suffix = element.dataset.countSuffix || "";
+  const duration = 1250;
+  let startTime;
+
+  const updateCount = (timestamp) => {
+    if (startTime === undefined) startTime = timestamp;
+    const progress = Math.min((timestamp - startTime) / duration, 1);
+    const easedProgress = 1 - Math.pow(1 - progress, 3);
+    element.textContent = `${Math.round(target * easedProgress)}${suffix}`;
+
+    if (progress < 1) {
+      window.requestAnimationFrame(updateCount);
+    }
+  };
+
+  window.requestAnimationFrame(updateCount);
+};
+
+if (countUpElements.length > 0 && !reduceMotion.matches && "IntersectionObserver" in window) {
+  countUpElements.forEach((element) => {
+    element.textContent = `0${element.dataset.countSuffix || ""}`;
+  });
+
+  const countObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      animateCountUp(entry.target);
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.45 });
+
+  countUpElements.forEach((element) => countObserver.observe(element));
+}
+
+const resumeMotionItems = Array.from(document.querySelectorAll([
+  ".resume-head > .resume-role",
+  ".resume-head > .resume-identity",
+  ".resume-head > .resume-summary",
+  ".resume-head > .resume-contact-line",
+  ".resume-head > .action-row",
+  ".resume-photo-area",
+  ".resume-section-heading",
+  ".resume-timeline-item",
+  ".resume-grid > section",
+].join(", ")));
+
+if (resumeMotionItems.length > 0) {
+  resumeMotionItems.forEach((item, index) => {
+    item.classList.add("resume-reveal");
+    item.style.setProperty("--resume-reveal-delay", `${(index % 3) * 70}ms`);
+  });
+
+  if (!reduceMotion.matches && "IntersectionObserver" in window) {
+    document.body.classList.add("resume-motion-ready");
+
+    const resumeMotionObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      });
+    }, {
+      rootMargin: "0px 0px -10% 0px",
+      threshold: 0.12,
+    });
+
+    window.requestAnimationFrame(() => {
+      resumeMotionItems.forEach((item) => resumeMotionObserver.observe(item));
+    });
+  } else {
+    resumeMotionItems.forEach((item) => item.classList.add("is-visible"));
+  }
+}
+
+const workExplorer = document.querySelector("[data-work-explorer]");
+
+if (workExplorer) {
+  const explorerTabs = Array.from(workExplorer.querySelectorAll(".more-work-explorer-tab"));
+  const explorerPreview = workExplorer.querySelector(".more-work-explorer-preview");
+  const explorerVisual = workExplorer.querySelector("[data-explore-preview-visual]");
+  const explorerKicker = workExplorer.querySelector("[data-explore-preview-kicker]");
+  const explorerTitle = workExplorer.querySelector("[data-explore-preview-title]");
+  const explorerDescription = workExplorer.querySelector("[data-explore-preview-description]");
+  const explorerLink = workExplorer.querySelector("[data-explore-preview-link]");
+
+  explorerTabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      if (tab.classList.contains("is-active")) return;
+
+      explorerTabs.forEach((item) => {
+        const isActive = item === tab;
+        item.classList.toggle("is-active", isActive);
+        item.setAttribute("aria-selected", String(isActive));
+      });
+
+      explorerPreview?.classList.add("is-changing");
+
+      window.setTimeout(() => {
+        if (explorerVisual) {
+          explorerVisual.classList.remove("visual-industrial", "visual-visualization", "visual-communication");
+          explorerVisual.classList.add(`visual-${tab.dataset.exploreVisual || "industrial"}`);
+        }
+        if (explorerKicker) explorerKicker.textContent = tab.dataset.exploreKicker || "";
+        if (explorerTitle) explorerTitle.textContent = tab.dataset.exploreTitle || "";
+        if (explorerDescription) explorerDescription.textContent = tab.dataset.exploreDescription || "";
+        if (explorerLink) {
+          explorerLink.href = tab.dataset.exploreHref || "#";
+          explorerLink.firstChild.textContent = `${tab.dataset.exploreLinkLabel || "Explore Work"} `;
+        }
+        explorerPreview?.classList.remove("is-changing");
+      }, 180);
+    });
+  });
+}
+
 updateMagicTextReveal();
+updateHomepageTextReveal();
 window.addEventListener("scroll", updateMagicTextReveal, { passive: true });
 window.addEventListener("resize", updateMagicTextReveal);
+window.addEventListener("scroll", updateHomepageTextReveal, { passive: true });
+window.addEventListener("resize", updateHomepageTextReveal);
 
 const projectNavs = document.querySelectorAll(".nav-projects");
 
@@ -234,6 +382,7 @@ videoBrowsers.forEach((browser) => {
   const poster = viewer?.querySelector("[data-video-poster]");
   const pdfViewer = viewer?.querySelector("[data-video-pdf-viewer]");
   const player = viewer?.querySelector("[data-video-player]");
+  const youtubeLink = viewer?.querySelector("[data-video-youtube-target]");
   const galleryControls = viewer?.querySelector("[data-video-gallery-controls]");
   const galleryPrevious = viewer?.querySelector("[data-video-gallery-prev]");
   const galleryNext = viewer?.querySelector("[data-video-gallery-next]");
@@ -245,6 +394,8 @@ videoBrowsers.forEach((browser) => {
   const kicker = viewer?.querySelector("[data-video-kicker]");
   const title = viewer?.querySelector("[data-video-title]");
   const description = viewer?.querySelector("[data-video-description]");
+  const contribution = viewer?.querySelector("[data-video-contribution]");
+  const contributionText = viewer?.querySelector("[data-video-contribution-text]");
   const fileLink = viewer?.querySelector("[data-video-link-target]");
   let gallerySlides = [];
   let galleryIndex = 0;
@@ -296,12 +447,23 @@ videoBrowsers.forEach((browser) => {
     const videoSrc = selector.getAttribute("data-video-src") || "";
     const imageSrc = selector.getAttribute("data-video-image") || "";
     const pdfSrc = selector.getAttribute("data-video-pdf") || "";
+    const youtubeSrc = selector.getAttribute("data-video-youtube") || "";
     const confidentialText = selector.getAttribute("data-video-confidential") || "";
+    const confidentialTheme = selector.getAttribute("data-video-confidential-theme") || "";
+    const contributionValue = selector.getAttribute("data-video-contribution") || "";
+    const mediaRatio = selector.getAttribute("data-video-ratio") || "";
     const isConfidential = Boolean(confidentialText);
     gallerySlides = parseGallerySlides(selector);
     galleryIndex = 0;
     setGalleryVisible(gallerySlides.length > 1);
     frame?.classList.toggle("is-confidential", isConfidential);
+    frame?.classList.toggle("is-confidential-light", isConfidential && confidentialTheme === "light");
+    frame?.classList.remove("is-asset-card-media", "is-panel-media", "is-portrait-media", "is-square-media", "is-wide-media");
+    if (mediaRatio === "asset-card") frame?.classList.add("is-asset-card-media");
+    if (mediaRatio === "panel") frame?.classList.add("is-panel-media");
+    if (mediaRatio === "portrait") frame?.classList.add("is-portrait-media");
+    if (mediaRatio === "square") frame?.classList.add("is-square-media");
+    if (mediaRatio === "wide") frame?.classList.add("is-wide-media");
 
     renderConfidentialNote(confidentialText);
     renderVideoStatus(isConfidential);
@@ -338,6 +500,12 @@ videoBrowsers.forEach((browser) => {
       poster.hidden = Boolean(pdfSrc) || (Boolean(videoSrc) && !imageSrc);
     }
 
+    if (youtubeLink) {
+      youtubeLink.href = youtubeSrc || "#";
+      youtubeLink.setAttribute("aria-label", `Watch ${selector.getAttribute("data-video-title") || "selected video"} on YouTube`);
+      youtubeLink.hidden = !youtubeSrc;
+    }
+
     if (pdfViewer) {
       if (pdfSrc) {
         pdfViewer.src = pdfSrc;
@@ -354,6 +522,8 @@ videoBrowsers.forEach((browser) => {
     if (kicker) kicker.textContent = selector.getAttribute("data-video-kicker") || "";
     if (title) title.textContent = selector.getAttribute("data-video-title") || "";
     if (description) description.textContent = selector.getAttribute("data-video-description") || "";
+    if (contribution) contribution.hidden = !contributionValue;
+    if (contributionText) contributionText.textContent = contributionValue;
     if (fileLink) {
       const linkSrc = selector.getAttribute("data-video-link") || "";
       const linkLabel = selector.getAttribute("data-video-link-label") || "Open PDF";
@@ -398,19 +568,35 @@ videoBrowsers.forEach((browser) => {
   });
 
   categories.forEach((category) => {
+    category.setAttribute("aria-selected", String(category.classList.contains("is-active")));
     category.addEventListener("click", () => {
       const target = category.getAttribute("data-video-category");
-      categories.forEach((item) => item.classList.toggle("is-active", item === category));
-      panels.forEach((panel) => panel.classList.toggle("is-active", panel.getAttribute("data-video-panel") === target));
+      categories.forEach((item) => {
+        const isActive = item === category;
+        item.classList.toggle("is-active", isActive);
+        item.setAttribute("aria-selected", String(isActive));
+      });
+      panels.forEach((panel) => {
+        const isActive = panel.getAttribute("data-video-panel") === target;
+        panel.classList.toggle("is-active", isActive);
+        panel.setAttribute("aria-hidden", String(!isActive));
+      });
 
       const activePanel = browser.querySelector(`[data-video-panel="${target}"]`);
-      const firstVideo = activePanel?.querySelector(".video-select");
+      const firstVideo = activePanel?.querySelector('[data-video-featured="true"]')
+        || activePanel?.querySelector(".video-select:not([data-video-context-only])")
+        || activePanel?.querySelector(".video-select");
       if (firstVideo) updateVideo(firstVideo);
     });
   });
 
   selectors.forEach((selector) => {
-    selector.addEventListener("click", () => updateVideo(selector));
+    selector.addEventListener("click", () => {
+      updateVideo(selector);
+      if (window.matchMedia("(max-width: 720px)").matches && viewer) {
+        window.requestAnimationFrame(() => viewer.scrollIntoView({ behavior: "smooth", block: "start" }));
+      }
+    });
   });
 
   playToggle?.addEventListener("click", (event) => {
@@ -423,7 +609,28 @@ videoBrowsers.forEach((browser) => {
   player?.addEventListener("pause", updatePlayToggleLabel);
   player?.addEventListener("ended", updatePlayToggleLabel);
   player?.addEventListener("loadedmetadata", updatePlayToggleLabel);
-  updatePlayToggleLabel();
+  panels.forEach((panel) => panel.setAttribute("aria-hidden", String(!panel.classList.contains("is-active"))));
+  const initialSelector = browser.querySelector(".video-select.is-active") || selectors[0];
+  if (initialSelector) {
+    updateVideo(initialSelector);
+  } else {
+    updatePlayToggleLabel();
+  }
+});
+
+const communicationCategoryLinks = document.querySelectorAll("[data-communication-category-link]");
+
+communicationCategoryLinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    const target = link.getAttribute("data-communication-category-link");
+    const itemTarget = link.getAttribute("data-communication-item-link");
+    const category = document.querySelector(`[data-video-category="${target}"]`);
+    if (category instanceof HTMLButtonElement) category.click();
+    if (itemTarget) {
+      const item = document.querySelector(`[data-video-item="${itemTarget}"]`);
+      if (item instanceof HTMLButtonElement) item.click();
+    }
+  });
 });
 
 const caseStudyNavs = document.querySelectorAll("[data-case-study-nav]");

@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Technical &amp; Product Communication / Jinyang Zhou Portfolio</title>
-    <meta name="description" content="Technical and product communication work including product catalogs, exhibition graphics, technical diagrams, and customer-facing industrial product materials.">
-    <link rel="stylesheet" href="styles.css">
+    <title>Industrial Product Communication / Jinyang Zhou Portfolio</title>
+    <meta name="description" content="Industrial product communication work including product catalogs, exhibition graphics, technical diagrams, and customer-facing materials for sales and international markets.">
+    <link rel="stylesheet" href="styles.css?v=20260721b">
   </head>
-  <body>
+  <body class="technical-communication-page">
     <header class="site-header">
       <a class="brand" href="index.html"><span class="brand-mark">PD</span><span class="brand-name">Jin's Portfolio</span></a>
       <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span></button>
@@ -18,10 +18,24 @@
           <button class="nav-projects-trigger" type="button" aria-expanded="false" aria-current="page">
             <span class="nav-icon">□</span><span>Projects</span>
           </button>
-          <div class="nav-projects-menu" aria-label="Project categories">
-            <a href="work.html">Industrial Design</a>
-            <a href="communication.html">Product Visualization</a>
-            <a href="visual-communication.html">Technical &amp; Product Communication</a>
+          <div class="nav-projects-menu" aria-label="Project navigation">
+            <a class="nav-menu-featured" href="index.html#featured-projects">
+              <span>Featured Projects</span>
+              <small>Three selected case studies</small>
+            </a>
+            <p class="nav-menu-label">Explore by discipline</p>
+            <a class="nav-menu-discipline" href="work.html">
+              <span>Industrial Design</span>
+              <small>Physical products &amp; systems</small>
+            </a>
+            <a class="nav-menu-discipline" href="communication.html">
+              <span>Product Visualization &amp; Animation</span>
+              <small>Product presentation &amp; technical animation</small>
+            </a>
+            <a class="nav-menu-discipline" href="visual-communication.html">
+              <span>Industrial Product Communication</span>
+              <small>Catalogs, diagrams &amp; customer materials</small>
+            </a>
           </div>
         </div>
         <a class="nav-resume" href="resume.html"><span class="nav-icon">≡</span><span>Resume</span></a>
@@ -29,73 +43,178 @@
     </header>
 
     <main>
-      <section class="page-hero section-pad">
+      <section class="page-hero section-pad technical-communication-hero">
         <p class="eyebrow">Selected Work</p>
         <h1 class="project-title-animate">
-          <span class="word-animate" data-delay="120">TECHNICAL</span>
-          <span class="word-animate" data-delay="300">&amp; PRODUCT</span>
-          <span class="word-animate" data-delay="480">COMMUNICATION</span>
+          <span class="word-animate" data-delay="120">INDUSTRIAL</span>
+          <span class="word-animate" data-delay="360">PRODUCT COMMUNICATION</span>
         </h1>
         <p>
-          Product catalogs, exhibition graphics, diagrams, and customer-facing materials that translate complex industrial product information into clear communication.
+          Customer-facing communication systems that translate complex industrial product information into clear materials for sales, exhibitions, and international markets.
         </p>
       </section>
 
-      <section class="communication-section section-pad">
-        <div class="category-confidential-note">
-          <span class="project-status-badge is-confidential">Protected by NDA</span>
-          <p>Some professional project visuals are blurred due to client confidentiality and non-disclosure agreements.</p>
+      <section class="communication-featured section-pad" aria-labelledby="communication-featured-title">
+        <div class="communication-featured-heading">
+          <p class="eyebrow">Featured Communication Outcomes</p>
+          <h2 id="communication-featured-title">Three ways I translate industrial complexity into customer understanding.</h2>
+        </div>
+        <div class="communication-featured-grid">
+          <article class="communication-featured-card is-primary">
+            <div class="communication-featured-media is-trade-show-hero">
+              <img src="assets/trade-show-international-booth.jpg" alt="Peroni Pompe exhibition booth at ADIPEC 2025 in Abu Dhabi using large-format product communication panels">
+            </div>
+            <div class="communication-featured-copy">
+              <p class="eyebrow">01 / Exhibition &amp; International Communication</p>
+              <h3>International Trade Show Communication</h3>
+              <p>Visual communication developed for four directly supported international exhibitions, translating industrial product information into booth-scale panels, films, and rendered assets for customer engagement.</p>
+              <dl class="communication-featured-facts">
+                <div><dt>Challenge</dt><dd>Complex products needed consistent, booth-scale communication across international events.</dd></div>
+                <div><dt>My contribution</dt><dd>Panels, booth films &amp; rendered product assets</dd></div>
+                <div><dt>Outcome</dt><dd>Delivered across 4 direct exhibitions, with rendered assets reused in 2 additional campaigns.</dd></div>
+              </dl>
+              <a href="#communication-library" data-communication-category-link="exhibitions" data-communication-item-link="adipec-2025">Explore exhibition outputs <span aria-hidden="true">→</span></a>
+            </div>
+            <ol class="communication-trade-show-index" aria-label="Four international exhibitions">
+              <li><span>01</span><strong>ADIPEC 2025</strong><small>Abu Dhabi</small><em>Panel + booth application</em><time datetime="2025-11-03">3–6 November 2025</time></li>
+              <li><span>02</span><strong>Powertech 2026</strong><small>International exhibition</small><em>Large-format product panel</em><time datetime="2026">2026</time></li>
+              <li><span>03</span><strong>Sea Japan</strong><small>First-time exhibitor · Japan</small><em>Localized panel + booth film</em><time datetime="2026-04-22">22–24 April 2026</time></li>
+              <li><span>04</span><strong>Australian Energy Producers</strong><small>Adelaide</small><em>Stand graphics + booth film</em><time datetime="2026-05-18">18–21 May 2026</time></li>
+            </ol>
+          </article>
+          <article class="communication-featured-card">
+            <div class="communication-featured-media is-catalog-photo"><img src="assets/previews/jetech-catalog-print-open.jpg" alt="Printed Jetech product catalog showing the product information layout and rendered product imagery"></div>
+            <div class="communication-featured-copy">
+              <p class="eyebrow">02 / Product &amp; Sales Communication</p>
+              <h3>Jetech Product Catalog Redesign</h3>
+              <p>A late-2025 update that replaced outdated product data and unclear information retrieval with a more structured product reference for print distribution and the official website.</p>
+              <dl class="communication-featured-facts">
+                <div><dt>Challenge</dt><dd>Outdated product data and unclear navigation reduced the catalog's usefulness.</dd></div>
+                <div><dt>My contribution</dt><dd>InDesign layout, data editing &amp; rendered imagery</dd></div>
+                <div><dt>Outcome</dt><dd>A clearer product reference delivered for print distribution and the official website.</dd></div>
+              </dl>
+              <a href="#communication-library" data-communication-category-link="sales" data-communication-item-link="catalog-redesign">Explore product materials <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+          <article class="communication-featured-card is-confidential">
+            <div class="communication-featured-media"><img src="assets/previews/confidential-technical-pump-system-white.jpg" alt="Intentionally obscured preview for confidential technical information design work"></div>
+            <div class="communication-featured-copy">
+              <p class="eyebrow">03 / Technical Information Design</p>
+              <h3>Customer-Facing Technical Explanation</h3>
+              <p>Protected professional material demonstrating how product structure and operating information can be simplified for presentations and customer understanding.</p>
+              <dl class="communication-featured-facts">
+                <div><dt>Challenge</dt><dd>Customized pump configurations were difficult to explain from engineering input alone.</dd></div>
+                <div><dt>My contribution</dt><dd>Rendering, information hierarchy &amp; presentation sequence</dd></div>
+                <div><dt>Outcome</dt><dd>Clearer customer-facing technical presentations · Protected by NDA</dd></div>
+              </dl>
+              <a href="#communication-library" data-communication-category-link="technical-information" data-communication-item-link="technical-explanation">Explore protected work <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="communication-context section-pad" aria-labelledby="communication-context-title">
+        <div class="communication-context-heading">
+          <p class="eyebrow">Professional Context</p>
+          <div>
+            <h2 id="communication-context-title">Built inside a real engineering workflow.</h2>
+            <p>Engineering input was structured and adapted into practical communication for commercial and international use.</p>
+          </div>
+        </div>
+        <dl class="communication-context-facts">
+          <div><dt>Role</dt><dd>Product Visualization Designer</dd></div>
+          <div><dt>Audience</dt><dd>Engineering, marketing, international sales &amp; customers</dd></div>
+          <div><dt>Scope</dt><dd>Exhibitions, catalogs, technical information &amp; customer materials</dd></div>
+          <div><dt>Featured Reach</dt><dd>4 directly supported international trade shows</dd></div>
+        </dl>
+      </section>
+
+      <section class="communication-section section-pad" id="communication-library" aria-labelledby="communication-library-title">
+        <div class="communication-library-heading">
+          <p class="eyebrow">Supporting Work</p>
+          <div><h2 id="communication-library-title">Explore project outputs by purpose.</h2><p>Select a category to view exhibition materials, sales communication, or technical information design.</p></div>
         </div>
         <div class="video-browser" data-video-browser>
-          <aside class="video-list" aria-label="Technical and product communication selection">
-            <div class="video-category-list" role="tablist" aria-label="Technical and product communication categories">
-              <button class="video-category is-active" type="button" data-video-category="poster">Poster</button>
-              <div class="video-category-panel is-active" data-video-panel="poster">
-                <button class="video-select is-active" type="button" data-video-title="Marketing Product Poster" data-video-kicker="Technical &amp; Product Communication / Marketing Asset" data-video-description="Product poster layout developed to present key product information with clear visual hierarchy and direct marketing communication." data-video-poster="assets/MktPoster.webp" data-video-image="assets/MktPoster.webp" data-video-link="assets/MktPoster.pdf">
-                  <img src="assets/MktPoster.webp" alt="Mkt Poster preview">
-                  <span><strong>Marketing Product Poster</strong><small>Technical &amp; Product Communication / Marketing Asset</small></span>
+          <aside class="video-list" aria-label="Industrial product communication selection">
+            <div class="video-category-list" role="tablist" aria-label="Industrial product communication categories">
+              <button class="video-category is-active" id="communication-tab-exhibitions" type="button" role="tab" aria-selected="true" aria-controls="communication-panel-exhibitions" data-video-category="exhibitions">Trade Shows &amp; International</button>
+              <div class="video-category-panel is-active" id="communication-panel-exhibitions" role="tabpanel" aria-labelledby="communication-tab-exhibitions" data-video-panel="exhibitions">
+                <details class="video-output-more">
+                  <summary>Additional campaign applications <span>3</span></summary>
+                  <div class="video-output-more-list">
+                    <button class="video-select" type="button" data-video-context-only data-video-title="OTC 2025 Promotional Communication" data-video-kicker="OTC 2025 / Houston, Texas / 5–8 May 2025" data-video-description="Shown as application context: the product-render assets were used within OTC 2025 promotional communication, without implying direct exhibition participation." data-video-contribution="Created the industrial product-render assets incorporated into the promotional visual." data-video-poster="assets/trade-show-otc-2025-promotion.png" data-video-image="assets/trade-show-otc-2025-promotion.png" data-video-ratio="asset-card">
+                      <img src="assets/trade-show-otc-2025-promotion.png" alt="OTC 2025 promotional communication preview" loading="lazy" decoding="async">
+                      <span><strong>OTC 2025</strong><small>Campaign application / Render assets</small></span>
+                    </button>
+                    <button class="video-select" type="button" data-video-context-only data-video-title="Asia Pacific Maritime 2026 Promotional Communication" data-video-kicker="Asia Pacific Maritime / Singapore / 25–27 March 2026" data-video-description="Shown as application context: the product-render asset was used within the event campaign, without implying direct exhibition participation." data-video-contribution="Created the industrial product-render asset used as the central visual in the event promotion." data-video-poster="assets/trade-show-apm-2026-promotion.png" data-video-image="assets/trade-show-apm-2026-promotion.png" data-video-ratio="asset-card">
+                      <img src="assets/trade-show-apm-2026-promotion.png" alt="Asia Pacific Maritime 2026 promotional communication preview" loading="lazy" decoding="async">
+                      <span><strong>Asia Pacific Maritime</strong><small>Campaign application / Render asset</small></span>
+                    </button>
+                    <button class="video-select" type="button" data-video-context-only data-video-title="Australian Energy Producers 2026 Campaign Visual" data-video-kicker="Australian Energy Producers / Adelaide / 18–21 May 2026" data-video-description="A compact campaign application showing how the industrial product imagery supported event promotion." data-video-contribution="Created the industrial product-render asset incorporated into the Australian Energy Producers campaign visual." data-video-poster="assets/trade-show-aep-2026-promotion.png" data-video-image="assets/trade-show-aep-2026-promotion.png" data-video-ratio="asset-card">
+                      <img src="assets/trade-show-aep-2026-promotion.png" alt="Australian Energy Producers 2026 campaign visual preview" loading="lazy" decoding="async">
+                      <span><strong>Australian Energy Producers</strong><small>Campaign application / Render asset</small></span>
+                    </button>
+                  </div>
+                </details>
+
+                <p class="video-output-group-label"><span>01</span>Panels &amp; Booth Graphics</p>
+                <button class="video-select" type="button" data-video-title="Powertech 2026 Product Panel" data-video-kicker="Powertech 2026 / Large-format Product Communication" data-video-description="A large-format exhibition panel structured for rapid product understanding, booth-scale visibility, and customer-facing technical communication." data-video-contribution="Developed the panel layout and integrated product-render and technical communication assets for exhibition use." data-video-poster="assets/previews/powertech-2026-panel.jpg" data-video-image="assets/previews/powertech-2026-panel.jpg" data-video-ratio="panel" data-video-link="assets/2026-powertech-destra.pdf" data-video-link-label="Open full panel PDF">
+                  <img src="assets/thumbnails/powertech-2026-panel.jpg" alt="Powertech 2026 large-format product panel preview" loading="lazy" decoding="async">
+                  <span><strong>Powertech 2026</strong><small>Large-format Product Panel</small></span>
+                </button>
+                <button class="video-select is-active" type="button" data-video-featured="true" data-video-item="adipec-2025" data-video-title="ADIPEC 2025 Exhibition Panel &amp; Booth Application" data-video-kicker="ADIPEC 2025 / Abu Dhabi / 3–6 November 2025" data-video-description="A booth-scale exhibition panel combining product messaging, industrial imagery, and high-level technical information, shown together with its final application in the ADIPEC exhibition environment." data-video-contribution="Developed the large-format panel and assembled the product-render and communication content used in the final booth graphic." data-video-poster="assets/previews/adipec-2025-panel.jpg" data-video-image="assets/previews/adipec-2025-panel.jpg" data-video-ratio="panel" data-video-gallery="assets/previews/adipec-2025-panel.jpg|ADIPEC 2025 large-format product panel|50% 50%;assets/trade-show-international-booth.jpg|Peroni Pompe booth at ADIPEC 2025 in Abu Dhabi|50% 50%" data-video-link="assets/PeroniPompe-ADIPEC-2025-Panel-A-345x244cm-PRINT.pdf" data-video-link-label="Open full panel PDF">
+                  <img src="assets/thumbnails/adipec-2025-panel.jpg" alt="ADIPEC 2025 large-format product panel preview" loading="lazy" decoding="async">
+                  <span><strong>ADIPEC 2025</strong><small>Panel / Abu Dhabi Booth Application</small></span>
+                </button>
+                <button class="video-select" type="button" data-video-title="Sea Japan 2026 Exhibition Communication" data-video-kicker="Sea Japan / First-time Exhibitor / 22–24 April 2026" data-video-description="Localized exhibition communication supporting Peroni Pompe's first participation at Sea Japan, shown through the completed panel and its application in the booth environment." data-video-contribution="Developed the localized exhibition panel and supporting product-render content." data-video-poster="assets/trade-show-sea-japan-2026-booth.jpg" data-video-image="assets/trade-show-sea-japan-2026-booth.jpg" data-video-ratio="panel" data-video-gallery="assets/trade-show-sea-japan-2026-booth.jpg|Peroni Pompe booth at Sea Japan 2026|50% 50%;assets/SEAJAPAN2026-Pannello-A4-VersioneJP.webp|Sea Japan 2026 localized exhibition panel|50% 50%">
+                  <img src="assets/trade-show-sea-japan-2026-booth.jpg" alt="Sea Japan 2026 exhibition communication preview">
+                  <span><strong>Sea Japan 2026</strong><small>Localized Panel / On-site Application</small></span>
+                </button>
+                <button class="video-select" type="button" data-video-title="Australian Energy Producers 2026 Panel System" data-video-kicker="Australian Energy Producers / Adelaide / 18–21 May 2026" data-video-description="A continuous nine-panel exhibition system carrying Peroni Pompe and Jetech product communication across the primary booth wall." data-video-contribution="Created product-render and panel assets used within the exhibition stand communication." data-video-poster="assets/previews/aep-2026-panels-cropped.jpg" data-video-image="assets/previews/aep-2026-panels-cropped.jpg" data-video-ratio="wide" data-video-link="assets/STAND-PeroniPompe-AEP-Australia-2026-Layout-DEF1.pdf" data-video-link-label="Open full stand-layout PDF">
+                  <img src="assets/thumbnails/aep-2026-panels-cropped.jpg" alt="Australian Energy Producers 2026 nine-panel exhibition system preview" loading="lazy" decoding="async">
+                  <span><strong>Australian Energy Producers</strong><small>Stand Graphics / Booth Application</small></span>
+                </button>
+                <p class="video-output-group-label"><span>02</span>Exhibition Films &amp; Motion</p>
+                <button class="video-select" type="button" data-video-title="Sea Japan Exhibition Film" data-video-kicker="Sea Japan 2026 / Visitor-facing Film" data-video-description="A visitor-facing film providing concise product context and supporting customer engagement inside the Sea Japan exhibition booth." data-video-contribution="Created the exhibition playback film and integrated the supporting product-visualization assets." data-video-poster="assets/comm-exhibition-loop.svg" data-video-src="assets/Video-Giappone-2.mp4">
+                  <img src="assets/trade-show-sea-japan-2026-booth.jpg" alt="Sea Japan exhibition film context preview" loading="lazy" decoding="async">
+                  <span><strong>Sea Japan 2026</strong><small>Booth Film / Customer Engagement</small></span>
+                </button>
+                <button class="video-select" type="button" data-video-title="Australian Energy Producers Exhibition Film" data-video-kicker="Australian Energy Producers 2026 / Trade-show Film" data-video-description="A trade-show film presenting product context and brand presence with concise pacing for an international customer audience in Australia." data-video-contribution="Created the exhibition playback film using product-render and communication assets for the booth audience." data-video-poster="assets/comm-exhibition-loop.svg" data-video-src="assets/Video_Australia_1205.mp4">
+                  <img src="assets/trade-show-aep-2026-promotion.png" alt="Australian Energy Producers exhibition film context preview" loading="lazy" decoding="async">
+                  <span><strong>Australian Energy Producers</strong><small>Booth Film / Brand Presence</small></span>
                 </button>
               </div>
 
-              <button class="video-category" type="button" data-video-category="panels">Exhibition Panels</button>
-              <div class="video-category-panel" data-video-panel="panels">
-                <button class="video-select" type="button" data-video-title="Powertech 2026 Product Panel" data-video-kicker="Trade-show Communication / Product Panel" data-video-description="Exhibition panel layout developed to support booth-scale product communication, brand presence, and quick technical understanding." data-video-poster="assets/2026-powertech-destra.webp" data-video-image="assets/2026-powertech-destra.webp" data-video-link="assets/2026-powertech-destra.pdf">
-                  <img src="assets/2026-powertech-destra.webp" alt="Powertech 2026 panel preview">
-                  <span><strong>Powertech 2026 Product Panel</strong><small>Trade-show Communication / Product Panel</small></span>
+              <button class="video-category" id="communication-tab-sales" type="button" role="tab" aria-selected="false" aria-controls="communication-panel-sales" data-video-category="sales">Product &amp; Sales</button>
+              <div class="video-category-panel" id="communication-panel-sales" role="tabpanel" aria-labelledby="communication-tab-sales" data-video-panel="sales">
+                <button class="video-select" type="button" data-video-item="catalog-redesign" data-video-title="Jetech Product Catalog Redesign" data-video-kicker="Late 2025 / Print &amp; Web Product Communication" data-video-description="The previous catalog contained outdated product information and data, while its hierarchy made product lookup and comparison difficult. The late-2025 update reorganized the content into a clearer reference used both in print and on the official website." data-video-contribution="Responsible for page layout and product-data editing in Adobe InDesign, and for producing the rendered product-image assets used throughout the catalog." data-video-poster="assets/previews/jetech-catalog-print-open.jpg" data-video-image="assets/previews/jetech-catalog-print-open.jpg" data-video-ratio="panel" data-video-gallery="assets/previews/jetech-catalog-print-open.jpg|Printed Jetech catalog showing a product-information spread and rendered product imagery|50% 50%;assets/previews/jetech-catalog-print-run.jpg|Completed printed Jetech product catalogs prepared for distribution|50% 50%;assets/Jetech-Product-Catalog.webp|Jetech product catalog cover|50% 50%" data-video-link="https://jetech.com/product-catalog/" data-video-link-label="View catalog on Jetech ↗">
+                  <img src="assets/thumbnails/jetech-catalog-print-open.jpg" alt="Printed Jetech product catalog preview" loading="lazy" decoding="async">
+                  <span><strong>Jetech Catalog Redesign</strong><small>InDesign / Data / Renders / Print + Web</small></span>
                 </button>
-                <button class="video-select" type="button" data-video-title="Sea Japan 2026 Product Panel" data-video-kicker="Trade-show Communication / A4 Product Panel" data-video-description="Confidential exhibition panel prepared in Japanese to organize product messaging, compact technical content, and customer-facing information hierarchy." data-video-poster="assets/SEAJAPAN2026-Pannello-A4-VersioneJP.webp" data-video-image="assets/SEAJAPAN2026-Pannello-A4-VersioneJP.webp" data-video-link="assets/SEAJAPAN2026-Pannello-A4-VersioneJP.pdf" data-video-confidential="Confidential professional work.&#10;&#10;Project visuals are blurred due to client confidentiality&#10;and non-disclosure agreements (NDA).">
-                  <img src="assets/SEAJAPAN2026-Pannello-A4-VersioneJP.webp" alt="Sea Japan 2026 panel preview">
-                  <span><strong>Sea Japan 2026 Product Panel</strong><small>Trade-show Communication / A4 Product Panel</small></span>
-                </button>
-                <button class="video-select" type="button" data-video-title="ADIPEC 2025 Product Panel" data-video-kicker="Trade-show Communication / Large-format Panel" data-video-description="Large-format exhibition panel developed for booth visibility, product messaging, and high-level brand communication in a trade-show environment." data-video-poster="assets/PeroniPompe-ADIPEC-2025-Panel-A-345x244cm-PRINT.webp" data-video-image="assets/PeroniPompe-ADIPEC-2025-Panel-A-345x244cm-PRINT.webp" data-video-link="assets/PeroniPompe-ADIPEC-2025-Panel-A-345x244cm-PRINT.pdf">
-                  <img src="assets/PeroniPompe-ADIPEC-2025-Panel-A-345x244cm-PRINT.webp" alt="ADIPEC 2025 panel preview">
-                  <span><strong>ADIPEC 2025 Product Panel</strong><small>Trade-show Communication / Large-format Panel</small></span>
+                <button class="video-select" type="button" data-video-title="Marketing Product Poster" data-video-kicker="Product &amp; Sales Communication / Marketing Asset" data-video-description="Product poster layout developed to present key product information with clear visual hierarchy and direct marketing communication." data-video-poster="assets/previews/marketing-product-poster.jpg" data-video-image="assets/previews/marketing-product-poster.jpg" data-video-ratio="portrait" data-video-link="assets/MktPoster.pdf">
+                  <img src="assets/thumbnails/marketing-product-poster.jpg" alt="Marketing product poster preview" loading="lazy" decoding="async">
+                  <span><strong>Marketing Product Poster</strong><small>Product Message / Marketing Asset</small></span>
                 </button>
               </div>
 
-              <button class="video-category" type="button" data-video-category="catalog">Catalog</button>
-              <div class="video-category-panel" data-video-panel="catalog">
-                <button class="video-select" type="button" data-video-title="Jetech Product Catalog System" data-video-kicker="Technical &amp; Product Communication / Product Catalog" data-video-description="Product catalog developed with an external creative studio to organize industrial pump information, brand presentation, and technical product communication into a consistent editorial system. Click the link below to view the catalog on Jetech's website." data-video-poster="assets/Jetech-Product-Catalog.webp" data-video-image="assets/Jetech-Product-Catalog.webp" data-video-pdf="assets/Jetech-Product-Catalog.pdf" data-video-link="https://jetech.com/product-catalog/" data-video-link-label="View catalog on Jetech">
-                  <img src="assets/Jetech-Product-Catalog.webp" alt="Jetech product catalog preview">
-                  <span><strong>Jetech Product Catalog System</strong><small>Technical &amp; Product Communication / Product Catalog</small></span>
-                </button>
-              </div>
-
-              <button class="video-category" type="button" data-video-category="technical-visualization">Technical Visualization</button>
-              <div class="video-category-panel" data-video-panel="technical-visualization">
-                <button class="video-select" type="button" data-video-title="Industrial Pump Operation Visualization" data-video-kicker="Product Visualization / Technical &amp; Product Communication" data-video-description="Confidential technical visualization developed to translate industrial pump structures, operating principles, and customized configurations into clearer material for technical presentations and customer communication." data-video-poster="assets/industrial-pump-operation-visualization-02.jpg" data-video-image="assets/industrial-pump-operation-visualization-02.jpg" data-video-gallery="assets/industrial-pump-operation-visualization-02.jpg|Industrial pump operation visualization perspective view|50% 50%;assets/industrial-pump-operation-visualization-01.jpg|Industrial pump operation visualization section view|50% 50%" data-video-confidential="Confidential professional work.&#10;&#10;Project visuals are blurred due to client confidentiality&#10;and non-disclosure agreements (NDA).">
-                  <img src="assets/industrial-pump-operation-visualization-02.jpg" alt="Industrial pump operation visualization preview">
-                  <span><strong>Industrial Pump Operation Visualization</strong><small>Product Visualization / Technical &amp; Product Communication</small></span>
+              <button class="video-category" id="communication-tab-technical" type="button" role="tab" aria-selected="false" aria-controls="communication-panel-technical" data-video-category="technical-information">Technical Information Design</button>
+              <div class="video-category-panel" id="communication-panel-technical" role="tabpanel" aria-labelledby="communication-tab-technical" data-video-panel="technical-information">
+                <div class="video-category-note"><span class="project-status-badge is-confidential">Protected by NDA</span><p>Protected work is placed after public material. Visuals remain intentionally blurred.</p></div>
+                <button class="video-select" type="button" data-video-item="technical-explanation" data-video-title="Customer-Facing Pump Technical Explanation" data-video-kicker="Engineering Input / Technical Information Design" data-video-description="Confidential professional material translating industrial pump structure, operating principles, and customized configurations into clearer customer-facing content. Disclosable capabilities include CAD interpretation, engineering clarification, information hierarchy, and presentation design." data-video-contribution="Interpreted CAD imagery and engineers' technical explanations, then developed the rendered views, visual hierarchy, and presentation sequence." data-video-poster="assets/previews/confidential-technical-pump-system-white.jpg" data-video-image="assets/previews/confidential-technical-pump-system-white.jpg" data-video-ratio="wide" data-video-gallery="assets/previews/confidential-technical-pump-system-white.jpg|Confidential overview of a customized industrial pump system|50% 50%;assets/previews/confidential-operation-perspective-white.jpg|Confidential technical explanation perspective view|50% 50%;assets/previews/confidential-operation-section-white.jpg|Confidential technical explanation section view|50% 50%" data-video-confidential="Confidential professional work.&#10;&#10;Only intentionally obscured preview images are shown.&#10;Source CAD imagery and proprietary details are not published." data-video-confidential-theme="light">
+                  <img src="assets/thumbnails/confidential-technical-pump-system-white.jpg" alt="Blurred confidential industrial pump technical visualization preview on a white background" loading="lazy" decoding="async">
+                  <span><strong>Customer-Facing Technical Explanation</strong><small>CAD Interpretation / Engineering Collaboration</small></span>
                 </button>
               </div>
             </div>
           </aside>
 
           <article class="video-viewer">
-            <div class="video-frame visual-preview-frame">
-              <img src="assets/MktPoster.webp" alt="Mkt Poster preview" data-video-poster>
+            <div class="video-frame visual-preview-frame is-image-active is-panel-media">
+              <img src="assets/previews/adipec-2025-panel.jpg" alt="ADIPEC 2025 large-format product panel preview" decoding="async" data-video-poster>
+              <video controls playsinline preload="none" data-video-player aria-label="Selected industrial product communication video" hidden></video>
               <iframe class="visual-pdf-frame" title="Selected visual communication PDF" data-video-pdf-viewer hidden></iframe>
               <p class="visual-confidential-note" data-video-confidential-note hidden></p>
+              <button class="video-play-mark" type="button" data-video-play-toggle aria-label="Play selected video"></button>
               <div class="carousel-controls" aria-label="Project visuals" data-video-gallery-controls hidden>
                 <button class="carousel-button" type="button" data-video-gallery-prev aria-label="Previous visual">&lsaquo;</button>
                 <span class="carousel-status"><span data-video-gallery-current>1</span>/<span data-video-gallery-total>2</span></span>
@@ -103,15 +222,19 @@
               </div>
             </div>
             <div class="video-copy">
-              <p class="eyebrow" data-video-kicker>Technical &amp; Product Communication / Marketing Asset</p>
-              <h2 data-video-title>Marketing Product Poster</h2>
+              <p class="eyebrow" data-video-kicker>ADIPEC 2025 / Abu Dhabi / 3–6 November 2025</p>
+              <h2 data-video-title>ADIPEC 2025 Exhibition Panel &amp; Booth Application</h2>
               <div class="project-status-list video-status-list" data-video-status hidden>
                 <span class="project-status-badge is-confidential">Confidential</span>
               </div>
               <p data-video-description>
-                Product poster layout developed to present key product information with clear visual hierarchy and direct marketing communication.
+                A booth-scale exhibition panel combining product messaging, industrial imagery, and high-level technical information, shown together with its final application in the ADIPEC exhibition environment.
               </p>
-              <a class="visual-file-link" href="assets/MktPoster.pdf" target="_blank" rel="noreferrer" data-video-link-target>Open PDF</a>
+              <div class="video-contribution" data-video-contribution>
+                <span>My Contribution</span>
+                <p data-video-contribution-text>Developed the large-format panel and assembled the product-render and communication content used in the final booth graphic.</p>
+              </div>
+              <a class="visual-file-link" href="#" target="_blank" rel="noreferrer" data-video-link-target hidden>Open supporting file</a>
             </div>
           </article>
         </div>
@@ -119,10 +242,10 @@
     </main>
 
     <footer class="site-footer">
-      <p>Industrial Product Design / Product Visualization / Technical &amp; Product Communication</p>
+      <p>Industrial Product Design / Product Visualization &amp; Animation / Industrial Product Communication</p>
       <a href="contact.html">Start a conversation</a>
     </footer>
 
-    <script src="script.js?v=20260714d"></script>
+    <script src="script.js?v=20260721b"></script>
   </body>
 </html>

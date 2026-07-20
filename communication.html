@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Product Visualization / Jinyang Zhou Portfolio</title>
-    <meta name="description" content="Product visualization work including 3D renderings, technical animations, exploded-view sequences, and product demonstrations for industrial communication.">
+    <title>Product Visualization &amp; Animation / Jinyang Zhou Portfolio</title>
+    <meta name="description" content="Professional industrial product visualization work including product presentation, exploded views, assembly animation, and operating-principle visualization.">
     <link rel="stylesheet" href="styles.css">
   </head>
-  <body>
+  <body class="product-visualization-page">
     <header class="site-header">
       <a class="brand" href="index.html"><span class="brand-mark">PD</span><span class="brand-name">Jin's Portfolio</span></a>
       <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span></button>
@@ -18,10 +18,24 @@
           <button class="nav-projects-trigger" type="button" aria-expanded="false" aria-current="page">
             <span class="nav-icon">□</span><span>Projects</span>
           </button>
-          <div class="nav-projects-menu" aria-label="Project categories">
-            <a href="work.html">Industrial Design</a>
-            <a href="communication.html">Product Visualization</a>
-            <a href="visual-communication.html">Technical &amp; Product Communication</a>
+          <div class="nav-projects-menu" aria-label="Project navigation">
+            <a class="nav-menu-featured" href="index.html#featured-projects">
+              <span>Featured Projects</span>
+              <small>Three selected case studies</small>
+            </a>
+            <p class="nav-menu-label">Explore by discipline</p>
+            <a class="nav-menu-discipline" href="work.html">
+              <span>Industrial Design</span>
+              <small>Physical products &amp; systems</small>
+            </a>
+            <a class="nav-menu-discipline" href="communication.html">
+              <span>Product Visualization &amp; Animation</span>
+              <small>Product presentation &amp; technical animation</small>
+            </a>
+            <a class="nav-menu-discipline" href="visual-communication.html">
+              <span>Industrial Product Communication</span>
+              <small>Catalogs, diagrams &amp; customer materials</small>
+            </a>
           </div>
         </div>
         <a class="nav-resume" href="resume.html"><span class="nav-icon">≡</span><span>Resume</span></a>
@@ -29,29 +43,94 @@
     </header>
 
     <main>
-      <section class="page-hero section-pad">
-        <p class="eyebrow">Selected Work</p>
+      <section class="page-hero visualization-page-hero section-pad">
+        <p class="eyebrow">Engineering Visualization / Selected Work</p>
         <h1 class="project-title-animate">
-          <span class="word-animate" data-delay="120">PRODUCT</span>
-          <span class="word-animate" data-delay="320">VISUALIZATION</span>
+          <span class="word-animate" data-delay="120">PRODUCT VISUALIZATION</span>
+          <span class="word-animate" data-delay="360">&amp; ANIMATION</span>
         </h1>
         <p>
-          3D renderings, technical animations and interactive visualizations developed to explain complex industrial products, support engineering communication, and improve client presentations and product marketing.
+          Making complex industrial products easier to understand, maintain, and present through customer-facing product visualization, technical animation, and interactive 3D experiences.
         </p>
+      </section>
+
+      <section class="visualization-context section-pad" aria-labelledby="visualization-context-title">
+        <div class="visualization-context-compact">
+          <div class="visualization-context-summary">
+            <p class="eyebrow">Professional Context</p>
+            <p id="visualization-context-title">At Peroni Pompe, I translate engineering CAD and complex pump systems into customer-facing product visualization, technical animation, and interactive 3D experiences.</p>
+          </div>
+
+          <dl class="visualization-context-quickfacts">
+            <div><dt>Role</dt><dd>Product Visualization Designer</dd></div>
+            <div><dt>Scope</dt><dd>CAD optimisation, rendering, animation, interactive visualization</dd></div>
+            <div><dt>Audience</dt><dd>Engineering, marketing, international sales, customers</dd></div>
+            <div><dt>Output</dt><dd>10+ product animations and interactive experiences</dd></div>
+          </dl>
+
+          <p class="visualization-context-capabilities"><span>Shared contribution</span> CAD Optimisation · Technical Review · Product Animation · Interactive Visualization <a href="engineering-communication.html">View Hero Case Study →</a></p>
+        </div>
       </section>
 
       <section class="communication-section section-pad">
         <div class="category-confidential-note">
           <span class="project-status-badge is-confidential">Protected by NDA</span>
-          <p>Some professional project visuals are blurred due to client confidentiality and non-disclosure agreements.</p>
+          <p>Confidential projects are placed after public work within each category, with visuals intentionally blurred.</p>
         </div>
         <div class="video-browser" data-video-browser>
-          <aside class="video-list" aria-label="Video selection">
-            <div class="video-category-list" role="tablist" aria-label="Video categories">
-              <button class="video-category is-active" type="button" data-video-category="exploded">Exploded View Animations</button>
-              <div class="video-category-panel is-active" data-video-panel="exploded">
+          <aside class="video-list" aria-label="Industrial product visualization selection">
+            <div class="video-category-list" role="tablist" aria-label="Visualization purposes">
+              <button class="video-category is-active" id="visualization-tab-presentation" type="button" role="tab" aria-selected="true" aria-controls="visualization-panel-presentation" data-video-category="presentation">Industrial Product Presentation</button>
+              <div class="video-category-panel is-active" id="visualization-panel-presentation" role="tabpanel" aria-labelledby="visualization-tab-presentation" data-video-panel="presentation">
+                <button class="video-select is-active" type="button" data-video-title="Plunger Pump Interactive Viewers" data-video-kicker="Interactive Product Visualization / Web Experience" data-video-description="A series of customer-facing 360° product viewers developed across Peroni Pompe's plunger-pump range, enabling customers to inspect industrial product form and configuration directly within the official product pages." data-video-poster="assets/plunger-pump-viewers.svg" data-video-image="assets/plunger-pump-viewers.svg" data-video-link="https://peronipompe.com/reciprocating-pumps/plunger-pumps/titano-31-30/" data-video-link-label="View a live viewer on Peroni Pompe ↗">
+                  <img src="assets/plunger-pump-viewers.svg" alt="Abstract preview of the plunger pump interactive viewer series">
+                  <span><strong>Plunger Pump Interactive Viewers</strong><small>360° Web Viewers / Product Range</small></span>
+                </button>
+                <button class="video-select" type="button" data-video-title="3130N High-Pressure Pump Presentation" data-video-kicker="Product Visualization / Operating Principle" data-video-description="A product animation introducing the 3130N vertical plunger pump and the operating logic behind high-pressure pumping: the power end converts crankshaft rotation into reciprocating plunger motion, while suction and discharge valve timing controls fluid flow through the hydraulic end." data-video-poster="assets/comm-process-interview.svg" data-video-src="assets/3130N-drl-verticale.mp4">
+                  <video src="assets/3130N-drl-verticale.mp4#t=0.1" aria-label="3130N high-pressure pump presentation preview" muted playsinline preload="metadata"></video>
+                  <span><strong>3130N High-Pressure Pump</strong><small>Power End / Hydraulic End / Flow Cycle</small></span>
+                </button>
+                <button class="video-select" type="button" data-video-title="CO₂ Injection Pump Presentation" data-video-kicker="Product Visualization / Industrial Product Presentation" data-video-description="A product presentation film combining controlled camera movement, 3D visualization, and technical callouts to introduce an industrial CO₂ injection pump configuration." data-video-poster="assets/comm-motion-identity.svg" data-video-src="assets/PompaC02-1.mp4">
+                  <video src="assets/PompaC02-1.mp4#t=0.1" aria-label="CO2 injection pump presentation preview" muted playsinline preload="metadata"></video>
+                  <span><strong>CO₂ Injection Pump</strong><small>Product Presentation / Configuration</small></span>
+                </button>
+              </div>
+
+              <button class="video-category" id="visualization-tab-construction" type="button" role="tab" aria-selected="false" aria-controls="visualization-panel-construction" data-video-category="construction">Construction, Assembly &amp; Maintenance</button>
+              <div class="video-category-panel" id="visualization-panel-construction" role="tabpanel" aria-labelledby="visualization-tab-construction" data-video-panel="construction">
                 <button
-                  class="video-select is-active"
+                  class="video-select"
+                  type="button"
+                  data-video-title="Jetech Liquid End Maintenance"
+                  data-video-kicker="Technical Communication / Maintenance Procedure"
+                  data-video-description="A customer-facing maintenance walkthrough for the Jetech liquid end, organizing component access, disassembly, service operations, and reassembly into a clear technical sequence."
+                  data-video-poster="assets/jetech-liquid-end-maintenance-preview.jpg"
+                  data-video-image="assets/jetech-liquid-end-maintenance-preview.jpg"
+                  data-video-youtube="https://www.youtube.com/watch?v=0UeK0liVrqg"
+                >
+                  <img src="assets/jetech-liquid-end-maintenance-preview.jpg" alt="Jetech liquid end maintenance video preview" loading="lazy">
+                  <span>
+                    <strong>Jetech Liquid End Maintenance</strong>
+                    <small>Liquid End / Maintenance Sequence</small>
+                  </span>
+                </button>
+                <button
+                  class="video-select"
+                  type="button"
+                  data-video-title="5160M.76 Process Diaphragm Pump Assembly"
+                  data-video-kicker="Product Visualization / Process Diaphragm Pump"
+                  data-video-description="An exploded-view animation presenting the assembly of a process diaphragm pump. It clarifies how hydraulically actuated double-diaphragm liquid ends connect to the standard power end and isolate the process fluid from other pump components and the atmosphere."
+                  data-video-poster="assets/comm-editing-rhythm.svg"
+                  data-video-src="assets/5160M.76.mp4"
+                >
+                  <video src="assets/5160M.76.mp4#t=0.1" aria-label="5160M.76 process diaphragm pump assembly preview" muted playsinline preload="metadata"></video>
+                  <span>
+                    <strong>5160M.76 Diaphragm Pump</strong>
+                    <small>Power End / Double-Diaphragm Liquid Ends</small>
+                  </span>
+                </button>
+                <button
+                  class="video-select"
                   type="button"
                   data-video-title="Valves"
                   data-video-kicker="Product Visualization / Exploded-view Animation"
@@ -97,90 +176,65 @@
                     <small>Product Visualization / Pump Assembly</small>
                   </span>
                 </button>
-                <button
-                  class="video-select"
-                  type="button"
-                  data-video-title="Jetech Valvola"
-                  data-video-kicker="Product Visualization / Flow Direction"
-                  data-video-description="Valve animation using directional cues to explain internal flow, component placement, and mechanical operation."
-                  data-video-poster="assets/comm-motion-identity.svg"
-                  data-video-src="assets/JetechValvola_Freccia.mp4"
-                >
-                  <video src="assets/JetechValvola_Freccia.mp4#t=0.1" aria-label="Jetech Valvola video preview" muted playsinline preload="metadata"></video>
-                  <span>
-                    <strong>Jetech Valvola</strong>
-                    <small>Product Visualization / Flow Direction</small>
-                  </span>
-                </button>
-                <button
-                  class="video-select"
-                  type="button"
-                  data-video-title="5160M.76"
-                  data-video-kicker="Product Visualization / Mechanical Assembly"
-                  data-video-description="Technical exploded-view animation presenting mechanical assembly logic through separated components, controlled timing, and readable construction sequence."
-                  data-video-poster="assets/comm-editing-rhythm.svg"
-                  data-video-src="assets/5160M.76.mp4"
-                >
-                  <video src="assets/5160M.76.mp4#t=0.1" aria-label="5160M.76 video preview" muted playsinline preload="metadata"></video>
-                  <span>
-                    <strong>5160M.76</strong>
-                    <small>Product Visualization / Mechanical Assembly</small>
-                  </span>
-                </button>
               </div>
 
-              <button class="video-category" type="button" data-video-category="demo">Product Demonstration Animations</button>
-              <div class="video-category-panel" data-video-panel="demo">
+              <button class="video-category" id="visualization-tab-principles" type="button" role="tab" aria-selected="false" aria-controls="visualization-panel-principles" data-video-category="principles">Operating Principles &amp; Flow</button>
+              <div class="video-category-panel" id="visualization-panel-principles" role="tabpanel" aria-labelledby="visualization-tab-principles" data-video-panel="principles">
                 <button
                   class="video-select"
                   type="button"
-                  data-video-title="2G008"
-                  data-video-kicker="Product Demonstration / Operating Sequence"
-                  data-video-description="Product demonstration animation explaining operating logic through controlled movement, timing, and component behavior."
+                  data-video-title="Dedalo® Seal Operating Principle"
+                  data-video-kicker="Technical Animation / Sealing &amp; Pressure Control"
+                  data-video-description="A technical animation explaining Peroni Pompe's Dedalo® labyrinth sealing system. It visualizes how pressure is progressively reduced across a series of high-pressure rings and how residual process fluid is collected and returned to the pump suction line."
+                  data-video-poster="assets/comm-process-interview.svg"
+                  data-video-src="assets/Tenuta-Finale.mp4"
+                >
+                  <video src="assets/Tenuta-Finale.mp4#t=0.1" aria-label="Dedalo seal operating principle preview" muted playsinline preload="metadata"></video>
+                  <span>
+                    <strong>Dedalo® Seal Operating Principle</strong>
+                    <small>Labyrinth Sealing / Pressure Reduction</small>
+                  </span>
+                </button>
+                <button class="video-select" type="button" data-video-title="Valve Flow &amp; Operation" data-video-kicker="Technical Animation / Flow Direction" data-video-description="A valve animation using directional cues to explain internal flow, component placement, and mechanical operation." data-video-poster="assets/comm-motion-identity.svg" data-video-src="assets/JetechValvola_Freccia.mp4">
+                  <video src="assets/JetechValvola_Freccia.mp4#t=0.1" aria-label="Valve flow and operation animation preview" muted playsinline preload="metadata"></video>
+                  <span><strong>Valve Flow &amp; Operation</strong><small>Flow Direction / Mechanical Function</small></span>
+                </button>
+                <button
+                  class="video-select"
+                  type="button"
+                  data-video-title="2G008 Operating Sequence"
+                  data-video-kicker="Technical Animation / Operating Principle"
+                  data-video-description="Technical animation explaining operating logic through controlled movement, timing, and component behavior."
                   data-video-poster="assets/comm-process-interview.svg"
                   data-video-src="assets/2G008.mp4"
                 >
                   <video src="assets/2G008.mp4#t=0.1" aria-label="Use scenario video preview" muted playsinline preload="metadata"></video>
                   <span>
-                    <strong>2G008</strong>
-                    <small>Product Demonstration / Operating Sequence</small>
+                    <strong>2G008 Operating Sequence</strong>
+                    <small>Operating Principle / Component Behaviour</small>
                   </span>
                 </button>
                 <button
                   class="video-select"
                   type="button"
-                  data-video-title="3130N DRL Verticale"
-                  data-video-kicker="Product Demonstration / Configuration"
-                  data-video-description="Product demonstration animation presenting a vertical pump configuration through rotation, form detail, and technical product communication."
+                  data-video-title="Membrane Pump Operating Principle"
+                  data-video-kicker="Technical Animation / Membrane System"
+                  data-video-description="Confidential technical animation explaining membrane motion, pressure transfer, and internal flow behavior."
                   data-video-poster="assets/comm-process-interview.svg"
-                  data-video-src="assets/3130N-drl-verticale.mp4"
+                  data-video-src="assets/Pompa-menbrara.mp4"
+                  data-video-confidential="Confidential professional work.&#10;&#10;Project visuals are blurred due to client confidentiality&#10;and non-disclosure agreements (NDA)."
                 >
-                  <video src="assets/3130N-drl-verticale.mp4#t=0.1" aria-label="3130N DRL Verticale video preview" muted playsinline preload="metadata"></video>
+                  <video src="assets/Pompa-menbrara.mp4#t=0.1" aria-label="Confidential membrane pump principle preview" muted playsinline preload="metadata"></video>
                   <span>
-                    <strong>3130N DRL Verticale</strong>
-                    <small>Product Demonstration / Configuration</small>
+                    <strong>Membrane Pump Principle</strong>
+                    <small>Pressure Transfer / Internal Flow</small>
                   </span>
                 </button>
                 <button
                   class="video-select"
                   type="button"
-                  data-video-title="Jetech"
-                  data-video-kicker="Product Demonstration / Technical Function"
-                  data-video-description="Technical product demonstration presenting functional behavior with controlled pacing and direct visual explanation."
-                  data-video-poster="assets/comm-exhibition-loop.svg"
-                  data-video-src="assets/Jetech.mp4"
-                >
-                  <video src="assets/Jetech.mp4#t=0.1" aria-label="Feature walkthrough video preview" muted playsinline preload="metadata"></video>
-                  <span>
-                    <strong>Jetech</strong>
-                    <small>Product Demonstration / Technical Function</small>
-                  </span>
-                </button>
-                <button
-                  class="video-select"
-                  type="button"
-                  data-video-title="Pompa Vapore"
-                  data-video-kicker="Product Demonstration / Flow Direction"
+                  data-video-title="Steam Pump Flow Visualization"
+                  data-video-kicker="Technical Animation / Flow Direction"
                   data-video-description="Confidential pump demonstration animation developed to clarify flow direction, internal motion, and functional transitions."
                   data-video-poster="assets/comm-process-interview.svg"
                   data-video-src="assets/PompaVapore-CambiatoColotreDIFreccia.mp4"
@@ -188,30 +242,15 @@
                 >
                   <video src="assets/PompaVapore-CambiatoColotreDIFreccia.mp4#t=0.1" aria-label="Interaction close-up video preview" muted playsinline preload="metadata"></video>
                   <span>
-                    <strong>Pompa Vapore</strong>
-                    <small>Product Demonstration / Flow Direction</small>
+                    <strong>Steam Pump Flow</strong>
+                    <small>Flow Direction / Internal Motion</small>
                   </span>
                 </button>
                 <button
                   class="video-select"
                   type="button"
-                  data-video-title="Pompa Membrana"
-                  data-video-kicker="Product Demonstration / Membrane System"
-                  data-video-description="Product demonstration animation explaining membrane pump motion, pressure transfer, and internal flow behavior."
-                  data-video-poster="assets/comm-process-interview.svg"
-                  data-video-src="assets/Pompa-menbrara.mp4"
-                >
-                  <video src="assets/Pompa-menbrara.mp4#t=0.1" aria-label="Pompa Membrana video preview" muted playsinline preload="metadata"></video>
-                  <span>
-                    <strong>Pompa Membrana</strong>
-                    <small>Product Demonstration / Membrane System</small>
-                  </span>
-                </button>
-                <button
-                  class="video-select"
-                  type="button"
-                  data-video-title="Sabi Pegaso"
-                  data-video-kicker="Product Demonstration / Function Walkthrough"
+                  data-video-title="Sabi Pegaso Function Walkthrough"
+                  data-video-kicker="Technical Animation / Operating Sequence"
                   data-video-description="Confidential function walkthrough showing product-use logic through simplified motion and readable sequencing."
                   data-video-poster="assets/comm-exhibition-loop.svg"
                   data-video-src="assets/Sabi-pegaso-Funzionamento-2.mp4"
@@ -219,131 +258,33 @@
                 >
                   <video src="assets/Sabi-pegaso-Funzionamento-2.mp4#t=0.1" aria-label="Setup sequence video preview" muted playsinline preload="metadata"></video>
                   <span>
-                    <strong>Sabi Pegaso</strong>
-                    <small>Product Demonstration / Function Walkthrough</small>
-                  </span>
-                </button>
-                <button
-                  class="video-select"
-                  type="button"
-                  data-video-title="Tenuta Finale"
-                  data-video-kicker="Product Demonstration / Validation"
-                  data-video-description="Product demonstration video focused on sealing behavior, product response, and technical validation communication."
-                  data-video-poster="assets/comm-process-interview.svg"
-                  data-video-src="assets/Tenuta-Finale.mp4"
-                >
-                  <video src="assets/Tenuta-Finale.mp4#t=0.1" aria-label="Tenuta Finale video preview" muted playsinline preload="metadata"></video>
-                  <span>
-                    <strong>Tenuta Finale</strong>
-                    <small>Product Demonstration / Validation</small>
+                    <strong>Sabi Pegaso Function</strong>
+                    <small>Operating Sequence / Walkthrough</small>
                   </span>
                 </button>
               </div>
 
-              <button class="video-category" type="button" data-video-category="promo">Trade-show Communication Videos</button>
-              <div class="video-category-panel" data-video-panel="promo">
-                <button
-                  class="video-select"
-                  type="button"
-                  data-video-title="Japan Exhibition Film"
-                  data-video-kicker="Technical &amp; Product Communication / Trade-show Video"
-                  data-video-description="Trade-show video developed to support booth communication, product context, and concise visitor-facing presentation."
-                  data-video-poster="assets/comm-exhibition-loop.svg"
-                  data-video-src="assets/Video-Giappone-2.mp4"
-                >
-                  <video src="assets/Video-Giappone-2.mp4#t=0.1" aria-label="Japan exhibition film video preview" muted playsinline preload="metadata"></video>
-                  <span>
-                    <strong>Japan Exhibition Film</strong>
-                    <small>Technical &amp; Product Communication / Trade-show Video</small>
-                  </span>
-                </button>
-                <button
-                  class="video-select"
-                  type="button"
-                  data-video-title="Pompa CO2"
-                  data-video-kicker="Technical &amp; Product Communication / Product Highlight"
-                  data-video-description="Product-focused exhibition video using motion, technical detail, and visual emphasis to support product marketing communication."
-                  data-video-poster="assets/comm-motion-identity.svg"
-                  data-video-src="assets/PompaC02-1.mp4"
-                >
-                  <video src="assets/PompaC02-1.mp4#t=0.1" aria-label="Pompa CO2 video preview" muted playsinline preload="metadata"></video>
-                  <span>
-                    <strong>Pompa CO2</strong>
-                    <small>Technical &amp; Product Communication / Product Highlight</small>
-                  </span>
-                </button>
-                <button
-                  class="video-select"
-                  type="button"
-                  data-video-title="Australia Exhibition Film"
-                  data-video-kicker="Technical &amp; Product Communication / Trade-show Video"
-                  data-video-description="Trade-show video for an Australia event, presenting booth context, product communication, and brand presence with clear pacing."
-                  data-video-poster="assets/comm-exhibition-loop.svg"
-                  data-video-src="assets/Video_Australia_1205.mp4"
-                >
-                  <video src="assets/Video_Australia_1205.mp4#t=0.1" aria-label="Australia exhibition film video preview" muted playsinline preload="metadata"></video>
-                  <span>
-                    <strong>Australia Exhibition Film</strong>
-                    <small>Technical &amp; Product Communication / Trade-show Video</small>
-                  </span>
-                </button>
-              </div>
-
-              <button class="video-category" type="button" data-video-category="other">Other</button>
-              <div class="video-category-panel" data-video-panel="other">
-                <button
-                  class="video-select"
-                  type="button"
-                  data-video-title="Jetech Website Interaction Capture"
-                  data-video-kicker="Digital Product Communication / Website Interaction"
-                  data-video-description="Website interaction capture documenting landing-page flow, scroll behavior, and digital product communication for a technical product brand."
-                  data-video-poster="assets/sitoprova1.webp"
-                  data-video-image="assets/sitoprova1.webp"
-                >
-                  <img src="assets/sitoprova1.webp" alt="Jetech website motion preview">
-                  <span>
-                    <strong>Jetech Website Interaction Capture</strong>
-                    <small>Digital Product Communication / Website Interaction</small>
-                  </span>
-                </button>
-                <button
-                  class="video-select"
-                  type="button"
-                  data-video-title="Melody Adventurer Product Introduction"
-                  data-video-kicker="Product Communication / Product Introduction"
-                  data-video-description="Product introduction video explaining the Melody Adventurer panel, interaction flow, and physical play experience."
-                  data-video-poster="assets/melody-adventurer-pages/melody-adventurer-page-01.webp"
-                  data-video-src="assets/melody-adventurer-product-introduction.mp4"
-                  data-video-link="https://www.youtube.com/watch?v=OvGgjPhKf54"
-                  data-video-link-label="Open on YouTube"
-                >
-                  <img src="assets/melody-adventurer-pages/melody-adventurer-page-01.webp" alt="Melody Adventurer product introduction video preview">
-                  <span>
-                    <strong>Melody Adventurer</strong>
-                    <small>Product Communication / Product Introduction</small>
-                  </span>
-                </button>
-              </div>
             </div>
           </aside>
 
           <article class="video-viewer">
-            <div class="video-frame is-video-active">
-              <img src="assets/comm-motion-identity.svg" alt="Selected video preview" data-video-poster hidden>
-              <video src="assets/Valves.mp4" controls playsinline preload="metadata" data-video-player aria-label="Selected product visualization video"></video>
+            <div class="video-frame is-image-active">
+              <img src="assets/plunger-pump-viewers.svg" alt="Plunger Pump Interactive Viewers preview" data-video-poster>
+              <video controls playsinline preload="metadata" data-video-player aria-label="Selected product visualization video" hidden></video>
+              <a class="video-youtube-link" href="#" target="_blank" rel="noopener noreferrer" aria-label="Watch selected video on YouTube" data-video-youtube-target hidden><span aria-hidden="true"></span></a>
               <p class="visual-confidential-note" data-video-confidential-note hidden></p>
               <button class="video-play-mark" type="button" data-video-play-toggle aria-label="Play selected video"></button>
             </div>
             <div class="video-copy">
-              <p class="eyebrow" data-video-kicker>Product Visualization / Exploded-view Animation</p>
-              <h2 data-video-title>Valves</h2>
+              <p class="eyebrow" data-video-kicker>Interactive Product Visualization / Web Experience</p>
+              <h2 data-video-title>Plunger Pump Interactive Viewers</h2>
               <div class="project-status-list video-status-list" data-video-status hidden>
                 <span class="project-status-badge is-confidential">Confidential</span>
               </div>
               <p data-video-description>
-                An exploded-view animation focused on valve structure, component order, and clear mechanical assembly logic.
+                A series of customer-facing 360° product viewers developed across Peroni Pompe's plunger-pump range, enabling customers to inspect industrial product form and configuration directly within the official product pages.
               </p>
-              <a class="visual-file-link" href="#" target="_blank" rel="noopener noreferrer" data-video-link-target hidden>Open on YouTube</a>
+              <a class="visual-file-link" href="https://peronipompe.com/reciprocating-pumps/plunger-pumps/titano-31-30/" target="_blank" rel="noopener noreferrer" data-video-link-target>View a live viewer on Peroni Pompe ↗</a>
             </div>
           </article>
         </div>
@@ -351,10 +292,10 @@
     </main>
 
     <footer class="site-footer">
-      <p>Industrial Product Design / Product Visualization / Technical &amp; Product Communication</p>
+      <p>Industrial Product Design / Product Visualization &amp; Animation / Industrial Product Communication</p>
       <a href="contact.html">Start a conversation</a>
     </footer>
 
-    <script src="script.js?v=20260714d"></script>
+    <script src="script.js?v=20260718e"></script>
   </body>
 </html>

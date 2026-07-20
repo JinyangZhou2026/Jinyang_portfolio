@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="title description">
+  <title id="title">Plunger Pump Interactive Viewers</title>
+  <desc id="description">Abstract industrial pump form surrounded by a 360 degree rotation guide.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#172238"/>
+      <stop offset="1" stop-color="#070b13"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="42%" r="48%">
+      <stop offset="0" stop-color="#94a3b8" stop-opacity=".24"/>
+      <stop offset="1" stop-color="#94a3b8" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M60 0H0V60" fill="none" stroke="#94a3b8" stroke-opacity=".1"/>
+    </pattern>
+    <style>
+      .orbit{fill:none;stroke:#cbd5e1;stroke-opacity:.54;stroke-width:2;stroke-dasharray:10 16;transform-box:fill-box;transform-origin:center;animation:orbit 22s linear infinite}
+      .arrow,.ground{fill:none;stroke:#cbd5e1;stroke-opacity:.48;stroke-width:3}
+      .product{fill:#cbd5e1;fill-opacity:.08;stroke:#e2e8f0;stroke-opacity:.64;stroke-width:3}
+      .product circle{fill:#0f172a;fill-opacity:.8}
+      .label{font:700 18px Inter,Arial,sans-serif;letter-spacing:3px;fill:#e2e8f0;fill-opacity:.82}
+      .degree{font:300 74px Inter,Arial,sans-serif;letter-spacing:-5px;fill:#f8fafc;fill-opacity:.92}
+      @keyframes orbit{to{transform:rotate(360deg)}}
+      @media (prefers-reduced-motion:reduce){.orbit{animation:none}}
+    </style>
+  </defs>
+  <rect width="1200" height="675" fill="url(#background)"/>
+  <rect width="1200" height="675" fill="url(#grid)"/>
+  <rect width="1200" height="675" fill="url(#glow)"/>
+  <text class="label" x="54" y="62">PLUNGER PUMP RANGE / INTERACTIVE VIEWERS</text>
+  <text class="degree" x="1000" y="90">360°</text>
+  <ellipse class="orbit" cx="600" cy="342" rx="445" ry="232"/>
+  <path class="arrow" d="M987 227l44 12-31 34"/>
+  <g class="product">
+    <path d="M382 293h438c39 0 70 31 70 70v101H330V344c0-28 23-51 52-51Z"/>
+    <path d="M425 244h299l60 49H381l44-49Z"/>
+    <rect x="273" y="396" width="654" height="82" rx="23"/>
+    <rect x="355" y="478" width="116" height="43" rx="10"/>
+    <rect x="754" y="478" width="116" height="43" rx="10"/>
+    <circle cx="412" cy="376" r="52"/>
+    <circle cx="600" cy="376" r="52"/>
+    <circle cx="788" cy="376" r="52"/>
+    <path d="M412 324v104M600 324v104M788 324v104"/>
+  </g>
+  <path class="ground" d="M226 547h748" opacity=".34"/>
+  <text class="label" x="54" y="624">OPEN THE OFFICIAL PRODUCT RANGE TO EXPLORE</text>
+</svg>
