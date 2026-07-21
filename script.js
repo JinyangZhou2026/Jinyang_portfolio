@@ -204,6 +204,7 @@ if (workExplorer) {
           explorerLink.href = tab.dataset.exploreHref || "#";
           explorerLink.firstChild.textContent = `${tab.dataset.exploreLinkLabel || "Explore Work"} `;
         }
+        explorerPreview?.setAttribute("aria-label", tab.dataset.exploreLinkLabel || "Explore Work");
         explorerPreview?.classList.remove("is-changing");
       }, 180);
     });
@@ -216,6 +217,123 @@ window.addEventListener("scroll", updateMagicTextReveal, { passive: true });
 window.addEventListener("resize", updateMagicTextReveal);
 window.addEventListener("scroll", updateHomepageTextReveal, { passive: true });
 window.addEventListener("resize", updateHomepageTextReveal);
+
+const activityViewer = document.querySelector("[data-activity-viewer]");
+
+if (activityViewer) {
+  const activityItems = Array.from(activityViewer.querySelectorAll("[data-activity-item]"));
+  const activityVisual = activityViewer.querySelector("[data-activity-visual]");
+  const activityMeta = activityViewer.querySelector("[data-activity-meta]");
+  const activityTitle = activityViewer.querySelector("[data-activity-title]");
+  const activityDescription = activityViewer.querySelector("[data-activity-description]");
+  const activityCurrent = activityViewer.querySelector("[data-activity-current]");
+  const activityTotal = activityViewer.querySelector("[data-activity-total]");
+  const activityPrevious = activityViewer.querySelector("[data-activity-prev]");
+  const activityNext = activityViewer.querySelector("[data-activity-next]");
+  const activityVisualClasses = activityItems.map((item) => item.dataset.visual).filter(Boolean);
+  let activityIndex = 0;
+
+  const renderActivity = () => {
+    const item = activityItems[activityIndex];
+    if (!item) return;
+    activityVisual?.classList.remove(...activityVisualClasses);
+    if (item.dataset.visual) activityVisual?.classList.add(item.dataset.visual);
+    if (activityVisual) activityVisual.querySelector("span").textContent = item.dataset.meta?.split(" / ")[0] || "Professional activity";
+    if (activityMeta) activityMeta.textContent = item.dataset.meta || "";
+    if (activityTitle) activityTitle.textContent = item.dataset.title || "";
+    if (activityDescription) activityDescription.textContent = item.dataset.description || "";
+    if (activityCurrent) activityCurrent.textContent = String(activityIndex + 1);
+    if (activityTotal) activityTotal.textContent = String(activityItems.length);
+  };
+
+  activityPrevious?.addEventListener("click", () => {
+    activityIndex = (activityIndex - 1 + activityItems.length) % activityItems.length;
+    renderActivity();
+  });
+
+  activityNext?.addEventListener("click", () => {
+    activityIndex = (activityIndex + 1) % activityItems.length;
+    renderActivity();
+  });
+
+  renderActivity();
+}
+
+const testimonialViewer = document.querySelector("[data-testimonial-viewer]");
+
+if (testimonialViewer) {
+  const testimonialCards = Array.from(testimonialViewer.querySelectorAll("[data-testimonial-card]"));
+  const testimonialCurrent = testimonialViewer.querySelector("[data-testimonial-current]");
+  const testimonialTotal = testimonialViewer.querySelector("[data-testimonial-total]");
+  const testimonialPrevious = testimonialViewer.querySelector("[data-testimonial-prev]");
+  const testimonialNext = testimonialViewer.querySelector("[data-testimonial-next]");
+  let testimonialOrder = [...testimonialCards];
+  let testimonialDragStart = 0;
+  let testimonialDragCard = null;
+
+  const renderTestimonialDeck = () => {
+    const positions = ["front", "middle", "back"];
+    testimonialOrder.forEach((card, index) => {
+      const position = positions[index] || "back";
+      card.classList.remove("is-front", "is-middle", "is-back", "is-dragging");
+      card.classList.add(`is-${position}`);
+      card.dataset.position = position;
+      card.setAttribute("aria-hidden", String(position !== "front"));
+      card.tabIndex = position === "front" ? 0 : -1;
+      card.style.removeProperty("transform");
+    });
+    const originalIndex = testimonialCards.indexOf(testimonialOrder[0]);
+    if (testimonialCurrent) testimonialCurrent.textContent = String(originalIndex + 1);
+    if (testimonialTotal) testimonialTotal.textContent = String(testimonialCards.length);
+  };
+
+  const shuffleTestimonials = (direction = "next") => {
+    if (testimonialOrder.length < 2) return;
+    if (direction === "previous") testimonialOrder.unshift(testimonialOrder.pop());
+    else testimonialOrder.push(testimonialOrder.shift());
+    renderTestimonialDeck();
+  };
+
+  testimonialPrevious?.addEventListener("click", () => shuffleTestimonials("previous"));
+  testimonialNext?.addEventListener("click", () => shuffleTestimonials("next"));
+
+  testimonialCards.forEach((card) => {
+    card.addEventListener("pointerdown", (event) => {
+      if (card !== testimonialOrder[0]) return;
+      testimonialDragStart = event.clientX;
+      testimonialDragCard = card;
+      card.classList.add("is-dragging");
+      card.setPointerCapture?.(event.pointerId);
+    });
+
+    card.addEventListener("pointermove", (event) => {
+      if (testimonialDragCard !== card) return;
+      const distance = event.clientX - testimonialDragStart;
+      const rotation = -6 + distance / 28;
+      card.style.transform = `translateX(${distance}px) rotate(${rotation}deg)`;
+    });
+
+    const finishTestimonialDrag = (event) => {
+      if (testimonialDragCard !== card) return;
+      const distance = event.clientX - testimonialDragStart;
+      testimonialDragCard = null;
+      testimonialDragStart = 0;
+      card.classList.remove("is-dragging");
+      card.style.removeProperty("transform");
+      if (Math.abs(distance) >= 100) shuffleTestimonials(distance < 0 ? "next" : "previous");
+    };
+
+    card.addEventListener("pointerup", finishTestimonialDrag);
+    card.addEventListener("pointercancel", finishTestimonialDrag);
+    card.addEventListener("keydown", (event) => {
+      if (card !== testimonialOrder[0]) return;
+      if (event.key === "ArrowLeft") shuffleTestimonials("next");
+      if (event.key === "ArrowRight") shuffleTestimonials("previous");
+    });
+  });
+
+  renderTestimonialDeck();
+}
 
 const projectNavs = document.querySelectorAll(".nav-projects");
 
@@ -352,6 +470,27 @@ linkedProjectCards.forEach((card) => {
   });
 });
 
+const linkedContentCards = document.querySelectorAll("[data-card-link]");
+
+linkedContentCards.forEach((card) => {
+  const primaryLink = card.querySelector("a[href]");
+  if (!(primaryLink instanceof HTMLAnchorElement)) return;
+
+  const openCard = () => primaryLink.click();
+
+  card.addEventListener("click", (event) => {
+    if (event.target.closest("a, button")) return;
+    openCard();
+  });
+
+  card.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    if (event.target.closest("a, button")) return;
+    event.preventDefault();
+    openCard();
+  });
+});
+
 const resumeTabs = document.querySelectorAll("[data-resume-tab]");
 const resumePanels = document.querySelectorAll("[data-resume-panel]");
 
@@ -397,6 +536,8 @@ videoBrowsers.forEach((browser) => {
   const contribution = viewer?.querySelector("[data-video-contribution]");
   const contributionText = viewer?.querySelector("[data-video-contribution-text]");
   const fileLink = viewer?.querySelector("[data-video-link-target]");
+  const frameLink = viewer?.querySelector("[data-video-frame-link]");
+  const frameLinkLabel = viewer?.querySelector("[data-video-frame-link-label]");
   let gallerySlides = [];
   let galleryIndex = 0;
 
@@ -530,6 +671,23 @@ videoBrowsers.forEach((browser) => {
       fileLink.href = linkSrc || "#";
       fileLink.textContent = linkLabel;
       fileLink.hidden = !linkSrc;
+    }
+
+    if (frameLink) {
+      const directLinkSrc = selector.getAttribute("data-video-link") || "";
+      const frameLinkSrc = directLinkSrc || youtubeSrc;
+      const frameLabel = directLinkSrc
+        ? (selector.getAttribute("data-video-link-label") || "Open linked work ↗")
+        : "Watch on YouTube ↗";
+      const selectedTitle = selector.getAttribute("data-video-title") || "selected work";
+      frameLink.href = frameLinkSrc || "#";
+      frameLink.setAttribute("aria-label", `${frameLabel.replace("↗", "").trim()}: ${selectedTitle}`);
+      frameLink.hidden = !frameLinkSrc;
+      if (frameLinkLabel) {
+        frameLinkLabel.textContent = frameLabel;
+        frameLinkLabel.hidden = !directLinkSrc;
+      }
+      frame?.classList.toggle("has-clickable-media", Boolean(frameLinkSrc));
     }
 
     updatePlayToggleLabel();
