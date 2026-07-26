@@ -1,10 +1,15 @@
 const menuButton = document.querySelector(".menu-toggle");
 const siteNav = document.querySelector(".site-nav");
 const siteHeader = document.querySelector(".site-header");
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 const animatedWords = document.querySelectorAll(".word-animate");
 
 animatedWords.forEach((word) => {
+  if (reduceMotion.matches) {
+    word.classList.add("is-visible");
+    return;
+  }
   const delay = Number.parseInt(word.getAttribute("data-delay") || "0", 10);
   window.setTimeout(() => {
     word.classList.add("is-visible");
@@ -14,7 +19,7 @@ animatedWords.forEach((word) => {
 const greetingRotator = document.querySelector("[data-greeting-rotator]");
 const greetingLines = greetingRotator ? Array.from(greetingRotator.querySelectorAll(".hero-greeting-line")) : [];
 
-if (greetingLines.length > 1) {
+if (greetingLines.length > 1 && !reduceMotion.matches) {
   let currentGreeting = 0;
 
   greetingLines.forEach((line, index) => {
@@ -44,54 +49,7 @@ if (greetingLines.length > 1) {
   }, 1450);
 }
 
-const magicText = document.querySelector(".magic-static-text");
-const magicWords = magicText ? Array.from(magicText.querySelectorAll("span")) : [];
-const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-const homepageRevealItems = Array.from(document.querySelectorAll([
-  ".positioning-statement > .eyebrow",
-  ".positioning-statement-copy > *",
-  ".experience-highlights-heading h2",
-  ".featured-project-previews-heading h2",
-  ".more-work-explorer-heading h2",
-  ".about-preview h2"
-].join(", ")));
 const countUpElements = Array.from(document.querySelectorAll("[data-count-to]"));
-
-if (!reduceMotion.matches) {
-  homepageRevealItems.forEach((item) => item.classList.add("homepage-scroll-reveal"));
-}
-
-const updateMagicTextReveal = () => {
-  if (!magicText || magicWords.length === 0) return;
-
-  const rect = magicText.getBoundingClientRect();
-  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-  const start = viewportHeight * 0.9;
-  const end = viewportHeight * 0.25;
-  const rawProgress = (start - rect.top) / (start - end);
-  const progress = Math.min(Math.max(rawProgress, 0), 1);
-
-  magicWords.forEach((word, index) => {
-    const wordStart = index / magicWords.length;
-    const wordEnd = (index + 1) / magicWords.length;
-    const wordProgress = Math.min(Math.max((progress - wordStart) / (wordEnd - wordStart), 0), 1);
-    word.style.setProperty("--reveal", wordProgress.toFixed(3));
-  });
-};
-
-const updateHomepageTextReveal = () => {
-  if (homepageRevealItems.length === 0 || reduceMotion.matches) return;
-
-  const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-  const revealStart = viewportHeight * 0.92;
-  const revealEnd = viewportHeight * 0.46;
-
-  homepageRevealItems.forEach((item) => {
-    const rect = item.getBoundingClientRect();
-    const itemProgress = Math.min(Math.max((revealStart - rect.top) / (revealStart - revealEnd), 0), 1);
-    item.style.setProperty("--reveal-progress", itemProgress.toFixed(3));
-  });
-};
 
 const animateCountUp = (element) => {
   const target = Number(element.dataset.countTo || 0);
@@ -129,52 +87,13 @@ if (countUpElements.length > 0 && !reduceMotion.matches && "IntersectionObserver
   countUpElements.forEach((element) => countObserver.observe(element));
 }
 
-const resumeMotionItems = Array.from(document.querySelectorAll([
-  ".resume-head > .resume-role",
-  ".resume-head > .resume-identity",
-  ".resume-head > .resume-summary",
-  ".resume-head > .resume-contact-line",
-  ".resume-head > .action-row",
-  ".resume-photo-area",
-  ".resume-section-heading",
-  ".resume-timeline-item",
-  ".resume-grid > section",
-].join(", ")));
-
-if (resumeMotionItems.length > 0) {
-  resumeMotionItems.forEach((item, index) => {
-    item.classList.add("resume-reveal");
-    item.style.setProperty("--resume-reveal-delay", `${(index % 3) * 70}ms`);
-  });
-
-  if (!reduceMotion.matches && "IntersectionObserver" in window) {
-    document.body.classList.add("resume-motion-ready");
-
-    const resumeMotionObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add("is-visible");
-        observer.unobserve(entry.target);
-      });
-    }, {
-      rootMargin: "0px 0px -10% 0px",
-      threshold: 0.12,
-    });
-
-    window.requestAnimationFrame(() => {
-      resumeMotionItems.forEach((item) => resumeMotionObserver.observe(item));
-    });
-  } else {
-    resumeMotionItems.forEach((item) => item.classList.add("is-visible"));
-  }
-}
-
 const workExplorer = document.querySelector("[data-work-explorer]");
 
 if (workExplorer) {
   const explorerTabs = Array.from(workExplorer.querySelectorAll(".more-work-explorer-tab"));
   const explorerPreview = workExplorer.querySelector(".more-work-explorer-preview");
   const explorerVisual = workExplorer.querySelector("[data-explore-preview-visual]");
+  const explorerImage = workExplorer.querySelector("[data-explore-preview-image]");
   const explorerKicker = workExplorer.querySelector("[data-explore-preview-kicker]");
   const explorerTitle = workExplorer.querySelector("[data-explore-preview-title]");
   const explorerDescription = workExplorer.querySelector("[data-explore-preview-description]");
@@ -187,7 +106,7 @@ if (workExplorer) {
       explorerTabs.forEach((item) => {
         const isActive = item === tab;
         item.classList.toggle("is-active", isActive);
-        item.setAttribute("aria-selected", String(isActive));
+        item.setAttribute("aria-pressed", String(isActive));
       });
 
       explorerPreview?.classList.add("is-changing");
@@ -196,6 +115,10 @@ if (workExplorer) {
         if (explorerVisual) {
           explorerVisual.classList.remove("visual-industrial", "visual-visualization", "visual-communication");
           explorerVisual.classList.add(`visual-${tab.dataset.exploreVisual || "industrial"}`);
+        }
+        if (explorerImage) {
+          explorerImage.src = tab.dataset.exploreImage || "";
+          explorerImage.style.objectPosition = tab.dataset.exploreImagePosition || "50% 50%";
         }
         if (explorerKicker) explorerKicker.textContent = tab.dataset.exploreKicker || "";
         if (explorerTitle) explorerTitle.textContent = tab.dataset.exploreTitle || "";
@@ -211,18 +134,13 @@ if (workExplorer) {
   });
 }
 
-updateMagicTextReveal();
-updateHomepageTextReveal();
-window.addEventListener("scroll", updateMagicTextReveal, { passive: true });
-window.addEventListener("resize", updateMagicTextReveal);
-window.addEventListener("scroll", updateHomepageTextReveal, { passive: true });
-window.addEventListener("resize", updateHomepageTextReveal);
-
 const activityViewer = document.querySelector("[data-activity-viewer]");
 
 if (activityViewer) {
   const activityItems = Array.from(activityViewer.querySelectorAll("[data-activity-item]"));
   const activityVisual = activityViewer.querySelector("[data-activity-visual]");
+  const activityImage = activityViewer.querySelector("[data-activity-image]");
+  const activityLabel = activityViewer.querySelector("[data-activity-label]");
   const activityMeta = activityViewer.querySelector("[data-activity-meta]");
   const activityTitle = activityViewer.querySelector("[data-activity-title]");
   const activityDescription = activityViewer.querySelector("[data-activity-description]");
@@ -238,7 +156,21 @@ if (activityViewer) {
     if (!item) return;
     activityVisual?.classList.remove(...activityVisualClasses);
     if (item.dataset.visual) activityVisual?.classList.add(item.dataset.visual);
-    if (activityVisual) activityVisual.querySelector("span").textContent = item.dataset.meta?.split(" / ")[0] || "Professional activity";
+    if (activityVisual && activityImage) {
+      const imageSource = item.dataset.image || "";
+      activityVisual.classList.toggle("has-photo", Boolean(imageSource));
+      activityImage.hidden = !imageSource;
+      if (imageSource) {
+        activityImage.src = imageSource;
+        activityImage.alt = item.dataset.imageAlt || "";
+        activityImage.style.objectPosition = item.dataset.imagePosition || "50% 50%";
+      } else {
+        activityImage.removeAttribute("src");
+        activityImage.alt = "";
+        activityImage.style.removeProperty("object-position");
+      }
+    }
+    if (activityLabel) activityLabel.textContent = item.dataset.meta?.split(" / ")[0] || "Professional activity";
     if (activityMeta) activityMeta.textContent = item.dataset.meta || "";
     if (activityTitle) activityTitle.textContent = item.dataset.title || "";
     if (activityDescription) activityDescription.textContent = item.dataset.description || "";
@@ -257,82 +189,6 @@ if (activityViewer) {
   });
 
   renderActivity();
-}
-
-const testimonialViewer = document.querySelector("[data-testimonial-viewer]");
-
-if (testimonialViewer) {
-  const testimonialCards = Array.from(testimonialViewer.querySelectorAll("[data-testimonial-card]"));
-  const testimonialCurrent = testimonialViewer.querySelector("[data-testimonial-current]");
-  const testimonialTotal = testimonialViewer.querySelector("[data-testimonial-total]");
-  const testimonialPrevious = testimonialViewer.querySelector("[data-testimonial-prev]");
-  const testimonialNext = testimonialViewer.querySelector("[data-testimonial-next]");
-  let testimonialOrder = [...testimonialCards];
-  let testimonialDragStart = 0;
-  let testimonialDragCard = null;
-
-  const renderTestimonialDeck = () => {
-    const positions = ["front", "middle", "back"];
-    testimonialOrder.forEach((card, index) => {
-      const position = positions[index] || "back";
-      card.classList.remove("is-front", "is-middle", "is-back", "is-dragging");
-      card.classList.add(`is-${position}`);
-      card.dataset.position = position;
-      card.setAttribute("aria-hidden", String(position !== "front"));
-      card.tabIndex = position === "front" ? 0 : -1;
-      card.style.removeProperty("transform");
-    });
-    const originalIndex = testimonialCards.indexOf(testimonialOrder[0]);
-    if (testimonialCurrent) testimonialCurrent.textContent = String(originalIndex + 1);
-    if (testimonialTotal) testimonialTotal.textContent = String(testimonialCards.length);
-  };
-
-  const shuffleTestimonials = (direction = "next") => {
-    if (testimonialOrder.length < 2) return;
-    if (direction === "previous") testimonialOrder.unshift(testimonialOrder.pop());
-    else testimonialOrder.push(testimonialOrder.shift());
-    renderTestimonialDeck();
-  };
-
-  testimonialPrevious?.addEventListener("click", () => shuffleTestimonials("previous"));
-  testimonialNext?.addEventListener("click", () => shuffleTestimonials("next"));
-
-  testimonialCards.forEach((card) => {
-    card.addEventListener("pointerdown", (event) => {
-      if (card !== testimonialOrder[0]) return;
-      testimonialDragStart = event.clientX;
-      testimonialDragCard = card;
-      card.classList.add("is-dragging");
-      card.setPointerCapture?.(event.pointerId);
-    });
-
-    card.addEventListener("pointermove", (event) => {
-      if (testimonialDragCard !== card) return;
-      const distance = event.clientX - testimonialDragStart;
-      const rotation = -6 + distance / 28;
-      card.style.transform = `translateX(${distance}px) rotate(${rotation}deg)`;
-    });
-
-    const finishTestimonialDrag = (event) => {
-      if (testimonialDragCard !== card) return;
-      const distance = event.clientX - testimonialDragStart;
-      testimonialDragCard = null;
-      testimonialDragStart = 0;
-      card.classList.remove("is-dragging");
-      card.style.removeProperty("transform");
-      if (Math.abs(distance) >= 100) shuffleTestimonials(distance < 0 ? "next" : "previous");
-    };
-
-    card.addEventListener("pointerup", finishTestimonialDrag);
-    card.addEventListener("pointercancel", finishTestimonialDrag);
-    card.addEventListener("keydown", (event) => {
-      if (card !== testimonialOrder[0]) return;
-      if (event.key === "ArrowLeft") shuffleTestimonials("next");
-      if (event.key === "ArrowRight") shuffleTestimonials("previous");
-    });
-  });
-
-  renderTestimonialDeck();
 }
 
 const projectNavs = document.querySelectorAll(".nav-projects");
@@ -409,21 +265,24 @@ const carousels = document.querySelectorAll("[data-carousel]");
 
 carousels.forEach((carousel) => {
   const image = carousel.querySelector("[data-carousel-image]");
+  const imageLink = carousel.querySelector("[data-carousel-link]");
   const previousButton = carousel.querySelector("[data-carousel-prev]");
   const nextButton = carousel.querySelector("[data-carousel-next]");
   const currentLabel = carousel.querySelector("[data-carousel-current]");
   const totalLabel = carousel.querySelector("[data-carousel-total]");
+  const autoplayDelay = Number.parseInt(carousel.getAttribute("data-carousel-autoplay") || "0", 10);
   const slides = (carousel.getAttribute("data-slides") || "")
     .split(";")
     .map((item) => {
-      const [src, alt, position] = item.split("|");
-      return { src, alt, position };
+      const [src, alt, position, href] = item.split("|");
+      return { src, alt, position, href };
     })
     .filter((slide) => slide.src && slide.alt);
 
   if (!image || !previousButton || !nextButton || slides.length === 0) return;
 
   let activeIndex = 0;
+  let autoplayTimer;
 
   const renderSlide = () => {
     const slide = slides[activeIndex];
@@ -431,6 +290,11 @@ carousels.forEach((carousel) => {
     image.src = slide.src;
     image.alt = slide.alt;
     carousel.style.setProperty("--carousel-position", slide.position || "50% 50%");
+
+    if (imageLink) {
+      imageLink.href = slide.href || slide.src;
+      imageLink.setAttribute("aria-label", `Open ${slide.alt} at full size`);
+    }
 
     if (currentLabel) currentLabel.textContent = String(activeIndex + 1);
     if (totalLabel) totalLabel.textContent = String(slides.length);
@@ -443,9 +307,39 @@ carousels.forEach((carousel) => {
     renderSlide();
   };
 
-  previousButton.addEventListener("click", () => showSlide(-1));
-  nextButton.addEventListener("click", () => showSlide(1));
+  const stopAutoplay = () => {
+    if (!autoplayTimer) return;
+    window.clearInterval(autoplayTimer);
+    autoplayTimer = undefined;
+  };
+
+  const startAutoplay = () => {
+    stopAutoplay();
+    if (autoplayDelay < 1000 || slides.length < 2 || reduceMotion.matches || document.hidden) return;
+    autoplayTimer = window.setInterval(() => showSlide(1), autoplayDelay);
+  };
+
+  const showManualSlide = (direction) => {
+    showSlide(direction);
+    startAutoplay();
+  };
+
+  previousButton.addEventListener("click", () => showManualSlide(-1));
+  nextButton.addEventListener("click", () => showManualSlide(1));
+  carousel.addEventListener("pointerenter", stopAutoplay);
+  carousel.addEventListener("pointerleave", startAutoplay);
+  carousel.addEventListener("focusin", stopAutoplay);
+  carousel.addEventListener("focusout", () => {
+    window.setTimeout(() => {
+      if (!carousel.contains(document.activeElement)) startAutoplay();
+    }, 0);
+  });
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) stopAutoplay();
+    else startAutoplay();
+  });
   renderSlide();
+  startAutoplay();
 });
 
 const linkedProjectCards = document.querySelectorAll("[data-card-href]");
@@ -908,27 +802,4 @@ caseStudyNavs.forEach((nav, navIndex) => {
       setNavOpen(false);
     }
   });
-});
-
-const globalGlow = document.createElement("span");
-globalGlow.className = "global-serenity-glow";
-document.body.appendChild(globalGlow);
-
-document.addEventListener("mousemove", (event) => {
-  globalGlow.style.left = `${event.clientX}px`;
-  globalGlow.style.top = `${event.clientY}px`;
-  globalGlow.style.opacity = "1";
-});
-
-document.addEventListener("mouseleave", () => {
-  globalGlow.style.opacity = "0";
-});
-
-document.addEventListener("click", (event) => {
-  const ripple = document.createElement("span");
-  ripple.className = "global-serenity-ripple";
-  ripple.style.left = `${event.clientX}px`;
-  ripple.style.top = `${event.clientY}px`;
-  document.body.appendChild(ripple);
-  window.setTimeout(() => ripple.remove(), 1000);
 });

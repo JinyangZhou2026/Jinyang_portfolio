@@ -3,18 +3,49 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Industrial Product Designer Portfolio</title>
+    <title>Jinyang Zhou — Product &amp; Industrial Designer</title>
     <meta
       name="description"
-      content="Industrial product design portfolio focused on product development, product visualization, industrial product communication, and engineering collaboration."
+      content="Jinyang Zhou is a Product and Industrial Designer in Milan who designs and communicates complex products through industrial design, product visualization, and technical communication."
     >
-    <link rel="stylesheet" href="styles.css">
+    <meta name="author" content="Jinyang Zhou">
+    <meta name="theme-color" content="#080d17">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Jinyang Zhou — Product &amp; Industrial Designer">
+  <meta property="og:description" content="Designing and communicating complex products.">
+    <meta property="og:image" content="assets/hero-project/home/peroni-pump-featured.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Jinyang Zhou — Product &amp; Industrial Designer">
+  <meta name="twitter:description" content="Designing and communicating complex products.">
+    <meta name="twitter:image" content="assets/hero-project/home/peroni-pump-featured.jpg">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Jinyang Zhou",
+        "jobTitle": "Product and Industrial Designer",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Milan",
+          "addressCountry": "IT"
+        },
+        "sameAs": ["https://www.linkedin.com/in/jinyangzhou/"],
+        "knowsAbout": [
+          "Industrial Design",
+          "Product Visualization",
+          "Technical Communication",
+          "Engineering Collaboration",
+          "Customer Experience"
+        ]
+      }
+    </script>
+    <link rel="stylesheet" href="styles.css?v=20260726e">
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="index.html" aria-label="Portfolio home">
-        <span class="brand-mark">PD</span>
-        <span class="brand-name">Jin's Portfolio</span>
+      <a class="brand" href="index.html" aria-label="Jinyang Zhou portfolio home">
+        <span class="brand-mark" aria-hidden="true">JZ</span>
+        <span class="brand-name">Jinyang Zhou</span>
       </a>
       <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-nav">
         <span></span>
@@ -22,17 +53,25 @@
       </button>
       <nav class="site-nav tubelight-static" id="site-nav" aria-label="Primary navigation">
         <a href="index.html" aria-current="page"><span class="nav-icon">⌂</span><span>Home</span></a>
-        <a href="about.html"><span class="nav-icon">◐</span><span>About</span></a>
         <div class="nav-projects">
           <button class="nav-projects-trigger" type="button" aria-expanded="false">
             <span class="nav-icon">□</span><span>Projects</span>
           </button>
           <div class="nav-projects-menu" aria-label="Project navigation">
-            <a class="nav-menu-featured" href="index.html#featured-projects">
-              <span>Featured Projects</span>
-              <small>Three selected case studies</small>
+            <p class="nav-menu-label">Featured case studies</p>
+            <a class="nav-menu-case" href="engineering-communication.html">
+              <span>01 / Engineering Communication</span>
+              <small>From Engineering Complexity to Customer Clarity</small>
             </a>
-            <p class="nav-menu-label">Explore by discipline</p>
+            <a class="nav-menu-case" href="research-to-product-concept.html">
+              <span>02 / Human-centred Product Design</span>
+              <small>Melody Adventurer · From Insight to Product System</small>
+            </a>
+            <a class="nav-menu-case" href="consumer-product-launch.html">
+              <span>03 / Commercial Product Storytelling</span>
+              <small>Consumer Product Launch Visualization</small>
+            </a>
+            <p class="nav-menu-label nav-menu-label-discipline">Browse by discipline</p>
             <a class="nav-menu-discipline" href="work.html">
               <span>Industrial Design</span>
               <small>Physical products &amp; systems</small>
@@ -54,16 +93,10 @@
     <main>
       <section class="hero section-pad serenity-hero">
         <div class="serenity-grid" aria-hidden="true"></div>
-        <span class="serenity-float one" aria-hidden="true"></span>
-        <span class="serenity-float two" aria-hidden="true"></span>
-        <span class="serenity-float three" aria-hidden="true"></span>
         <div class="hero-copy">
-          <p class="eyebrow">Industrial Design · Product Visualization &amp; Animation · Industrial Product Communication</p>
-          <h1 class="hero-greeting" data-greeting-rotator>
-            <span class="hero-greeting-line word-animate is-active" data-delay="120">Hello! I'm Jin</span>
-            <span class="hero-greeting-line hero-greeting-line-cn" aria-hidden="true">你好！我是金陽</span>
-            <span class="hero-greeting-line" aria-hidden="true">Ciao! Sono Jin</span>
-          </h1>
+          <p class="hero-introduction">Hello, I’m Jinyang Zhou — a Product &amp; Industrial Designer in Milan.</p>
+        <h1 class="hero-value-statement">I design and communicate complex products.</h1>
+          <p class="hero-intro">Industrial design, product visualization, and technical communication for manufacturing teams.</p>
           <div class="action-row">
             <a class="button primary" href="#featured-projects">View Featured Work</a>
             <a class="button secondary" href="contact.html">Contact</a>
@@ -72,18 +105,69 @@
       </section>
 
       <section class="section-pad" id="work">
-        <div class="positioning-statement" aria-label="Professional positioning">
-          <p class="eyebrow">Professional Positioning</p>
-          <div class="positioning-statement-copy">
-            <h2>Product &amp; Industrial Designer with experience in product visualization, technical communication, and engineering collaboration within manufacturing environments.</h2>
-            <p>
-              Experienced in developing photorealistic 3D renderings, animations, interactive product visualizations, and communication materials that support product development, marketing, and international customer engagement.
-            </p>
-            <p class="positioning-statement-closing">
-              Passionate about transforming complex engineering products into clear and compelling visual experiences.
-            </p>
+        <section class="featured-project-previews" id="featured-projects" aria-labelledby="featured-project-previews-title">
+          <div class="featured-project-previews-heading">
+            <p class="eyebrow">Featured Projects</p>
+            <h2 id="featured-project-previews-title">Three case studies across engineering communication, human-centred product development, and commercial product storytelling.</h2>
           </div>
-        </div>
+          <div class="featured-project-previews-grid">
+            <article class="featured-project-preview is-hero" data-card-link>
+              <div class="featured-project-preview-visual visual-engineering-product">
+                <img src="assets/hero-project/home/peroni-pump-featured.jpg" alt="Photorealistic visualization of a Peroni Pompe industrial plunger pump" width="1800" height="1800">
+              </div>
+              <div class="featured-project-preview-copy">
+                <div class="featured-project-preview-meta"><span>01</span><span>Professional Impact</span></div>
+                <h3>From Engineering Complexity to Customer Clarity</h3>
+                <p>Industrial product communication developed for a manufacturing environment—from optimized CAD and photorealistic rendering to animation, catalogues, and customer presentations.</p>
+                <ul class="featured-project-preview-proof" aria-label="Selected project evidence">
+                  <li>Official Website</li>
+                  <li>Engineering Review</li>
+                  <li>International Exhibitions</li>
+                </ul>
+                <a class="featured-project-preview-link" href="engineering-communication.html">View Engineering Communication Case Study <span aria-hidden="true">→</span></a>
+              </div>
+            </article>
+
+            <article class="featured-project-preview" data-card-link>
+              <div class="featured-project-preview-visual visual-melody-product">
+                <img src="assets/hero-project/melody/melody-context.webp" alt="A child configuring the Melody Adventurer musical construction game" width="2400" height="1388" loading="lazy">
+              </div>
+              <div class="featured-project-preview-copy">
+                <div class="featured-project-preview-meta"><span>02</span><span>Human-centred Product Design</span></div>
+                <h3>From User Insight to Tangible Play</h3>
+                <p>Melody Adventurer demonstrates how user research became a modular musical construction system, physical study models, CMF, and a resolved interaction experience.</p>
+                <ul class="featured-project-preview-proof" aria-label="Selected Melody Adventurer project evidence">
+                  <li>Research</li>
+                  <li>Concept Direction</li>
+                  <li>Product System</li>
+                  <li>Prototype</li>
+                </ul>
+                <a class="featured-project-preview-link" href="research-to-product-concept.html">View Melody Adventurer Case Study <span aria-hidden="true">→</span></a>
+              </div>
+            </article>
+
+            <article class="featured-project-preview" data-card-link>
+              <div class="featured-project-preview-visual visual-launch" aria-hidden="true">
+                <span class="abstract-object abstract-object-main"></span>
+                <span class="abstract-object abstract-object-detail"></span>
+                <span class="abstract-line abstract-line-one"></span>
+                <span class="abstract-line abstract-line-two"></span>
+              </div>
+              <div class="featured-project-preview-copy">
+                <div class="featured-project-preview-meta"><span>03</span><span>Commercial Storytelling</span></div>
+                <h3>Consumer Product Launch Visualization</h3>
+                <p>A consumer-facing launch system combining art direction, photorealistic CGI, motion, feature communication, and campaign assets.</p>
+                <ul class="featured-project-preview-proof" aria-label="Selected commercial visualization capabilities">
+                  <li>Art Direction</li>
+                  <li>CGI</li>
+                  <li>Motion</li>
+                  <li>Campaign</li>
+                </ul>
+                <a class="featured-project-preview-link" href="consumer-product-launch.html">View Launch Visualization Framework <span aria-hidden="true">→</span></a>
+              </div>
+            </article>
+          </div>
+        </section>
 
         <section class="experience-highlights" aria-labelledby="experience-highlights-title">
           <div class="experience-highlights-heading">
@@ -118,76 +202,6 @@
           </div>
         </section>
 
-        <section class="featured-project-previews" id="featured-projects" aria-labelledby="featured-project-previews-title">
-          <div class="featured-project-previews-heading">
-            <p class="eyebrow">Featured Projects</p>
-            <h2 id="featured-project-previews-title">Three case studies across engineering communication, research-led product development, and commercial product storytelling.</h2>
-          </div>
-          <div class="featured-project-previews-grid">
-            <article class="featured-project-preview is-hero" data-card-link tabindex="0" role="link" aria-label="View Engineering Communication Case Study">
-              <div class="featured-project-preview-visual visual-engineering" aria-hidden="true">
-                <span class="abstract-object abstract-object-main"></span>
-                <span class="abstract-object abstract-object-detail"></span>
-                <span class="abstract-line abstract-line-one"></span>
-                <span class="abstract-line abstract-line-two"></span>
-              </div>
-              <div class="featured-project-preview-copy">
-                <div class="featured-project-preview-meta"><span>01</span><span>Professional Impact</span></div>
-                <h3>From Engineering Complexity to Customer Clarity</h3>
-                <p>Industrial product communication developed for a manufacturing environment—from optimized CAD and photorealistic rendering to animation, catalogues, and customer presentations.</p>
-                <ul class="featured-project-preview-proof" aria-label="Selected project evidence">
-                  <li>30+ Renderings</li>
-                  <li>10+ Animations</li>
-                  <li>5+ Engineering Projects</li>
-                </ul>
-                <a class="featured-project-preview-link" href="engineering-communication.html">View Engineering Communication Case Study <span aria-hidden="true">→</span></a>
-              </div>
-            </article>
-
-            <article class="featured-project-preview" data-card-link tabindex="0" role="link" aria-label="View Product Development Framework">
-              <div class="featured-project-preview-visual visual-concept" aria-hidden="true">
-                <span class="abstract-object abstract-object-main"></span>
-                <span class="abstract-object abstract-object-detail"></span>
-                <span class="abstract-line abstract-line-one"></span>
-                <span class="abstract-line abstract-line-two"></span>
-              </div>
-              <div class="featured-project-preview-copy">
-                <div class="featured-project-preview-meta"><span>02</span><span>Research-led Product Design</span></div>
-                <h3>From Insight to Product Concept</h3>
-                <p>A research-led physical product concept developed through insight synthesis, sketch exploration, iterative modelling, prototyping, and CMF.</p>
-                <ul class="featured-project-preview-proof" aria-label="Selected product development capabilities">
-                  <li>Research</li>
-                  <li>Sketch</li>
-                  <li>Iteration</li>
-                  <li>Prototype</li>
-                </ul>
-                <a class="featured-project-preview-link" href="research-to-product-concept.html">View Product Development Framework <span aria-hidden="true">→</span></a>
-              </div>
-            </article>
-
-            <article class="featured-project-preview" data-card-link tabindex="0" role="link" aria-label="View Launch Visualization Framework">
-              <div class="featured-project-preview-visual visual-launch" aria-hidden="true">
-                <span class="abstract-object abstract-object-main"></span>
-                <span class="abstract-object abstract-object-detail"></span>
-                <span class="abstract-line abstract-line-one"></span>
-                <span class="abstract-line abstract-line-two"></span>
-              </div>
-              <div class="featured-project-preview-copy">
-                <div class="featured-project-preview-meta"><span>03</span><span>Commercial Storytelling</span></div>
-                <h3>Consumer Product Launch Visualization</h3>
-                <p>A consumer-facing launch system combining art direction, photorealistic CGI, motion, feature communication, and campaign assets.</p>
-                <ul class="featured-project-preview-proof" aria-label="Selected commercial visualization capabilities">
-                  <li>Art Direction</li>
-                  <li>CGI</li>
-                  <li>Motion</li>
-                  <li>Campaign</li>
-                </ul>
-                <a class="featured-project-preview-link" href="consumer-product-launch.html">View Launch Visualization Framework <span aria-hidden="true">→</span></a>
-              </div>
-            </article>
-          </div>
-        </section>
-
         <section class="more-work-explorer" aria-labelledby="more-work-explorer-title" data-work-explorer>
           <div class="more-work-explorer-heading">
             <p class="eyebrow">Explore More Work</p>
@@ -198,16 +212,17 @@
           </div>
 
           <div class="more-work-explorer-layout">
-            <div class="more-work-explorer-tabs" role="tablist" aria-label="Additional work categories">
+            <div class="more-work-explorer-tabs" aria-label="Additional work categories">
               <button
                 class="more-work-explorer-tab is-active"
                 type="button"
-                role="tab"
-                aria-selected="true"
+                aria-pressed="true"
                 data-explore-title="Physical products and systems"
                 data-explore-kicker="Industrial Design / Selected Work"
                 data-explore-description="Product concepts, design optimization, user interaction, and manufacturable physical systems."
                 data-explore-visual="industrial"
+                data-explore-image="assets/gopro-16-2.webp"
+                data-explore-image-position="50% 42%"
                 data-explore-href="work.html"
                 data-explore-link-label="Explore Industrial Design"
               >
@@ -216,12 +231,13 @@
               <button
                 class="more-work-explorer-tab"
                 type="button"
-                role="tab"
-                aria-selected="false"
+                aria-pressed="false"
                 data-explore-title="Product presentation and technical animation"
                 data-explore-kicker="Product Visualization &amp; Animation / Selected Work"
                 data-explore-description="Professional visual assets developed to clarify industrial product form, assembly, and operating principles."
                 data-explore-visual="visualization"
+                data-explore-image="assets/previews/visualization-co2.jpg"
+                data-explore-image-position="50% 0%"
                 data-explore-href="communication.html"
                 data-explore-link-label="Explore Visualization &amp; Animation"
               >
@@ -230,12 +246,13 @@
               <button
                 class="more-work-explorer-tab"
                 type="button"
-                role="tab"
-                aria-selected="false"
+                aria-pressed="false"
                 data-explore-title="Customer-facing product information"
                 data-explore-kicker="Industrial Product Communication / Selected Work"
                 data-explore-description="Catalogs, exhibition graphics, diagrams, and communication systems for industrial products."
                 data-explore-visual="communication"
+                data-explore-image="assets/trade-show-international-booth.jpg"
+                data-explore-image-position="50% 46%"
                 data-explore-href="visual-communication.html"
                 data-explore-link-label="Explore Industrial Product Communication"
               >
@@ -243,13 +260,17 @@
               </button>
             </div>
 
-            <article class="more-work-explorer-preview" aria-live="polite" data-card-link tabindex="0" role="link" aria-label="Explore Industrial Design">
+            <article class="more-work-explorer-preview" aria-live="polite" data-card-link>
               <div class="more-work-explorer-abstract visual-industrial" data-explore-preview-visual aria-hidden="true">
-                <span class="explore-shape explore-shape-main"></span>
-                <span class="explore-shape explore-shape-detail-one"></span>
-                <span class="explore-shape explore-shape-detail-two"></span>
-                <span class="explore-axis explore-axis-one"></span>
-                <span class="explore-axis explore-axis-two"></span>
+                <img
+                  class="more-work-explorer-cover-image"
+                  src="assets/gopro-16-2.webp"
+                  alt=""
+                  width="681"
+                  height="595"
+                  decoding="async"
+                  data-explore-preview-image
+                >
               </div>
               <div class="more-work-explorer-preview-copy">
                 <p class="eyebrow" data-explore-preview-kicker>Industrial Design / Selected Work</p>
@@ -263,27 +284,40 @@
 
       </section>
 
-      <section class="about-preview section-pad">
-        <div class="portrait-panel" aria-hidden="true">
-          <span class="portrait-orbit"></span>
-          <span class="portrait-block"></span>
-          <span class="portrait-caption">Design / Visualization / Communication</span>
+      <section class="home-recommendations section-pad" aria-labelledby="home-recommendations-title">
+        <div class="about-section-heading">
+          <div>
+            <p class="eyebrow">Professional Recommendations</p>
+            <h2 id="home-recommendations-title">How collaborators describe working with me.</h2>
+          </div>
+          <p>Selected excerpts from verified written recommendations. The complete signed letter is available on request and is not published with personal contact details.</p>
         </div>
-        <div>
-          <p class="eyebrow">About</p>
-          <h2>Industrial product designer working across development, visualization, and communication.</h2>
-          <p>
-            I develop physical product concepts and support their communication through 3D
-            visualization, technical animation, and clear presentation systems for engineering,
-            client, and marketing contexts.
-          </p>
-          <a class="text-link" href="about.html">Read About</a>
+        <div class="home-recommendations-grid">
+            <article class="home-recommendation-card">
+              <p class="about-testimonial-status">Verified written endorsement</p>
+              <span class="about-reference-avatar" aria-hidden="true">CZ</span>
+              <blockquote>“Jinyang demonstrated strong skills in research synthesis, structured analysis, and visual presentation. Her ability not only to gather information but to transform it into strategic design implications was particularly impressive.”</blockquote>
+              <footer>
+                <strong>Chen Zhang</strong>
+                <span>EU Regional Manager · Elihome<br>Written endorsement · December 2025</span>
+              </footer>
+            </article>
+            <article class="home-recommendation-card">
+              <p class="about-testimonial-status">Public LinkedIn recommendation</p>
+              <span class="about-reference-avatar" aria-hidden="true">AL</span>
+              <blockquote>“Jin is a creative, passionate, and curious designer. She approaches every project with humility and talent, always finding original and effective solutions—a valuable asset to any team.”</blockquote>
+              <footer>
+                <strong>Antonio Lanzillo</strong>
+                <span>Founder &amp; Chief Designer · Direct supervisor<br>Translated from the original Italian · February 2025</span>
+              </footer>
+            </article>
         </div>
       </section>
 
       <section class="cta-band">
-        <p>Open to industrial design, product visualization, and industrial product communication opportunities.</p>
+        <p>Looking for a designer who can connect product, engineering, and customer understanding?</p>
         <div class="action-row">
+          <a class="button primary" href="resume.html">View Resume</a>
           <a class="button secondary" href="contact.html">Contact</a>
         </div>
       </section>
@@ -294,6 +328,6 @@
       <a href="contact.html">Start a conversation</a>
     </footer>
 
-    <script src="script.js?v=20260721e"></script>
+    <script src="script.js?v=20260726b"></script>
   </body>
 </html>

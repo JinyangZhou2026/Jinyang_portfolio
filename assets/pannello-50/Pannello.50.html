@@ -11,7 +11,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>KeyShotXR</title>
     <style type="text/css">
-      body { -ms-touch-action: none; }
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        background: #fff;
+        -ms-touch-action: none;
+        touch-action: none;
+      }
     </style>
     <script type="text/javascript" src="Pannello.50/files/KeyShotXR.js"></script>
     <script type="text/javascript">
@@ -20,8 +29,8 @@
       function initKeyShotXR() {
         var nameOfDiv = "KeyShotXR";
         var folderName = "Pannello.50";
-        var viewPortWidth = 2500;
-        var viewPortHeight = 2500;
+        var viewPortWidth = 1600;
+        var viewPortHeight = 1600;
         var backgroundColor = "#FFFFFF";
         var uCount = 18;
         var vCount = 1;
@@ -37,7 +46,7 @@
         var downScaleToBrowser = true;
         var addDownScaleGUIButton = false;
         var downloadOnInteraction = false;
-        var imageExtension = "png";
+        var imageExtension = "webp";
         var showLoading = false;
         var loadingIcon = "ks_logo.png"; // Set to empty string for default icon.
         var allowFullscreen = true; // Double-click in desktop browsers for fullscreen.
