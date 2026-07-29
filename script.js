@@ -16,6 +16,48 @@ animatedWords.forEach((word) => {
   }, delay + 250);
 });
 
+const segmentLoopVideos = document.querySelectorAll("[data-segment-loop]");
+
+segmentLoopVideos.forEach((video) => {
+  const loopStart = Number.parseFloat(video.dataset.loopStart || "0");
+  const loopEnd = Number.parseFloat(video.dataset.loopEnd || "0");
+
+  const restartSegment = () => {
+    video.currentTime = loopStart;
+    if (!reduceMotion.matches) {
+      video.play().catch(() => {});
+    }
+  };
+
+  video.addEventListener("loadedmetadata", restartSegment);
+  video.addEventListener("timeupdate", () => {
+    if (loopEnd > loopStart && video.currentTime >= loopEnd) {
+      restartSegment();
+    }
+  });
+  video.addEventListener("ended", restartSegment);
+
+  if (reduceMotion.matches) {
+    video.removeAttribute("autoplay");
+    video.pause();
+    return;
+  }
+
+  if ("IntersectionObserver" in window) {
+    const loopObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          video.play().catch(() => {});
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.25 },
+    );
+    loopObserver.observe(video);
+  }
+});
+
 const greetingRotator = document.querySelector("[data-greeting-rotator]");
 const greetingLines = greetingRotator ? Array.from(greetingRotator.querySelectorAll(".hero-greeting-line")) : [];
 
