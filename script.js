@@ -578,7 +578,8 @@ videoBrowsers.forEach((browser) => {
     }
 
     if (youtubeLink) {
-      youtubeLink.href = youtubeSrc || "#";
+      if (youtubeSrc) youtubeLink.href = youtubeSrc;
+      else youtubeLink.removeAttribute("href");
       youtubeLink.setAttribute("aria-label", `Watch ${selector.getAttribute("data-video-title") || "selected video"} on YouTube`);
       youtubeLink.hidden = !youtubeSrc;
     }
@@ -604,7 +605,8 @@ videoBrowsers.forEach((browser) => {
     if (fileLink) {
       const linkSrc = selector.getAttribute("data-video-link") || "";
       const linkLabel = selector.getAttribute("data-video-link-label") || "Open PDF";
-      fileLink.href = linkSrc || "#";
+      if (linkSrc) fileLink.href = linkSrc;
+      else fileLink.removeAttribute("href");
       fileLink.textContent = linkLabel;
       fileLink.hidden = !linkSrc;
     }
@@ -616,7 +618,8 @@ videoBrowsers.forEach((browser) => {
         ? (selector.getAttribute("data-video-link-label") || "Open linked work ↗")
         : "Watch on YouTube ↗";
       const selectedTitle = selector.getAttribute("data-video-title") || "selected work";
-      frameLink.href = frameLinkSrc || "#";
+      if (frameLinkSrc) frameLink.href = frameLinkSrc;
+      else frameLink.removeAttribute("href");
       frameLink.setAttribute("aria-label", `${frameLabel.replace("↗", "").trim()}: ${selectedTitle}`);
       frameLink.hidden = !frameLinkSrc;
       if (frameLinkLabel) {
