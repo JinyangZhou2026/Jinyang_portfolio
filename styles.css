@@ -11047,9 +11047,9 @@ h3 {
   --melody-sky: #8fc3c7;
   --melody-green: #ef997b;
   --melody-pink: #d9a4b5;
-  --melody-panel: rgba(24, 35, 31, 0.88);
-  --melody-panel-deep: rgba(16, 25, 22, 0.95);
-  --melody-line: rgba(183, 201, 121, 0.22);
+  --melody-panel: rgba(18, 27, 30, 0.9);
+  --melody-panel-deep: rgba(11, 17, 19, 0.96);
+  --melody-line: rgba(183, 201, 121, 0.2);
 }
 
 .melody-case-study .engineering-case-hero {
@@ -12839,9 +12839,9 @@ h3 {
   isolation: isolate;
   overflow: hidden;
   background:
-    radial-gradient(circle at 82% 4%, rgba(183, 201, 121, 0.13), transparent 28rem),
-    radial-gradient(circle at 7% 34%, rgba(143, 195, 199, 0.07), transparent 32rem),
-    linear-gradient(142deg, #101914 0%, #09110e 48%, #050807 100%);
+    radial-gradient(circle at 82% 4%, rgba(183, 201, 121, 0.065), transparent 28rem),
+    radial-gradient(circle at 7% 34%, rgba(143, 195, 199, 0.04), transparent 32rem),
+    linear-gradient(142deg, #0d1517 0%, #090f11 48%, #050708 100%);
 }
 
 .melody-case-study main::before {
@@ -12851,8 +12851,8 @@ h3 {
   pointer-events: none;
   content: "";
   background-image:
-    linear-gradient(rgba(183, 201, 121, 0.055) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(183, 201, 121, 0.055) 1px, transparent 1px);
+    linear-gradient(rgba(183, 201, 121, 0.034) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(183, 201, 121, 0.034) 1px, transparent 1px);
   background-size: 60px 60px;
   -webkit-mask-image: linear-gradient(to bottom, black 0%, rgba(0, 0, 0, 0.72) 56%, transparent 100%);
   mask-image: linear-gradient(to bottom, black 0%, rgba(0, 0, 0, 0.72) 56%, transparent 100%);
@@ -12896,7 +12896,7 @@ h3 {
 }
 
 .melody-case-study main .melody-hero-proof li {
-  background: rgba(16, 25, 22, 0.9);
+  background: rgba(12, 19, 21, 0.92);
 }
 
 .melody-case-study main .project-meta dl,
@@ -12912,7 +12912,7 @@ h3 {
 
 .melody-case-study main .project-meta div {
   background:
-    linear-gradient(145deg, rgba(45, 67, 57, 0.34), rgba(5, 5, 5, 0.64));
+    linear-gradient(145deg, rgba(37, 53, 55, 0.24), rgba(5, 7, 8, 0.68));
 }
 
 .melody-case-study main .project-meta dt {
@@ -12930,7 +12930,7 @@ h3 {
 .melody-case-study main .melody-validation-grid article,
 .melody-case-study main .melody-status-grid article {
   background:
-    linear-gradient(145deg, rgba(45, 67, 57, 0.34), transparent 58%),
+    linear-gradient(145deg, rgba(37, 53, 55, 0.24), transparent 58%),
     var(--melody-panel-deep);
   border-color: var(--melody-line);
 }
@@ -12938,7 +12938,7 @@ h3 {
 .melody-case-study main .melody-criteria-grid article,
 .melody-case-study main .melody-rule-strip li {
   background:
-    linear-gradient(150deg, rgba(45, 67, 57, 0.58), rgba(9, 14, 12, 0.97));
+    linear-gradient(150deg, rgba(37, 53, 55, 0.42), rgba(7, 11, 12, 0.98));
 }
 
 .melody-case-study main .melody-context-feature,
@@ -13000,7 +13000,7 @@ h3 {
 
 .melody-case-study main .melody-material-decision-list li,
 .melody-case-study main .melody-risk-register li {
-  background: rgba(12, 19, 16, 0.98);
+  background: rgba(9, 14, 15, 0.98);
 }
 
 .melody-case-study main .melody-booklet-link a {
