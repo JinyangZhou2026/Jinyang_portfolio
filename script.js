@@ -2,21 +2,80 @@ const menuButton = document.querySelector(".menu-toggle");
 const siteNav = document.querySelector(".site-nav");
 const siteHeader = document.querySelector(".site-header");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+
+if (finePointer.matches && !reduceMotion.matches) {
+  const mouseGlow = document.createElement("div");
+  mouseGlow.className = "global-serenity-glow";
+  mouseGlow.setAttribute("aria-hidden", "true");
+  document.body.append(mouseGlow);
+
+  let glowFrame;
+  let pointerX = 0;
+  let pointerY = 0;
+
+  const positionMouseGlow = () => {
+    mouseGlow.style.left = `${pointerX}px`;
+    mouseGlow.style.top = `${pointerY}px`;
+    mouseGlow.style.opacity = "1";
+    glowFrame = undefined;
+  };
+
+  document.addEventListener("pointermove", (event) => {
+    pointerX = event.clientX;
+    pointerY = event.clientY;
+    if (glowFrame === undefined) glowFrame = window.requestAnimationFrame(positionMouseGlow);
+  }, { passive: true });
+
+  document.documentElement.addEventListener("mouseleave", () => {
+    mouseGlow.style.opacity = "0";
+  });
+
+  window.addEventListener("blur", () => {
+    mouseGlow.style.opacity = "0";
+  });
+}
 
 const animatedWords = document.querySelectorAll(".word-animate");
 
-animatedWords.forEach((word) => {
-  if (reduceMotion.matches) {
-    word.classList.add("is-visible");
-    return;
-  }
-  const delay = Number.parseInt(word.getAttribute("data-delay") || "0", 10);
-  window.setTimeout(() => {
-    word.classList.add("is-visible");
-  }, delay + 250);
-});
+const revealAnimatedWord = (word) => {
+  const requestedDelay = Number.parseInt(word.getAttribute("data-delay") || "0", 10);
+  const delay = Math.min(Math.round(requestedDelay * 0.18), 80);
+
+  word.classList.add("is-visible");
+  if (typeof word.animate !== "function") return;
+
+  word.animate(
+    [
+      { opacity: 0.88, transform: "translateY(4px)" },
+      { opacity: 1, transform: "translateY(0)" },
+    ],
+    {
+      duration: 260,
+      delay,
+      easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+      fill: "backwards",
+    },
+  );
+};
+
+if (reduceMotion.matches || !("IntersectionObserver" in window)) {
+  animatedWords.forEach((word) => word.classList.add("is-visible"));
+} else {
+  const wordRevealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      revealAnimatedWord(entry.target);
+      observer.unobserve(entry.target);
+    });
+  }, { threshold: 0.35, rootMargin: "0px 0px -4%" });
+
+  animatedWords.forEach((word) => wordRevealObserver.observe(word));
+}
 
 const segmentLoopVideos = document.querySelectorAll("[data-segment-loop]");
+const saveDataEnabled = navigator.connection?.saveData === true;
+const allowDecorativeVideoAutoplay = finePointer.matches && !saveDataEnabled && !reduceMotion.matches;
 
 segmentLoopVideos.forEach((video) => {
   const loopStart = Number.parseFloat(video.dataset.loopStart || "0");
@@ -24,10 +83,17 @@ segmentLoopVideos.forEach((video) => {
 
   const restartSegment = () => {
     video.currentTime = loopStart;
-    if (!reduceMotion.matches) {
+    if (allowDecorativeVideoAutoplay) {
       video.play().catch(() => {});
     }
   };
+
+  if (!allowDecorativeVideoAutoplay) {
+    video.removeAttribute("autoplay");
+    video.controls = true;
+    video.pause();
+    return;
+  }
 
   video.addEventListener("loadedmetadata", restartSegment);
   video.addEventListener("timeupdate", () => {
@@ -36,12 +102,6 @@ segmentLoopVideos.forEach((video) => {
     }
   });
   video.addEventListener("ended", restartSegment);
-
-  if (reduceMotion.matches) {
-    video.removeAttribute("autoplay");
-    video.pause();
-    return;
-  }
 
   if ("IntersectionObserver" in window) {
     const loopObserver = new IntersectionObserver(
@@ -129,6 +189,119 @@ if (countUpElements.length > 0 && !reduceMotion.matches && "IntersectionObserver
   countUpElements.forEach((element) => countObserver.observe(element));
 }
 
+const projectSelector = document.querySelector("[data-project-selector]");
+
+if (projectSelector) {
+  const projectTabs = Array.from(projectSelector.querySelectorAll(".featured-project-tab"));
+  const projectPanel = projectSelector.querySelector(".featured-project-panel");
+  const projectImage = projectSelector.querySelector("[data-project-preview-image]");
+  const projectCategory = projectSelector.querySelector("[data-project-preview-category]");
+  const projectTitle = projectSelector.querySelector("[data-project-preview-title]");
+  const projectDescription = projectSelector.querySelector("[data-project-preview-description]");
+  const projectRole = projectSelector.querySelector("[data-project-preview-role]");
+  const projectContribution = projectSelector.querySelector("[data-project-preview-contribution]");
+  const projectEvidence = projectSelector.querySelector("[data-project-preview-evidence]");
+  const projectLink = projectSelector.querySelector("[data-project-preview-link]");
+  const projectCurrent = projectSelector.querySelector("[data-project-current]");
+  const preloadedProjectImages = new Set();
+  let projectTransitionTimer;
+
+  const preloadProjectImage = (tab) => {
+    const imageSource = tab.dataset.projectImage;
+    if (imageSource && !preloadedProjectImages.has(imageSource)) {
+      const preloadImage = new Image();
+      preloadImage.src = imageSource;
+      preloadedProjectImages.add(imageSource);
+    }
+  };
+
+  const syncProjectUrl = (tab) => {
+    const url = new URL(window.location.href);
+    url.searchParams.set("project", tab.id);
+    window.history.replaceState(null, "", url.toString());
+  };
+
+  const renderProject = (tab, shouldFocus = false, shouldSyncUrl = true) => {
+    if (tab && shouldSyncUrl) syncProjectUrl(tab);
+
+    if (!tab || tab.getAttribute("aria-selected") === "true") {
+      if (shouldFocus) tab?.focus();
+      return;
+    }
+
+    projectTabs.forEach((item) => {
+      const isActive = item === tab;
+      item.classList.toggle("is-active", isActive);
+      item.setAttribute("aria-selected", String(isActive));
+      item.setAttribute("tabindex", isActive ? "0" : "-1");
+    });
+
+    if (projectCurrent) {
+      const activeIndex = projectTabs.indexOf(tab) + 1;
+      projectCurrent.textContent = String(activeIndex).padStart(2, "0");
+    }
+
+    if (shouldFocus) tab.focus();
+    projectPanel?.classList.add("is-changing");
+    window.clearTimeout(projectTransitionTimer);
+
+    projectTransitionTimer = window.setTimeout(() => {
+      if (projectImage instanceof HTMLImageElement) {
+        projectImage.src = tab.dataset.projectImage || "";
+        projectImage.alt = tab.dataset.projectImageAlt || "";
+        projectImage.style.objectPosition = tab.dataset.projectImagePosition || "50% 50%";
+        projectImage.style.setProperty("--project-image-scale", tab.dataset.projectImageScale || "1");
+      }
+      if (projectCategory) projectCategory.textContent = tab.dataset.projectCategory || "";
+      if (projectTitle) projectTitle.textContent = tab.dataset.projectTitle || "";
+      if (projectDescription) projectDescription.textContent = tab.dataset.projectDescription || "";
+      if (projectRole) projectRole.textContent = tab.dataset.projectRole || "";
+      if (projectContribution) projectContribution.textContent = tab.dataset.projectContribution || "";
+      if (projectEvidence) projectEvidence.textContent = tab.dataset.projectEvidence || "";
+      if (projectLink instanceof HTMLAnchorElement) {
+        const arrow = document.createElement("span");
+        arrow.setAttribute("aria-hidden", "true");
+        arrow.textContent = "→";
+        projectLink.href = tab.dataset.projectHref || "#";
+        projectLink.setAttribute("aria-label", tab.dataset.projectLinkAriaLabel || "View case study");
+        projectLink.replaceChildren(document.createTextNode(`${tab.dataset.projectLinkLabel || "View Case Study"} `), arrow);
+      }
+      projectPanel?.setAttribute("aria-labelledby", tab.id);
+      projectPanel?.classList.remove("is-changing");
+    }, reduceMotion.matches ? 0 : 160);
+  };
+
+  projectTabs.forEach((tab, index) => {
+    tab.addEventListener("pointerenter", () => preloadProjectImage(tab), { passive: true });
+    tab.addEventListener("focus", () => preloadProjectImage(tab));
+    tab.addEventListener("click", () => {
+      preloadProjectImage(tab);
+      renderProject(tab);
+    });
+    tab.addEventListener("keydown", (event) => {
+      let targetIndex = index;
+
+      if (event.key === "ArrowRight") targetIndex = (index + 1) % projectTabs.length;
+      else if (event.key === "ArrowLeft") targetIndex = (index - 1 + projectTabs.length) % projectTabs.length;
+      else if (event.key === "Home") targetIndex = 0;
+      else if (event.key === "End") targetIndex = projectTabs.length - 1;
+      else return;
+
+      event.preventDefault();
+      renderProject(projectTabs[targetIndex], true);
+      projectTabs[targetIndex].scrollIntoView({ behavior: reduceMotion.matches ? "auto" : "smooth", block: "nearest", inline: "nearest" });
+    });
+  });
+
+  const requestedProjectId = new URL(window.location.href).searchParams.get("project");
+  const requestedProjectTab = projectTabs.find((tab) => tab.id === requestedProjectId);
+  if (requestedProjectTab) {
+    preloadProjectImage(requestedProjectTab);
+    renderProject(requestedProjectTab, false, false);
+  }
+
+}
+
 const workExplorer = document.querySelector("[data-work-explorer]");
 
 if (workExplorer) {
@@ -174,6 +347,67 @@ if (workExplorer) {
       }, 180);
     });
   });
+}
+
+const capabilityAccordion = document.querySelector("[data-capability-accordion]");
+
+if (capabilityAccordion) {
+  const capabilityCards = Array.from(capabilityAccordion.querySelectorAll("[data-capability-card]"));
+  const capabilityCurrent = document.querySelector("[data-capability-current]");
+  let capabilityScrollFrame;
+
+  const updateCapabilityCurrent = (index) => {
+    if (capabilityCurrent) capabilityCurrent.textContent = String(index + 1).padStart(2, "0");
+  };
+
+  const activateCapabilityCard = (card, shouldFocus = false) => {
+    capabilityCards.forEach((item) => item.classList.toggle("is-active", item === card));
+    const activeIndex = capabilityCards.indexOf(card);
+    if (activeIndex >= 0) updateCapabilityCurrent(activeIndex);
+    if (card && shouldFocus) card.focus();
+  };
+
+  capabilityCards.forEach((card, index) => {
+    card.addEventListener("pointerenter", (event) => {
+      if (event.pointerType !== "touch") activateCapabilityCard(card);
+    });
+    card.addEventListener("focus", () => activateCapabilityCard(card));
+    card.addEventListener("keydown", (event) => {
+      let targetIndex = index;
+
+      if (event.key === "ArrowRight" || event.key === "ArrowDown") targetIndex = (index + 1) % capabilityCards.length;
+      else if (event.key === "ArrowLeft" || event.key === "ArrowUp") targetIndex = (index - 1 + capabilityCards.length) % capabilityCards.length;
+      else if (event.key === "Home") targetIndex = 0;
+      else if (event.key === "End") targetIndex = capabilityCards.length - 1;
+      else return;
+
+      event.preventDefault();
+      activateCapabilityCard(capabilityCards[targetIndex], true);
+    });
+  });
+
+  capabilityAccordion.addEventListener("pointerleave", (event) => {
+    if (event.pointerType !== "touch" && !capabilityAccordion.contains(document.activeElement)) {
+      activateCapabilityCard(null);
+    }
+  });
+
+  capabilityAccordion.addEventListener("focusout", (event) => {
+    if (!capabilityAccordion.contains(event.relatedTarget)) activateCapabilityCard(null);
+  });
+
+  capabilityAccordion.addEventListener("scroll", () => {
+    if (capabilityScrollFrame !== undefined) return;
+    capabilityScrollFrame = window.requestAnimationFrame(() => {
+      const closestIndex = capabilityCards.reduce((bestIndex, card, index) => {
+        const bestDistance = Math.abs(capabilityCards[bestIndex].offsetLeft - capabilityAccordion.scrollLeft);
+        const currentDistance = Math.abs(card.offsetLeft - capabilityAccordion.scrollLeft);
+        return currentDistance < bestDistance ? index : bestIndex;
+      }, 0);
+      updateCapabilityCurrent(closestIndex);
+      capabilityScrollFrame = undefined;
+    });
+  }, { passive: true });
 }
 
 const activityViewer = document.querySelector("[data-activity-viewer]");
@@ -233,25 +467,13 @@ if (activityViewer) {
   renderActivity();
 }
 
-const projectNavs = document.querySelectorAll(".nav-projects");
-
-const closeProjectMenus = () => {
-  projectNavs.forEach((projectNav) => {
-    projectNav.classList.remove("is-open");
-    projectNav.querySelector(".nav-projects-trigger")?.setAttribute("aria-expanded", "false");
-  });
-};
-
 const setMobileMenuOpen = (isOpen) => {
   if (!menuButton || !siteNav) return;
 
   menuButton.setAttribute("aria-expanded", String(isOpen));
   menuButton.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
   siteNav.classList.toggle("is-open", isOpen);
-
-  if (!isOpen) {
-    closeProjectMenus();
-  }
+  document.body.classList.toggle("mobile-menu-open", isOpen);
 };
 
 if (menuButton && siteNav) {
@@ -262,35 +484,13 @@ if (menuButton && siteNav) {
   });
 
   siteNav.addEventListener("click", (event) => {
-    if (event.target.closest(".nav-projects-trigger")) return;
     if (event.target.closest("a")) {
       setMobileMenuOpen(false);
     }
   });
 }
 
-projectNavs.forEach((projectNav) => {
-  const trigger = projectNav.querySelector(".nav-projects-trigger");
-
-  if (!trigger) return;
-
-  trigger.addEventListener("click", (event) => {
-    event.stopPropagation();
-    const isOpen = projectNav.classList.contains("is-open");
-
-    projectNavs.forEach((nav) => {
-      nav.classList.remove("is-open");
-      nav.querySelector(".nav-projects-trigger")?.setAttribute("aria-expanded", "false");
-    });
-
-    projectNav.classList.toggle("is-open", !isOpen);
-    trigger.setAttribute("aria-expanded", String(!isOpen));
-  });
-});
-
 document.addEventListener("click", (event) => {
-  closeProjectMenus();
-
   if (siteHeader && menuButton?.getAttribute("aria-expanded") === "true" && !siteHeader.contains(event.target)) {
     setMobileMenuOpen(false);
   }
@@ -299,9 +499,31 @@ document.addEventListener("click", (event) => {
 document.addEventListener("keydown", (event) => {
   if (event.key !== "Escape") return;
 
-  closeProjectMenus();
+  const wasOpen = menuButton?.getAttribute("aria-expanded") === "true";
   setMobileMenuOpen(false);
+  if (wasOpen) menuButton?.focus();
 });
+
+const copyEmailButton = document.querySelector("[data-copy-email]");
+const copyEmailStatus = document.querySelector("[data-copy-email-status]");
+
+if (copyEmailButton instanceof HTMLButtonElement) {
+  copyEmailButton.addEventListener("click", async () => {
+    const email = copyEmailButton.dataset.email || "";
+    if (!email) return;
+
+    try {
+      await navigator.clipboard.writeText(email);
+      copyEmailButton.textContent = "Email Copied";
+      if (copyEmailStatus) copyEmailStatus.textContent = `${email} copied to clipboard.`;
+      window.setTimeout(() => {
+        copyEmailButton.textContent = "Copy Email";
+      }, 2200);
+    } catch {
+      if (copyEmailStatus) copyEmailStatus.textContent = `Copy failed. Email: ${email}`;
+    }
+  });
+}
 
 const carousels = document.querySelectorAll("[data-carousel]");
 
@@ -399,11 +621,6 @@ linkedProjectCards.forEach((card) => {
     openCard();
   });
 
-  card.addEventListener("keydown", (event) => {
-    if (event.key !== "Enter" && event.key !== " ") return;
-    event.preventDefault();
-    openCard();
-  });
 });
 
 const linkedContentCards = document.querySelectorAll("[data-card-link]");
@@ -419,12 +636,6 @@ linkedContentCards.forEach((card) => {
     openCard();
   });
 
-  card.addEventListener("keydown", (event) => {
-    if (event.key !== "Enter" && event.key !== " ") return;
-    if (event.target.closest("a, button")) return;
-    event.preventDefault();
-    openCard();
-  });
 });
 
 const resumeTabs = document.querySelectorAll("[data-resume-tab]");
@@ -664,32 +875,68 @@ videoBrowsers.forEach((browser) => {
     renderGallerySlide();
   });
 
-  categories.forEach((category) => {
-    category.setAttribute("aria-selected", String(category.classList.contains("is-active")));
-    category.addEventListener("click", () => {
-      const target = category.getAttribute("data-video-category");
-      categories.forEach((item) => {
-        const isActive = item === category;
-        item.classList.toggle("is-active", isActive);
-        item.setAttribute("aria-selected", String(isActive));
-      });
-      panels.forEach((panel) => {
-        const isActive = panel.getAttribute("data-video-panel") === target;
-        panel.classList.toggle("is-active", isActive);
-        panel.setAttribute("aria-hidden", String(!isActive));
-      });
+  const syncVideoBrowserUrl = (category, selector = null) => {
+    const url = new URL(window.location.href);
+    const categoryId = category?.getAttribute("data-video-category");
+    const itemId = selector?.getAttribute("data-video-item");
+    if (categoryId) url.searchParams.set("category", categoryId);
+    else url.searchParams.delete("category");
+    if (itemId) url.searchParams.set("item", itemId);
+    else url.searchParams.delete("item");
+    window.history.replaceState(null, "", url.toString());
+  };
 
-      const activePanel = browser.querySelector(`[data-video-panel="${target}"]`);
-      const firstVideo = activePanel?.querySelector('[data-video-featured="true"]')
-        || activePanel?.querySelector(".video-select:not([data-video-context-only])")
-        || activePanel?.querySelector(".video-select");
-      if (firstVideo) updateVideo(firstVideo);
+  const activateCategory = (category, shouldFocus = false, shouldSyncUrl = true) => {
+    const target = category.getAttribute("data-video-category");
+    categories.forEach((item) => {
+      const isActive = item === category;
+      item.classList.toggle("is-active", isActive);
+      item.setAttribute("aria-selected", String(isActive));
+      item.setAttribute("tabindex", isActive ? "0" : "-1");
+    });
+    panels.forEach((panel) => {
+      const isActive = panel.getAttribute("data-video-panel") === target;
+      panel.classList.toggle("is-active", isActive);
+      panel.setAttribute("aria-hidden", String(!isActive));
+    });
+
+    const activePanel = browser.querySelector(`[data-video-panel="${target}"]`);
+    const firstVideo = activePanel?.querySelector('[data-video-featured="true"]')
+      || activePanel?.querySelector(".video-select:not([data-video-context-only])")
+      || activePanel?.querySelector(".video-select");
+    if (firstVideo) updateVideo(firstVideo);
+    if (shouldFocus) category.focus();
+    if (shouldSyncUrl) syncVideoBrowserUrl(category);
+  };
+
+  categories.forEach((category, index) => {
+    const isActive = category.classList.contains("is-active");
+    category.setAttribute("aria-selected", String(isActive));
+    category.setAttribute("tabindex", isActive ? "0" : "-1");
+    category.addEventListener("click", () => activateCategory(category));
+    category.addEventListener("keydown", (event) => {
+      let targetIndex = index;
+      if (event.key === "ArrowRight" || event.key === "ArrowDown") targetIndex = (index + 1) % categories.length;
+      else if (event.key === "ArrowLeft" || event.key === "ArrowUp") targetIndex = (index - 1 + categories.length) % categories.length;
+      else if (event.key === "Home") targetIndex = 0;
+      else if (event.key === "End") targetIndex = categories.length - 1;
+      else return;
+
+      event.preventDefault();
+      const nextCategory = categories[targetIndex];
+      activateCategory(nextCategory, true);
+      nextCategory.scrollIntoView({ behavior: reduceMotion.matches ? "auto" : "smooth", block: "nearest", inline: "nearest" });
     });
   });
 
   selectors.forEach((selector) => {
     selector.addEventListener("click", () => {
       updateVideo(selector);
+      const containingPanel = selector.closest("[data-video-panel]");
+      const containingCategory = containingPanel
+        ? browser.querySelector(`[aria-controls="${containingPanel.id}"]`)
+        : null;
+      syncVideoBrowserUrl(containingCategory, selector);
       if (window.matchMedia("(max-width: 720px)").matches && viewer) {
         window.requestAnimationFrame(() => viewer.scrollIntoView({ behavior: "smooth", block: "start" }));
       }
@@ -707,11 +954,26 @@ videoBrowsers.forEach((browser) => {
   player?.addEventListener("ended", updatePlayToggleLabel);
   player?.addEventListener("loadedmetadata", updatePlayToggleLabel);
   panels.forEach((panel) => panel.setAttribute("aria-hidden", String(!panel.classList.contains("is-active"))));
-  const initialSelector = browser.querySelector(".video-select.is-active") || selectors[0];
-  if (initialSelector) {
-    updateVideo(initialSelector);
+  const initialUrl = new URL(window.location.href);
+  const requestedCategoryId = initialUrl.searchParams.get("category");
+  const requestedItemId = initialUrl.searchParams.get("item");
+  const requestedCategory = Array.from(categories)
+    .find((category) => category.getAttribute("data-video-category") === requestedCategoryId);
+  const requestedItem = requestedItemId
+    ? browser.querySelector(`[data-video-item="${requestedItemId}"]`)
+    : null;
+
+  if (requestedCategory) {
+    activateCategory(requestedCategory, false, false);
+    const requestedPanelId = requestedCategory.getAttribute("aria-controls");
+    if (requestedItem?.closest("[data-video-panel]")?.id === requestedPanelId) updateVideo(requestedItem);
   } else {
-    updatePlayToggleLabel();
+    const activePanel = browser.querySelector("[data-video-panel].is-active");
+    const initialSelector = activePanel?.querySelector(".video-select.is-active")
+      || activePanel?.querySelector('[data-video-featured="true"]')
+      || activePanel?.querySelector(".video-select");
+    if (initialSelector) updateVideo(initialSelector);
+    else updatePlayToggleLabel();
   }
 });
 
@@ -792,7 +1054,14 @@ caseStudyNavs.forEach((nav, navIndex) => {
   };
 
   const updateActiveSection = () => setActiveSection(getCurrentSectionId());
-  const updateCaseStudyNav = () => updateActiveSection();
+  let caseStudyNavFrame;
+  const updateCaseStudyNav = () => {
+    if (caseStudyNavFrame !== undefined) return;
+    caseStudyNavFrame = window.requestAnimationFrame(() => {
+      caseStudyNavFrame = undefined;
+      updateActiveSection();
+    });
+  };
 
   toggle.addEventListener("click", () => {
     setNavOpen(!nav.classList.contains("is-open"));
