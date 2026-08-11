@@ -12094,6 +12094,7 @@ h3 {
 .melody-context-feature img {
   display: block;
   width: 100%;
+  height: auto;
   aspect-ratio: 16 / 7;
   object-fit: cover;
   object-position: center 48%;
@@ -12186,6 +12187,7 @@ h3 {
 .melody-field-evidence-card > img {
   display: block;
   width: 100%;
+  height: auto;
   aspect-ratio: 16 / 10;
   background: #f8f7f3;
   object-fit: cover;
@@ -12522,6 +12524,7 @@ h3 {
 .melody-concept-card img {
   display: block;
   width: 100%;
+  height: auto;
   aspect-ratio: 1200 / 848;
   background: var(--melody-cream);
   object-fit: contain;
@@ -13342,6 +13345,7 @@ h3 {
 .melody-gallery img {
   display: block;
   width: 100%;
+  height: auto;
   aspect-ratio: 16 / 10;
   object-fit: cover;
 }
