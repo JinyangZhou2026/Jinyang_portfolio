@@ -1117,3 +1117,209 @@ caseStudyNavs.forEach((nav, navIndex) => {
     }
   });
 });
+
+(() => {
+  const measurementId = "G-092RCZHXES";
+  const consentStorageKey = "jz-analytics-consent-v1";
+  let analyticsEnabled = false;
+  let analyticsLoaded = false;
+  let sectionTrackingStarted = false;
+
+  const readConsent = () => {
+    try {
+      return window.localStorage.getItem(consentStorageKey);
+    } catch (_error) {
+      return null;
+    }
+  };
+
+  const saveConsent = (value) => {
+    try {
+      window.localStorage.setItem(consentStorageKey, value);
+    } catch (_error) {
+      // The choice still applies for the current page when storage is unavailable.
+    }
+  };
+
+  const clearAnalyticsCookies = () => {
+    const cookieNames = document.cookie
+      .split(";")
+      .map((cookie) => cookie.split("=")[0].trim())
+      .filter((name) => name === "_ga" || name.startsWith("_ga_"));
+
+    cookieNames.forEach((name) => {
+      document.cookie = `${name}=; Max-Age=0; path=/; SameSite=Lax`;
+      document.cookie = `${name}=; Max-Age=0; path=/; domain=.zhoujinyang.com; SameSite=Lax`;
+    });
+  };
+
+  const getPageName = () => {
+    const fileName = window.location.pathname.split("/").filter(Boolean).pop() || "home";
+    return fileName.replace(/\.html$/i, "").replace(/[^a-z0-9]+/gi, "_").replace(/^_|_$/g, "") || "home";
+  };
+
+  const getSectionName = (section, index) => {
+    const explicitName = section.getAttribute("data-analytics-section");
+    if (explicitName) return explicitName;
+
+    const sourceName = section.id
+      || section.getAttribute("aria-labelledby")
+      || Array.from(section.classList).find((className) => className !== "section-pad")
+      || `section_${index + 1}`;
+    const normalizedName = sourceName
+      .replace(/[^a-z0-9]+/gi, "_")
+      .replace(/^_|_$/g, "")
+      .toLowerCase();
+    return `${getPageName()}_${normalizedName}`.slice(0, 80);
+  };
+
+  const startSectionTracking = () => {
+    if (sectionTrackingStarted || !analyticsEnabled || !("IntersectionObserver" in window)) return;
+    sectionTrackingStarted = true;
+
+    const explicitSections = Array.from(document.querySelectorAll("[data-analytics-section]"));
+    const fallbackSections = Array.from(document.querySelectorAll("main > section"))
+      .filter((section) => !section.matches("[data-analytics-section]") && !section.querySelector("[data-analytics-section]"));
+    const sections = Array.from(new Set([...explicitSections, ...fallbackSections]));
+    const viewedSections = new Set();
+    const exposureTimers = new Map();
+
+    const sectionObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach((entry) => {
+        const section = entry.target;
+        const sectionIndex = sections.indexOf(section);
+        const sectionName = getSectionName(section, sectionIndex);
+        const visibleHeightNeeded = Math.min(entry.boundingClientRect.height * 0.5, window.innerHeight * 0.5);
+        const isMeaningfullyVisible = entry.isIntersecting && entry.intersectionRect.height >= visibleHeightNeeded;
+
+        if (!isMeaningfullyVisible) {
+          window.clearTimeout(exposureTimers.get(section));
+          exposureTimers.delete(section);
+          return;
+        }
+
+        if (viewedSections.has(sectionName) || exposureTimers.has(section)) return;
+
+        const timer = window.setTimeout(() => {
+          exposureTimers.delete(section);
+          if (!analyticsEnabled || viewedSections.has(sectionName)) return;
+
+          viewedSections.add(sectionName);
+          window.gtag?.("event", "section_view", {
+            section_name: sectionName,
+            section_position: sectionIndex + 1,
+            page_path: window.location.pathname,
+          });
+          observer.unobserve(section);
+        }, 1000);
+
+        exposureTimers.set(section, timer);
+      });
+    }, { threshold: [0, 0.1, 0.25, 0.5, 0.75] });
+
+    sections.forEach((section) => sectionObserver.observe(section));
+  };
+
+  const loadGoogleAnalytics = () => {
+    if (analyticsLoaded) return;
+    analyticsLoaded = true;
+    analyticsEnabled = true;
+
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function gtag() {
+      window.dataLayer.push(arguments);
+    };
+
+    window.gtag("consent", "default", {
+      ad_storage: "denied",
+      ad_user_data: "denied",
+      ad_personalization: "denied",
+      analytics_storage: "granted",
+    });
+    window.gtag("js", new Date());
+    window.gtag("config", measurementId, {
+      allow_google_signals: false,
+      allow_ad_personalization_signals: false,
+    });
+
+    const googleTag = document.createElement("script");
+    googleTag.async = true;
+    googleTag.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+    googleTag.dataset.portfolioAnalytics = "true";
+    document.head.append(googleTag);
+    startSectionTracking();
+  };
+
+  const removeConsentPanel = () => {
+    const panel = document.querySelector("[data-privacy-consent-panel]");
+    if (!panel) return;
+    panel.classList.add("is-closing");
+    window.setTimeout(() => panel.remove(), reduceMotion.matches ? 0 : 160);
+  };
+
+  const showConsentPanel = ({ allowClose = false } = {}) => {
+    document.querySelector("[data-privacy-consent-panel]")?.remove();
+    const currentChoice = readConsent();
+    const panel = document.createElement("section");
+    panel.className = "privacy-consent-panel";
+    panel.dataset.privacyConsentPanel = "true";
+    panel.setAttribute("role", "dialog");
+    panel.setAttribute("aria-labelledby", "privacy-consent-title");
+    panel.setAttribute("aria-describedby", "privacy-consent-description");
+
+    panel.innerHTML = `
+      <div class="privacy-consent-copy">
+        <p class="privacy-consent-eyebrow">Privacy choice</p>
+        <h2 id="privacy-consent-title">Help improve this portfolio</h2>
+        <p id="privacy-consent-description">With your permission, Google Analytics measures visits and which portfolio sections are viewed. Analytics stays off unless you allow it.</p>
+        <a href="privacy.html">Read the privacy notice</a>
+      </div>
+      <div class="privacy-consent-actions">
+        <button class="privacy-consent-button privacy-consent-button-secondary" type="button" data-consent-choice="declined">Decline</button>
+        <button class="privacy-consent-button privacy-consent-button-primary" type="button" data-consent-choice="accepted">Allow analytics</button>
+      </div>
+      ${allowClose ? '<button class="privacy-consent-close" type="button" aria-label="Close privacy settings">×</button>' : ""}
+      ${currentChoice ? `<p class="privacy-consent-status">Current choice: ${currentChoice === "accepted" ? "analytics allowed" : "analytics declined"}</p>` : ""}
+    `;
+
+    panel.querySelector('[data-consent-choice="accepted"]')?.addEventListener("click", () => {
+      saveConsent("accepted");
+      removeConsentPanel();
+      loadGoogleAnalytics();
+    });
+
+    panel.querySelector('[data-consent-choice="declined"]')?.addEventListener("click", () => {
+      const shouldReload = analyticsLoaded;
+      saveConsent("declined");
+      analyticsEnabled = false;
+      window.gtag?.("consent", "update", {
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+        analytics_storage: "denied",
+      });
+      clearAnalyticsCookies();
+      removeConsentPanel();
+      if (shouldReload) window.setTimeout(() => window.location.reload(), 180);
+    });
+
+    panel.querySelector(".privacy-consent-close")?.addEventListener("click", removeConsentPanel);
+    document.body.append(panel);
+  };
+
+  const addPrivacyFooterLinks = () => {
+    document.querySelectorAll(".site-footer").forEach((footer) => {
+      if (footer.querySelector("[data-privacy-footer-links]")) return;
+      const links = document.createElement("span");
+      links.className = "privacy-footer-links";
+      links.dataset.privacyFooterLinks = "true";
+      links.innerHTML = '<a href="privacy.html">Privacy</a><button type="button">Analytics settings</button>';
+      links.querySelector("button")?.addEventListener("click", () => showConsentPanel({ allowClose: true }));
+      footer.append(links);
+    });
+  };
+
+  addPrivacyFooterLinks();
+  if (readConsent() === "accepted") loadGoogleAnalytics();
+  else if (readConsent() === null) showConsentPanel();
+})();
