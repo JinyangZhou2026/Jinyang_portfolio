@@ -118,6 +118,58 @@ segmentLoopVideos.forEach((video) => {
   }
 });
 
+const videoChapterNavigations = document.querySelectorAll("[data-video-chapters]");
+
+videoChapterNavigations.forEach((navigation) => {
+  const targetId = navigation.getAttribute("data-video-target");
+  const video = targetId ? document.getElementById(targetId) : null;
+  const buttons = Array.from(navigation.querySelectorAll("[data-video-chapter-time]"));
+  const chapterList = navigation.querySelector(".engineering-video-chapter-list");
+
+  if (!(video instanceof HTMLVideoElement) || buttons.length === 0 || !chapterList) return;
+
+  const chapterTimes = buttons.map((button) => Number.parseFloat(button.getAttribute("data-video-chapter-time") || "0"));
+
+  const updateVideoChapter = () => {
+    const currentTime = Number.isFinite(video.currentTime) ? video.currentTime : 0;
+    const duration = Number.isFinite(video.duration) && video.duration > 0 ? video.duration : 65.814;
+    let activeIndex = 0;
+
+    chapterTimes.forEach((time, index) => {
+      if (currentTime >= time) activeIndex = index;
+    });
+
+    buttons.forEach((button, index) => {
+      const isActive = index === activeIndex;
+      button.classList.toggle("is-active", isActive);
+      button.setAttribute("aria-pressed", String(isActive));
+    });
+
+    chapterList.style.setProperty("--chapter-progress", `${Math.min(100, Math.max(0, (currentTime / duration) * 100))}%`);
+  };
+
+  const seekToChapter = (time) => {
+    const seek = () => {
+      video.currentTime = Math.min(time, Number.isFinite(video.duration) ? video.duration : time);
+      video.play().catch(() => {});
+      updateVideoChapter();
+    };
+
+    if (video.readyState >= 1) seek();
+    else video.addEventListener("loadedmetadata", seek, { once: true });
+  };
+
+  buttons.forEach((button, index) => {
+    button.addEventListener("click", () => seekToChapter(chapterTimes[index]));
+  });
+
+  video.addEventListener("loadedmetadata", updateVideoChapter);
+  video.addEventListener("timeupdate", updateVideoChapter);
+  video.addEventListener("seeked", updateVideoChapter);
+  video.addEventListener("ended", updateVideoChapter);
+  updateVideoChapter();
+});
+
 const greetingRotator = document.querySelector("[data-greeting-rotator]");
 const greetingLines = greetingRotator ? Array.from(greetingRotator.querySelectorAll(".hero-greeting-line")) : [];
 
