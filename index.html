@@ -48,7 +48,7 @@
       }
     </script>
     <link rel="icon" type="image/png" href="assets/favicon-64.png">
-    <link rel="stylesheet" href="styles.min.css?v=20260812a">
+    <link rel="stylesheet" href="styles.min.css?v=20260816ab">
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -63,7 +63,30 @@
       </button>
       <nav class="site-nav tubelight-static" id="site-nav" aria-label="Primary navigation">
         <a href="index.html" aria-current="page"><span class="nav-icon" aria-hidden="true">⌂</span><span>Home</span></a>
-        <a class="nav-work" href="#featured-projects"><span class="nav-icon" aria-hidden="true">□</span><span>Work</span></a>
+        <div class="nav-projects">
+          <button class="nav-projects-trigger" type="button" aria-expanded="false" aria-controls="project-navigation">
+            <span class="nav-icon" aria-hidden="true">□</span><span>Work</span><span class="nav-projects-chevron" aria-hidden="true"><svg viewBox="0 0 18 18"><path d="m4.5 6.5 4.5 4.5 4.5-4.5"/></svg></span>
+          </button>
+          <div class="nav-projects-menu" id="project-navigation" aria-label="Project navigation">
+            <p class="nav-menu-label">Selected case studies</p>
+            <a class="nav-menu-case" href="engineering-communication.html">
+              <span><b>01</b>Engineering Clarity</span>
+              <small>Professional · Peroni Pompe</small>
+            </a>
+            <a class="nav-menu-case" href="research-to-product-concept.html">
+              <span><b>02</b>Product System</span>
+              <small>Academic · Politecnico di Milano</small>
+            </a>
+            <a class="nav-menu-case" href="consumer-product-launch.html">
+              <span><b>03</b>Consumer Story</span>
+              <small>Independent · CGI launch study</small>
+            </a>
+            <a class="nav-menu-capabilities" href="#capabilities">
+              <span>Browse Capabilities</span>
+              <small>Explore 3 complementary disciplines</small>
+            </a>
+          </div>
+        </div>
         <a class="nav-resume" href="resume.html"><span class="nav-icon" aria-hidden="true">≡</span><span>Resume</span></a>
       </nav>
     </header>
@@ -78,7 +101,6 @@
             <span class="word-animate" data-delay="220">into products, systems,</span>
             <span class="word-animate" data-delay="360">and clear communication.</span>
           </h1>
-          <p class="hero-intro">From user research and product development to visualization and customer-facing communication.</p>
           <ul class="hero-proof" aria-label="Product design process">
             <li><strong>Discover</strong><span>Research &amp; opportunity</span></li>
             <li><strong>Develop</strong><span>Product systems &amp; prototyping</span></li>
@@ -95,7 +117,6 @@
         <section class="featured-project-previews" id="featured-projects" aria-labelledby="featured-project-previews-title" data-project-selector data-analytics-section="home_selected_work">
           <div class="featured-project-previews-heading">
             <h2 id="featured-project-previews-title">Selected Work</h2>
-            <p class="featured-projects-intro">Three projects showing complementary strengths across product development, visualization, and technical communication.</p>
           </div>
           <div class="horizontal-scroll-cue project-scroll-cue" aria-hidden="true">
             <span>Swipe &amp; tap to compare</span>
@@ -113,11 +134,11 @@
                 aria-controls="featured-project-panel"
                 tabindex="0"
                 data-project-category="Professional · Peroni Pompe"
-                data-project-title="Clarifying Complex Engineering for Global Sales"
+                data-project-title="From Engineering Complexity to Customer Clarity"
                 data-project-description="A reusable visual system translating high-pressure pump engineering for FAT reviews, product pages, global sales, and exhibitions."
                 data-project-role="Product Visualization Designer"
                 data-project-contribution="CAD → CGI, motion &amp; technical diagrams"
-                data-project-evidence="2 FATs · 4 international trade shows"
+                data-project-evidence="Official product pages · Visual assets for 4 international exhibitions"
                 data-project-image="assets/hero-project/home/peroni-pump-featured.jpg"
                 data-project-image-alt="Photorealistic visualization of a Peroni Pompe industrial plunger pump"
                 data-project-image-position="52% 58%"
@@ -203,12 +224,12 @@
               </div>
               <div class="featured-project-panel-copy">
                 <p class="eyebrow" data-project-preview-category>Professional · Peroni Pompe</p>
-                <h3 data-project-preview-title>Clarifying Complex Engineering for Global Sales</h3>
+                <h3 data-project-preview-title>From Engineering Complexity to Customer Clarity</h3>
                 <p data-project-preview-description>A reusable visual system translating high-pressure pump engineering for FAT reviews, product pages, global sales, and exhibitions.</p>
                 <dl class="featured-project-panel-facts" aria-label="Project role, contribution, and evidence">
                   <div><dt>Role</dt><dd data-project-preview-role>Product Visualization Designer</dd></div>
                   <div><dt>Contribution</dt><dd data-project-preview-contribution>CAD → CGI, motion &amp; technical diagrams</dd></div>
-                  <div><dt>Evidence</dt><dd data-project-preview-evidence>2 FATs · 4 international trade shows</dd></div>
+                  <div><dt>Evidence</dt><dd data-project-preview-evidence>Official product pages · Visual assets for 4 international exhibitions</dd></div>
                 </dl>
                 <a class="featured-project-panel-link" href="engineering-communication.html" aria-label="View Engineering Communication case study" data-project-preview-link>View Engineering Case <span aria-hidden="true">→</span></a>
               </div>
@@ -218,8 +239,7 @@
 
         <section class="experience-highlights" aria-labelledby="experience-highlights-title" data-analytics-section="home_experience">
           <div class="experience-highlights-heading">
-            <p class="eyebrow">Selected Experience</p>
-            <h2 id="experience-highlights-title">Professional experience across visualization, engineering, and customer communication.</h2>
+            <h2 id="experience-highlights-title">Key Achievements</h2>
           </div>
           <div class="experience-highlights-grid">
             <article>
@@ -249,10 +269,9 @@
           </div>
         </section>
 
-        <section class="more-work-directory" aria-labelledby="more-work-explorer-title" data-analytics-section="home_capabilities">
+        <section class="more-work-directory" id="capabilities" aria-labelledby="more-work-explorer-title" data-analytics-section="home_capabilities">
           <div class="more-work-directory-heading">
             <h2 id="more-work-explorer-title">Capabilities</h2>
-            <p>Explore how I move from product questions to tangible outcomes.</p>
           </div>
           <div class="horizontal-scroll-cue capability-scroll-cue" aria-hidden="true">
             <span>Swipe to explore</span>
@@ -273,7 +292,6 @@
                 <span class="capability-card-number">01</span>
                 <p class="eyebrow">Discover &amp; Develop</p>
                 <h3>Product &amp; Industrial Design</h3>
-                <p class="capability-card-tagline">Research, physical products &amp; systems</p>
                 <div class="capability-card-details">
                   <p>I turn user and market insight into tangible product concepts, modular systems, and testable prototypes.</p>
                   <span>Research synthesis · Product architecture · CAD &amp; prototyping</span>
@@ -296,7 +314,6 @@
                 <span class="capability-card-number">02</span>
                 <p class="eyebrow">Visualize &amp; Launch</p>
                 <h3>Product Visualization &amp; Motion</h3>
-                <p class="capability-card-tagline">Product presentation, CGI &amp; animation</p>
                 <div class="capability-card-details">
                   <p>I create production-aware CGI and motion that clarify form, materials, interaction, and the product story.</p>
                   <span>Art direction · CGI &amp; materials · Motion &amp; editing</span>
@@ -319,7 +336,6 @@
                 <span class="capability-card-number">03</span>
                 <p class="eyebrow">Explain &amp; Enable</p>
                 <h3>Technical Product Communication</h3>
-                <p class="capability-card-tagline">Diagrams, catalogs &amp; exhibition graphics</p>
                 <div class="capability-card-details">
                   <p>I translate CAD and technical inputs into clear systems for reviews, sales conversations, catalogs, and exhibitions.</p>
                   <span>Technical diagrams · Catalogs · Launch &amp; exhibition assets</span>
@@ -379,7 +395,7 @@
       </section>
 
       <section class="cta-band" data-analytics-section="home_contact_cta">
-        <p>Looking for a designer who can connect product, engineering, and customer understanding?</p>
+        <p>Let’s make complex products clear, useful, and compelling.</p>
         <div class="action-row">
           <a class="button primary" href="resume.html">View Resume</a>
           <a class="button secondary" href="contact.html">Contact</a>
@@ -387,11 +403,8 @@
       </section>
     </main>
 
-    <footer class="site-footer">
-      <p>Product &amp; Industrial Design / Product Visualization &amp; Motion / Technical Product Communication</p>
-      <a href="contact.html">Start a conversation</a>
-    </footer>
+    <footer class="site-footer"></footer>
 
-    <script src="script.js?v=20260812a"></script>
+    <script src="script.js?v=20260816i"></script>
   </body>
 </html>

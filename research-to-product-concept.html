@@ -18,7 +18,7 @@
     <meta name="twitter:description" content="Melody Adventurer, a human-centered product design case study by Jinyang Zhou.">
     <meta name="twitter:image" content="https://zhoujinyang.com/assets/hero-project/melody/melody-context.webp">
     <link rel="icon" type="image/png" href="assets/favicon-64.png">
-    <link rel="stylesheet" href="styles.min.css?v=20260812b">
+    <link rel="stylesheet" href="styles.min.css?v=20260816ac">
   </head>
   <body class="engineering-communication-case melody-case-study">
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -27,7 +27,30 @@
       <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span></button>
       <nav class="site-nav tubelight-static" id="site-nav" aria-label="Primary navigation">
         <a href="index.html"><span class="nav-icon" aria-hidden="true">⌂</span><span>Home</span></a>
-        <a class="nav-work" href="index.html#featured-projects" aria-current="page"><span class="nav-icon" aria-hidden="true">□</span><span>Work</span></a>
+        <div class="nav-projects">
+          <button class="nav-projects-trigger" type="button" aria-expanded="false" aria-controls="project-navigation" aria-current="page">
+            <span class="nav-icon" aria-hidden="true">□</span><span>Work</span><span class="nav-projects-chevron" aria-hidden="true"><svg viewBox="0 0 18 18"><path d="m4.5 6.5 4.5 4.5 4.5-4.5"/></svg></span>
+          </button>
+          <div class="nav-projects-menu" id="project-navigation" aria-label="Project navigation">
+            <p class="nav-menu-label">Selected case studies</p>
+            <a class="nav-menu-case" href="engineering-communication.html">
+              <span><b>01</b>Engineering Clarity</span>
+              <small>Professional · Peroni Pompe</small>
+            </a>
+            <a class="nav-menu-case" href="research-to-product-concept.html" aria-current="page">
+              <span><b>02</b>Product System</span>
+              <small>Academic · Politecnico di Milano</small>
+            </a>
+            <a class="nav-menu-case" href="consumer-product-launch.html">
+              <span><b>03</b>Consumer Story</span>
+              <small>Independent · CGI launch study</small>
+            </a>
+            <a class="nav-menu-capabilities" href="index.html#capabilities">
+              <span>Browse Capabilities</span>
+              <small>Explore 3 complementary disciplines</small>
+            </a>
+          </div>
+        </div>
         <a class="nav-resume" href="resume.html"><span class="nav-icon" aria-hidden="true">≡</span><span>Resume</span></a>
       </nav>
     </header>
@@ -41,7 +64,6 @@
             <span class="word-animate" data-delay="300">Insight to</span>
             <span class="word-animate" data-delay="480">Tangible Play</span>
           </h1>
-          <p class="melody-project-subtitle">Melody Adventurer / Musical Construction Game</p>
           <p>A modular physical play system with a proposed digital story module, developed through user research, concept selection, physical prototyping, and CMF exploration.</p>
           <ul class="melody-hero-proof" aria-label="Project evidence summary">
             <li><span>Ownership</span><strong>Individual project</strong></li>
@@ -68,15 +90,6 @@
         </dl>
       </section>
 
-      <section class="melody-project-boundary section-pad" aria-label="Project evidence boundary">
-        <p class="eyebrow">Project Boundary</p>
-        <dl>
-          <div><dt>Ownership</dt><dd>Individual academic project</dd></div>
-          <div><dt>Verified</dt><dd>Rolling path and basic key activation</dd></div>
-          <div><dt>Proposed</dt><dd>Audio recognition, acoustics, and production materials</dd></div>
-        </dl>
-      </section>
-
       <section class="engineering-case-section section-pad" id="design-question" aria-labelledby="concept-question-title">
         <div class="engineering-case-heading">
           <p class="eyebrow">01 / Context &amp; Design Question</p>
@@ -86,12 +99,11 @@
           <article>
             <span>Context &amp; Audience</span>
             <h3>Children aged 6–10, playing at home or in shared learning environments.</h3>
-            <p>The project explores an alternative to highly immediate digital feedback: an activity where children first construct, predict, and adjust before receiving a musical and narrative reward.</p>
+            <p>The project asks whether a slower, hands-on activity can make progress legible without relying on continuous digital stimulation.</p>
           </article>
           <article>
             <span>Design Question</span>
             <h3>How might tangible play create a clear sequence of construction, prediction, correction, and reward?</h3>
-            <p>The project translates research on motivation, manageable challenge, and error recovery into a physical interaction; it does not claim measured behavioral or clinical outcomes.</p>
           </article>
         </div>
         <figure class="melody-context-feature">
@@ -106,14 +118,23 @@
           <h2 id="concept-final-title">A physical sequence becomes a melody—and a reason to continue the story.</h2>
         </div>
         <div class="melody-film" id="project-film">
-          <video controls preload="none" poster="assets/hero-project/melody/melody-product.webp">
+          <video id="melody-project-film" controls playsinline preload="metadata" poster="assets/hero-project/melody/melody-lifestyle-poster.jpg" aria-label="Melody Adventurer product introduction film">
             <source src="assets/melody-adventurer-product-introduction.mp4" type="video/mp4">
             Your browser does not support embedded video.
           </video>
-          <div><p class="eyebrow">Product Introduction Film</p><h3>From setup to story progression</h3><p>The film brings product architecture, play sequence, interaction modes, and CMF into one concise final presentation.</p></div>
+          <div><p class="eyebrow">Product Introduction Film</p><h3>From setup to story progression</h3></div>
         </div>
-        <div class="melody-gallery">
-          <figure><img decoding="async" width="2400" height="1350" src="assets/hero-project/melody/melody-product.webp" alt="Complete front three-quarter view of Melody Adventurer" loading="lazy"><figcaption>Complete product system</figcaption></figure>
+        <nav class="engineering-video-chapters melody-video-chapters" data-video-chapters data-video-target="melody-project-film" aria-label="Product film chapter navigation">
+          <div class="engineering-video-chapter-heading"><span>Film guide</span><strong>Jump to a chapter</strong></div>
+          <div class="engineering-video-chapter-list">
+            <div class="engineering-video-chapter-track" aria-hidden="true"><span></span></div>
+            <button class="engineering-video-chapter is-active" type="button" data-video-chapter-time="0" aria-pressed="true"><i aria-hidden="true"></i><strong>Overview</strong><small>0:00</small></button>
+            <button class="engineering-video-chapter" type="button" data-video-chapter-time="47" aria-pressed="false"><i aria-hidden="true"></i><strong>Product System</strong><small>0:47</small></button>
+            <button class="engineering-video-chapter" type="button" data-video-chapter-time="94" aria-pressed="false"><i aria-hidden="true"></i><strong>Interaction</strong><small>1:34</small></button>
+            <button class="engineering-video-chapter" type="button" data-video-chapter-time="151" aria-pressed="false"><i aria-hidden="true"></i><strong>Final Details</strong><small>2:31</small></button>
+          </div>
+        </nav>
+        <div class="melody-gallery is-compact">
           <figure><img decoding="async" width="2400" height="1350" src="assets/hero-project/melody/melody-components.webp" alt="Melody Adventurer shown disassembled into its panel, tracks, keys, narrative module, and accessories" loading="lazy"><figcaption>Modular components and storage</figcaption></figure>
           <figure><img decoding="async" width="2400" height="1350" src="assets/hero-project/melody/melody-interface.webp" alt="Close-up of the Melody Adventurer narrative module and musical tracks" loading="lazy"><figcaption>Narrative interface and note system</figcaption></figure>
         </div>
@@ -144,34 +165,45 @@
 
       <section class="engineering-case-section engineering-case-workflow section-pad" id="validation" aria-labelledby="concept-validation-title">
         <div class="engineering-case-heading">
-          <p class="eyebrow">03 / Prototype &amp; Validation</p>
-          <h2 id="concept-validation-title">Early tests exposed the difference between making a sound and making a clear note.</h2>
+          <p class="eyebrow">03 / Simulation, Prototype &amp; Validation</p>
+          <h2 id="concept-validation-title">Digital and physical tests separated simulated motion from real-world contact.</h2>
         </div>
         <article class="melody-validation-feature">
           <figure class="melody-validation-media">
-            <video controls muted playsinline preload="none" poster="assets/hero-project/melody/study-models.webp">
+            <video controls muted playsinline preload="none" poster="assets/hero-project/melody/digital-motion-poster.webp" aria-label="SolidWorks motion study of ball travel and sequential key contact">
               <source src="assets/hero-project/melody/prototype-rolling-path-test.mp4" type="video/mp4">
               Your browser does not support embedded video.
             </video>
-            <figcaption>Physical study video — rolling path and sequential key activation; not a child usability test.</figcaption>
           </figure>
           <div>
-            <p class="eyebrow">Prototype-led Iteration</p>
-            <h3>The stepped path worked; the first keys did not sound clear enough.</h3>
-            <p>The study verified sequential ball travel and basic key activation. Compared with a commercial xylophone, the first keys sounded muffled; this led to a proposed architecture with stiffer keys, elastic supports, and a resonance cavity.</p>
+            <p class="eyebrow">SolidWorks Motion Study</p>
+            <h3>Checked ball travel and sequential key contact.</h3>
+            <p>Used before prototyping to review path continuity and possible interference.</p>
           </div>
         </article>
+        <article class="melody-physical-test-feature" aria-labelledby="physical-motion-test-title">
+          <div class="melody-physical-test-copy">
+            <p class="eyebrow">3D-Printed Bench Test</p>
+            <h3 id="physical-motion-test-title">Revealed contact and friction the simulation could not represent.</h3>
+            <p>Observed ball release, key contact, and stall points under assembly tolerances.</p>
+          </div>
+          <figure class="melody-physical-video">
+            <video controls muted loop playsinline preload="metadata" poster="assets/hero-project/melody/physical-motion-poster.webp" aria-label="Short physical prototype motion test">
+              <source src="assets/hero-project/melody/physical-motion-test.mp4" type="video/mp4">
+              <a href="assets/hero-project/melody/physical-motion-test.mp4">Open the physical motion test video.</a>
+            </video>
+          </figure>
+        </article>
         <div class="melody-validation-grid melody-validation-boundary">
-          <article><span>Prototype</span><h3>Path &amp; basic activation</h3><p>The physical model confirmed sequential ball movement across the stepped route. A SolidWorks motion study checked travel to the collection tray without interference.</p></article>
-          <article><span>Finding → Change</span><h3>Key support &amp; resonance</h3><p>The first keys sounded quieter and less bright than the commercial reference. Greater key stiffness, elastic supports, and a resonance cavity informed the next architecture.</p></article>
-          <article><span>Next Test</span><h3>Final sound, electronics &amp; use</h3><p>Acoustic tuning, note-recognition electronics, production durability, and comprehension, setup, and replay behavior with children still require testing.</p></article>
+          <article><span>Observation → Design Response</span><h3>Contact consistency &amp; key support</h3><p>Visible stalls at stepped transitions and quieter early keys pointed to smoother transitions, stiffer keys, elastic supports, and a resonance cavity.</p></article>
+          <article><span>Next Test</span><h3>Acoustics, electronics &amp; use</h3><p>Still required: acoustic tuning, note recognition, durability, and child comprehension and replay testing.</p></article>
         </div>
       </section>
 
       <section class="engineering-case-section section-pad" id="research" aria-labelledby="concept-research-title">
         <div class="engineering-case-heading">
           <p class="eyebrow">04 / Research to Design Criteria</p>
-          <h2 id="concept-research-title">Research moved from observed behavior to explicit product rules.</h2>
+          <h2 id="concept-research-title">Observed behavior became four product rules.</h2>
         </div>
         <div class="melody-field-evidence-grid">
           <article class="melody-field-evidence-card">
@@ -179,8 +211,7 @@
             <div>
               <span>Interview / Self-report</span>
               <h3>Relaxing feedback could also be difficult to leave.</h3>
-              <p>One qualitative interview suggested that screen use could feel relaxing yet difficult to stop, while longer concentration felt harder to sustain.</p>
-              <strong>Design implication → Make progress visible without continuous stimulation</strong>
+              <p>One interview associated screen use with relaxation, difficulty stopping, and shorter sustained attention.</p>
             </div>
           </article>
           <article class="melody-field-evidence-card">
@@ -188,8 +219,7 @@
             <div>
               <span>Domestic Observation</span>
               <h3>Self-directed sequencing created a quieter focus.</h3>
-              <p>In one after-school session, initial restlessness eased as the child began arranging small tabletop objects into a repeated sequence.</p>
-              <strong>Interaction implication → Make hands-on sequencing the core action</strong>
+              <p>During one after-school session, restlessness eased once the child began arranging objects into a repeated sequence.</p>
             </div>
           </article>
           <article class="melody-field-evidence-card">
@@ -197,8 +227,7 @@
             <div>
               <span>Shared-activity Observation</span>
               <h3>Clear shared structure helped the group stay with the task.</h3>
-              <p>A common goal and adaptable rules supported attention and negotiation; greater complexity disrupted the action sequence.</p>
-              <strong>System implication → Keep rules legible and difficulty adjustable</strong>
+              <p>A shared goal supported attention and negotiation; added complexity disrupted the sequence.</p>
             </div>
           </article>
         </div>
@@ -208,7 +237,7 @@
           <li><span>03 / Reward</span><strong>Melody and story mark visible progress</strong></li>
           <li><span>04 / Retry</span><strong>Reconfigurable modules make errors recoverable</strong></li>
         </ol>
-        <p class="melody-method-note">Scope note: this was a small qualitative study used to direct concept development, not to claim behavioral or clinical outcomes.</p>
+        <p class="melody-method-note">Scope: a small qualitative study used to guide concept development—not to claim behavioral or clinical outcomes.</p>
       </section>
 
       <section class="engineering-case-section engineering-case-workflow section-pad" id="concept-exploration" aria-labelledby="concept-sketch-title">
@@ -236,7 +265,6 @@
             <div>
               <span>Direction Selected for Development</span>
               <h3>Melody Engineer</h3>
-              <p>Music, construction, and movement created a multisensory, configurable play system.</p>
               <p class="melody-priority-fit"><b>Why it advanced</b> Delayed musical reward, flexible paths, and solo or collaborative play gave it the strongest combination of research fit, replay, and development potential.</p>
             </div>
           </article>
@@ -260,9 +288,8 @@
           </article>
         </div>
         <div class="melody-decision-bar">
-          <p class="eyebrow">Development Decision</p>
+          <p class="eyebrow">Development Decision / Melody Engineer</p>
           <div>
-            <p><strong>Develop Melody Engineer</strong> by retaining configurable musical construction while simplifying setup and giving the rolling sequence a narrative purpose.</p>
             <dl class="melody-transition-map">
               <div>
                 <dt>Retained</dt>
@@ -278,7 +305,6 @@
         <div class="melody-decision-stage-heading is-architecture">
           <p class="eyebrow">Decision 02 / Architecture &amp; Form</p>
           <h3>Which architecture best supports that interaction?</h3>
-          <p>Three system proposals exposed different usability and hierarchy risks.</p>
         </div>
         <div class="melody-architecture-comparison">
           <article class="melody-development-card is-selected is-featured">
@@ -287,7 +313,6 @@
               <span>Selected System Direction</span>
               <h3>Compact tabletop panel and task-focused module</h3>
               <p><strong>Selected because</strong> The physical path remains primary, while the smaller module clearly supports story, score, and the next action.</p>
-              <p><strong>Project boundary</strong> The physical product system was resolved as a design concept; final electronics remain a proposed architecture.</p>
             </div>
           </article>
           <details class="melody-architecture-alternatives">
@@ -332,7 +357,7 @@
           <div>
             <p class="eyebrow">System Architecture</p>
             <h3>Configurable parts make difficulty and melody visible.</h3>
-            <p>The foldable perforated panel accepts one-, three-, and five-level tracks. Color- and length-coded keys map notes from Do to Sol, while the detachable narrative module manages the story, score, and play states.</p>
+            <p>Track height adjusts challenge; key color and length encode notes; the narrative module handles story, score, and the next action.</p>
             <ul class="melody-compact-list">
               <li>Foldable perforated play panel</li>
               <li>Reconfigurable stepped tracks</li>
@@ -341,40 +366,35 @@
             </ul>
           </div>
         </article>
-        <div class="engineering-evidence-grid melody-system-grid">
-          <article class="engineering-evidence-card">
-            <div class="engineering-evidence-media"><img decoding="async" width="2200" height="1238" src="assets/hero-project/melody/narrative-exploded.webp" alt="Exploded concept architecture of the Melody Adventurer narrative module" loading="lazy"></div>
-            <div class="engineering-evidence-copy"><p class="eyebrow">Narrative Module</p><h3>Story, score &amp; audio verification</h3><p>A proposed NFC story-card workflow and note-recognition PCB compare the played sequence with the stored score. The module can also detach for listening mode.</p><strong>Concept architecture — electronics not yet engineered</strong></div>
+        <div class="melody-system-detail-grid" aria-label="Product architecture and ergonomic evidence">
+          <article class="melody-system-detail-card">
+            <figure><img decoding="async" width="2200" height="1238" src="assets/hero-project/melody/narrative-exploded.webp" alt="Exploded concept architecture of the Melody Adventurer narrative module" loading="lazy"></figure>
+            <div><p class="eyebrow">Narrative Module</p><h3>Story, score &amp; audio verification</h3><p>A proposed NFC workflow compares the played sequence with a stored score; the module can detach for listening.</p><strong>Electronics not yet engineered</strong></div>
           </article>
-          <article class="engineering-evidence-card">
-            <div class="engineering-evidence-media"><img decoding="async" width="2200" height="1238" src="assets/hero-project/melody/panel-technical.webp" alt="Technical concept drawings for the foldable panel and modular track attachment" loading="lazy"></div>
-            <div class="engineering-evidence-copy"><p class="eyebrow">Physical Platform</p><h3>Fold, configure &amp; correct</h3><p>The perforation matrix, magnetic modules, collection tray, and foldable support were designed to simplify setup, error correction, transport, and storage.</p><strong>Preliminary construction proposal</strong></div>
+          <article class="melody-system-detail-card">
+            <figure><img decoding="async" width="2200" height="1238" src="assets/hero-project/melody/panel-technical.webp" alt="Technical concept drawings for the foldable panel and modular track attachment" loading="lazy"></figure>
+            <div><p class="eyebrow">Physical Platform</p><h3>Fold, configure &amp; correct</h3><p>A perforation matrix, modular tracks, collection tray, and folding support simplify setup, correction, and storage.</p><strong>Preliminary construction proposal</strong></div>
           </article>
-        </div>
-        <div class="melody-decision-stage-heading melody-resolution-heading">
-          <p class="eyebrow">Resolution / Ergonomics &amp; CMF</p>
-          <h3 id="concept-resolution-title">Scale and visual hierarchy were designed around clear reach and calm domestic use.</h3>
-          <p>Reference dimensions and physical material samples guided the preliminary product envelope and finish direction.</p>
-        </div>
-        <div class="engineering-evidence-grid">
-          <article class="engineering-evidence-card">
-            <div class="engineering-evidence-media"><img decoding="async" width="2200" height="1238" src="assets/hero-project/melody/ergonomic-dimensions.webp" alt="Anthropometric and dimensional studies for Melody Adventurer" loading="lazy"></div>
-            <div class="engineering-evidence-copy"><p class="eyebrow">Anthropometric Reference / Ages 7–10</p><h3>Reference data defines the preliminary play envelope</h3><p>For the broader 6–10 target, preliminary sizing used available 7–10-year-old data. An 8-year-old 95th-percentile reference limited the active area to 310 mm high × 462.5 mm wide; a 7.5–8.5-year-old grip reference limited track width to 91 mm.</p><strong>Fit and reach for six-year-old users still require testing</strong></div>
-          </article>
-          <article class="engineering-evidence-card">
-            <div class="engineering-evidence-media"><img decoding="async" width="2200" height="1238" src="assets/hero-project/melody/cmf-materials.webp" alt="CMF palette and proposed materials for Melody Adventurer" loading="lazy"></div>
-            <div class="engineering-evidence-copy"><p class="eyebrow">CMF Direction</p><h3>Neutral surfaces, functional color</h3><p>Warm wood and lightly textured matte parts reduce visual noise; vivid keys remain functional note identifiers. Proposed materials include FSC-certified rubberwood, fiber-reinforced ABS, PP, and anodized aluminum.</p><strong>Material and manufacturing choices remain preliminary</strong></div>
+          <article class="melody-system-detail-card">
+            <figure><img decoding="async" width="2200" height="1238" src="assets/hero-project/melody/ergonomic-dimensions.webp" alt="Anthropometric and dimensional studies for Melody Adventurer" loading="lazy"></figure>
+            <div><p class="eyebrow">Anthropometric Reference / Ages 7–10</p><h3>A preliminary play envelope</h3><p>Reference data limited the active area to 310 × 462.5 mm and track width to 91 mm for seated reach and grip.</p><strong>Fit for six-year-old users still requires testing</strong></div>
           </article>
         </div>
-        <article class="melody-material-evidence">
-          <figure>
-            <img decoding="async" width="1100" height="619" src="assets/hero-project/melody/cmf-material-samples.webp" alt="Physical color and material samples including anodized metal chips, light wood, and polymer pellets" loading="lazy">
-            <figcaption>Physical samples used to compare touch, color response, and perceived quality.</figcaption>
-          </figure>
-          <div>
+        <article class="melody-cmf-evidence-compact">
+          <div class="melody-cmf-evidence-visuals">
+            <figure>
+              <img decoding="async" width="2200" height="1238" src="assets/hero-project/melody/cmf-materials.webp" alt="Rendered CMF palette and proposed materials for Melody Adventurer" loading="lazy">
+              <figcaption>Rendered CMF direction</figcaption>
+            </figure>
+            <figure class="is-samples">
+              <img decoding="async" width="1060" height="430" src="assets/hero-project/melody/cmf-material-samples-cropped.jpg?v=20260816b" alt="Physical color and material samples including anodized metal chips, light wood, and polymer pellets" loading="lazy">
+              <figcaption>Physical samples</figcaption>
+            </figure>
+          </div>
+          <div class="melody-cmf-evidence-copy">
             <p class="eyebrow">CMF Material Evidence</p>
-            <h3>Comparing real samples before fixing the rendered palette.</h3>
-            <p>I purchased and compared anodized-metal color chips, a light wood sample, and fiber-reinforced polymer pellets to assess tactility, perceived quality, and coherence with the calm domestic direction.</p>
+            <h3>Real samples informed a calm, functional palette.</h3>
+            <p>Warm, lightly textured surfaces reduce visual noise, while vivid keys preserve note identification.</p>
             <ul class="melody-material-decision-list" role="list">
               <li><span>Light wood</span><strong>Warm domestic base and visible grain</strong></li>
               <li><span>Textured polymer</span><strong>Softer touch and lower visual glare</strong></li>
@@ -391,7 +411,19 @@
       </nav>
     </main>
 
-    <footer class="site-footer"><p>Product &amp; Industrial Design / Product Visualization &amp; Motion / Technical Product Communication</p><a href="contact.html">Start a conversation</a></footer>
-    <script src="script.js?v=20260812a"></script>
+    <div class="selected-work-section-guide" aria-hidden="true" inert>
+      <nav class="selected-work-section-nav" aria-label="Product System case study sections" data-case-study-nav>
+        <span class="selected-work-section-nav-label" aria-hidden="true">Case Guide</span>
+        <a href="#design-question" data-case-study-link><b>01</b><span>Design Question</span></a>
+        <a href="#final-concept" data-case-study-link><b>02</b><span>Final Product</span></a>
+        <a href="#validation" data-case-study-link><b>03</b><span>Prototype &amp; Validation</span></a>
+        <a href="#research" data-case-study-link><b>04</b><span>Research</span></a>
+        <a href="#concept-exploration" data-case-study-link><b>05</b><span>Concept Direction</span></a>
+        <a href="#product-system" data-case-study-link><b>06</b><span>Product System</span></a>
+      </nav>
+    </div>
+
+    <footer class="site-footer"></footer>
+    <script src="script.js?v=20260816i"></script>
   </body>
 </html>

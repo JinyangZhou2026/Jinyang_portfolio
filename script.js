@@ -4,6 +4,23 @@ const siteHeader = document.querySelector(".site-header");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)");
 
+if (siteHeader) {
+  let headerScrollFrame;
+
+  const syncHeaderScrollState = () => {
+    siteHeader.classList.toggle("is-scrolled", window.scrollY > 32);
+    headerScrollFrame = undefined;
+  };
+
+  const requestHeaderScrollSync = () => {
+    if (headerScrollFrame !== undefined) return;
+    headerScrollFrame = window.requestAnimationFrame(syncHeaderScrollState);
+  };
+
+  syncHeaderScrollState();
+  window.addEventListener("scroll", requestHeaderScrollSync, { passive: true });
+}
+
 if (finePointer.matches && !reduceMotion.matches) {
   const mouseGlow = document.createElement("div");
   mouseGlow.className = "global-serenity-glow";
@@ -526,7 +543,21 @@ const setMobileMenuOpen = (isOpen) => {
   menuButton.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
   siteNav.classList.toggle("is-open", isOpen);
   document.body.classList.toggle("mobile-menu-open", isOpen);
+
+  if (!isOpen) closeProjectMenus();
 };
+
+const projectNavs = document.querySelectorAll(".nav-projects");
+
+const setProjectMenuOpen = (projectNav, isOpen) => {
+  const trigger = projectNav.querySelector(".nav-projects-trigger");
+  projectNav.classList.toggle("is-open", isOpen);
+  trigger?.setAttribute("aria-expanded", String(isOpen));
+};
+
+function closeProjectMenus() {
+  projectNavs.forEach((projectNav) => setProjectMenuOpen(projectNav, false));
+}
 
 if (menuButton && siteNav) {
   menuButton.addEventListener("click", (event) => {
@@ -536,13 +567,45 @@ if (menuButton && siteNav) {
   });
 
   siteNav.addEventListener("click", (event) => {
+    if (event.target.closest(".nav-projects-trigger")) return;
     if (event.target.closest("a")) {
       setMobileMenuOpen(false);
     }
   });
 }
 
+projectNavs.forEach((projectNav) => {
+  const trigger = projectNav.querySelector(".nav-projects-trigger");
+  const menu = projectNav.querySelector(".nav-projects-menu");
+  const menuLinks = Array.from(menu?.querySelectorAll("a") || []);
+
+  if (!(trigger instanceof HTMLButtonElement) || !menu) return;
+
+  trigger.addEventListener("click", (event) => {
+    event.stopPropagation();
+    const willOpen = !projectNav.classList.contains("is-open");
+    closeProjectMenus();
+    setProjectMenuOpen(projectNav, willOpen);
+  });
+
+  trigger.addEventListener("keydown", (event) => {
+    if (event.key !== "ArrowDown") return;
+    event.preventDefault();
+    closeProjectMenus();
+    setProjectMenuOpen(projectNav, true);
+    menuLinks[0]?.focus();
+  });
+
+  projectNav.addEventListener("focusout", () => {
+    window.requestAnimationFrame(() => {
+      if (!projectNav.contains(document.activeElement)) setProjectMenuOpen(projectNav, false);
+    });
+  });
+});
+
 document.addEventListener("click", (event) => {
+  closeProjectMenus();
+
   if (siteHeader && menuButton?.getAttribute("aria-expanded") === "true" && !siteHeader.contains(event.target)) {
     setMobileMenuOpen(false);
   }
@@ -550,6 +613,13 @@ document.addEventListener("click", (event) => {
 
 document.addEventListener("keydown", (event) => {
   if (event.key !== "Escape") return;
+
+  const openProjectTrigger = document.querySelector(".nav-projects.is-open .nav-projects-trigger");
+  if (openProjectTrigger instanceof HTMLButtonElement) {
+    closeProjectMenus();
+    openProjectTrigger.focus();
+    return;
+  }
 
   const wasOpen = menuButton?.getAttribute("aria-expanded") === "true";
   setMobileMenuOpen(false);
@@ -1079,12 +1149,41 @@ caseStudyNavs.forEach((nav, navIndex) => {
 
   if (sectionPairs.length === 0) return;
 
+  const selectedWorkGuide = nav.closest(".selected-work-section-guide");
+  const caseEndBoundary = document.querySelector(".engineering-case-next");
+
+  const updateSelectedWorkGuideVisibility = () => {
+    if (!selectedWorkGuide) return;
+
+    const firstSectionRect = sectionPairs[0].section.getBoundingClientRect();
+    const lastSectionRect = sectionPairs[sectionPairs.length - 1].section.getBoundingClientRect();
+    const caseEndRect = caseEndBoundary?.getBoundingClientRect();
+    const entryLine = Math.min(window.innerHeight * 0.8, window.innerHeight - 96);
+    const hasNotReachedCaseEnd = caseEndRect
+      ? caseEndRect.top > window.innerHeight - 96
+      : lastSectionRect.bottom > 120;
+    const isVisible = firstSectionRect.top <= entryLine && hasNotReachedCaseEnd;
+
+    selectedWorkGuide.classList.toggle("is-visible", isVisible);
+    selectedWorkGuide.toggleAttribute("inert", !isVisible);
+    selectedWorkGuide.setAttribute("aria-hidden", String(!isVisible));
+
+    if (!isVisible && nav.classList.contains("is-open")) {
+      setNavOpen(false);
+    }
+  };
+
   const setActiveSection = (id) => {
     sectionPairs.forEach(({ link, section }) => {
       const isActive = section.id === id;
+      const wasActive = link.classList.contains("is-active");
       link.classList.toggle("is-active", isActive);
       if (isActive) {
         link.setAttribute("aria-current", "true");
+        if (!wasActive && nav.classList.contains("selected-work-section-nav") && nav.clientWidth > 0) {
+          const centeredPosition = link.offsetLeft - (nav.clientWidth - link.offsetWidth) / 2;
+          nav.scrollTo({ left: Math.max(0, centeredPosition), behavior: "smooth" });
+        }
       } else {
         link.removeAttribute("aria-current");
       }
@@ -1112,6 +1211,7 @@ caseStudyNavs.forEach((nav, navIndex) => {
     caseStudyNavFrame = window.requestAnimationFrame(() => {
       caseStudyNavFrame = undefined;
       updateActiveSection();
+      updateSelectedWorkGuideVisibility();
     });
   };
 
@@ -1128,7 +1228,8 @@ caseStudyNavs.forEach((nav, navIndex) => {
   document.addEventListener("click", (event) => {
     const target = event.target;
     if (!(target instanceof Node)) return;
-    if (!isDesktopNav() || !nav.classList.contains("is-open")) return;
+    const isSelectedWorkGuide = nav.classList.contains("selected-work-section-nav");
+    if ((!isDesktopNav() && !isSelectedWorkGuide) || !nav.classList.contains("is-open")) return;
     if (nav.contains(target) || toggle.contains(target)) return;
     setNavOpen(false);
   });
@@ -1144,6 +1245,9 @@ caseStudyNavs.forEach((nav, navIndex) => {
       target.scrollIntoView({ behavior: "smooth", block: "start" });
       setActiveSection(target.id);
       window.history.pushState(null, "", hash);
+      if (nav.classList.contains("selected-work-section-nav")) {
+        setNavOpen(false);
+      }
     });
   });
 

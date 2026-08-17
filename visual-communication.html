@@ -18,7 +18,7 @@
     <meta name="twitter:description" content="Catalogs, exhibition graphics, diagrams, and customer-facing sales materials.">
     <meta name="twitter:image" content="https://zhoujinyang.com/assets/trade-show-international-booth.jpg">
     <link rel="icon" type="image/png" href="assets/favicon-64.png">
-    <link rel="stylesheet" href="styles.min.css?v=20260812a">
+    <link rel="stylesheet" href="styles.min.css?v=20260816aa">
   </head>
   <body class="technical-communication-page">
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -27,7 +27,30 @@
       <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span></button>
       <nav class="site-nav tubelight-static" id="site-nav" aria-label="Primary navigation">
         <a href="index.html"><span class="nav-icon" aria-hidden="true">⌂</span><span>Home</span></a>
-        <a class="nav-work" href="index.html#featured-projects" aria-current="page"><span class="nav-icon" aria-hidden="true">□</span><span>Work</span></a>
+        <div class="nav-projects">
+          <button class="nav-projects-trigger" type="button" aria-expanded="false" aria-controls="project-navigation" aria-current="page">
+            <span class="nav-icon" aria-hidden="true">□</span><span>Work</span><span class="nav-projects-chevron" aria-hidden="true"><svg viewBox="0 0 18 18"><path d="m4.5 6.5 4.5 4.5 4.5-4.5"/></svg></span>
+          </button>
+          <div class="nav-projects-menu" id="project-navigation" aria-label="Project navigation">
+            <p class="nav-menu-label">Selected case studies</p>
+            <a class="nav-menu-case" href="engineering-communication.html">
+              <span><b>01</b>Engineering Clarity</span>
+              <small>Professional · Peroni Pompe</small>
+            </a>
+            <a class="nav-menu-case" href="research-to-product-concept.html">
+              <span><b>02</b>Product System</span>
+              <small>Academic · Politecnico di Milano</small>
+            </a>
+            <a class="nav-menu-case" href="consumer-product-launch.html">
+              <span><b>03</b>Consumer Story</span>
+              <small>Independent · CGI launch study</small>
+            </a>
+            <a class="nav-menu-capabilities" href="index.html#capabilities">
+              <span>Browse Capabilities</span>
+              <small>Explore 3 complementary disciplines</small>
+            </a>
+          </div>
+        </div>
         <a class="nav-resume" href="resume.html"><span class="nav-icon" aria-hidden="true">≡</span><span>Resume</span></a>
       </nav>
     </header>
@@ -234,11 +257,8 @@
       </section>
     </main>
 
-    <footer class="site-footer">
-      <p>Product &amp; Industrial Design / Product Visualization &amp; Motion / Technical Product Communication</p>
-      <a href="contact.html">Start a conversation</a>
-    </footer>
+    <footer class="site-footer"></footer>
 
-    <script src="script.js?v=20260812a"></script>
+    <script src="script.js?v=20260816i"></script>
   </body>
 </html>

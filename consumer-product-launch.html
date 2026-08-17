@@ -18,7 +18,7 @@
     <meta name="twitter:description" content="A self-initiated CGI and motion study for premium consumer product storytelling.">
     <meta name="twitter:image" content="https://zhoujinyang.com/assets/consumer-launch-h95/h95-context-hero.webp">
     <link rel="icon" type="image/png" href="assets/favicon-64.png">
-    <link rel="stylesheet" href="styles.min.css?v=20260812a">
+    <link rel="stylesheet" href="styles.min.css?v=20260817a">
   </head>
   <body class="engineering-communication-case launch-framework-page h95-launch-case">
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -30,7 +30,30 @@
       <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span></button>
       <nav class="site-nav tubelight-static" id="site-nav" aria-label="Primary navigation">
         <a href="index.html"><span class="nav-icon" aria-hidden="true">⌂</span><span>Home</span></a>
-        <a class="nav-work" href="index.html#featured-projects" aria-current="page"><span class="nav-icon" aria-hidden="true">□</span><span>Work</span></a>
+        <div class="nav-projects">
+          <button class="nav-projects-trigger" type="button" aria-expanded="false" aria-controls="project-navigation" aria-current="page">
+            <span class="nav-icon" aria-hidden="true">□</span><span>Work</span><span class="nav-projects-chevron" aria-hidden="true"><svg viewBox="0 0 18 18"><path d="m4.5 6.5 4.5 4.5 4.5-4.5"/></svg></span>
+          </button>
+          <div class="nav-projects-menu" id="project-navigation" aria-label="Project navigation">
+            <p class="nav-menu-label">Selected case studies</p>
+            <a class="nav-menu-case" href="engineering-communication.html">
+              <span><b>01</b>Engineering Clarity</span>
+              <small>Professional · Peroni Pompe</small>
+            </a>
+            <a class="nav-menu-case" href="research-to-product-concept.html">
+              <span><b>02</b>Product System</span>
+              <small>Academic · Politecnico di Milano</small>
+            </a>
+            <a class="nav-menu-case" href="consumer-product-launch.html" aria-current="page">
+              <span><b>03</b>Consumer Story</span>
+              <small>Independent · CGI launch study</small>
+            </a>
+            <a class="nav-menu-capabilities" href="index.html#capabilities">
+              <span>Browse Capabilities</span>
+              <small>Explore 3 complementary disciplines</small>
+            </a>
+          </div>
+        </div>
         <a class="nav-resume" href="resume.html"><span class="nav-icon" aria-hidden="true">≡</span><span>Resume</span></a>
       </nav>
     </header>
@@ -67,12 +90,9 @@
       </aside>
 
       <section class="h95-film-section section-pad" id="final-film" aria-labelledby="h95-film-title">
-        <header class="h95-section-heading h95-film-heading">
-          <div>
-            <p class="eyebrow">Final Outcome / Launch Film</p>
-            <h2 id="h95-film-title">Material, movement, and control shaped into one consumer story.</h2>
-          </div>
-          <p>Individual CGI and motion study / 22 seconds.</p>
+        <header class="h95-section-heading">
+          <p class="eyebrow">Final Outcome / Launch Film</p>
+          <h2 id="h95-film-title">Material, movement, and control shaped into one consumer story.</h2>
         </header>
         <div class="h95-film-frame">
           <video controls playsinline preload="none" loading="lazy" poster="assets/consumer-launch-h95/h95-context-hero.webp" aria-label="Play the self-initiated Beoplay H95 product launch visualization film">
@@ -109,10 +129,6 @@
           </article>
         </div>
 
-        <blockquote class="h95-design-question">
-          <span>Communication Goal</span>
-          <p>Turn material craft and physical interaction into a clear reason to desire the product.</p>
-        </blockquote>
         <div class="h95-audience-strip">
           <div><span>Audience</span><strong>Design-conscious listeners</strong></div>
           <div><span>Value</span><strong>Focus / comfort / control</strong></div>
@@ -144,11 +160,7 @@
           </div>
         </div>
 
-        <article class="h95-product-evidence" aria-labelledby="h95-evidence-title">
-          <header>
-            <p class="eyebrow">Selected CGI Details</p>
-            <h3 id="h95-evidence-title">Rendered evidence for tactility and control.</h3>
-          </header>
+        <article class="h95-product-evidence">
           <div class="h95-evidence-grid">
             <figure>
               <div class="h95-evidence-media">
@@ -175,7 +187,6 @@
           <article class="h95-direction-concept">
             <span>Creative Territory</span>
             <h3>Controlled Immersion</h3>
-            <p>Warm Golden Tone highlights meet dark graphite structure. Reflections reveal material; movement clarifies experience.</p>
             <ul>
               <li>Precise, not clinical</li>
               <li>Luxurious, not ornamental</li>
@@ -221,29 +232,6 @@
           <h2 id="h95-storyboard-title">A five-beat product story: reveal, inspect, transform, and close.</h2>
         </header>
 
-        <article class="h95-story-motion-compare" aria-labelledby="h95-compare-title">
-          <header>
-            <p class="eyebrow">Storyboard → Final Motion</p>
-            <h3 id="h95-compare-title">Planned frame → rendered movement.</h3>
-          </header>
-          <div class="h95-compare-grid">
-            <figure>
-              <div class="h95-compare-media">
-                <img decoding="async" src="assets/consumer-launch-h95/storyboard/storyboard-01-reveal.webp" alt="Storyboard planning the opening three-quarter product reveal" width="1600" height="884" loading="lazy">
-              </div>
-              <figcaption><span>01 / Planned Frame</span><strong>Silhouette + orbit direction.</strong></figcaption>
-            </figure>
-            <figure>
-              <div class="h95-compare-media">
-                <video muted playsinline preload="none" loading="lazy" poster="assets/consumer-launch-h95/h95-context-hero.webp" data-segment-loop data-loop-start="0.4" data-loop-end="3.8" aria-label="Muted loop of the final rendered opening product reveal">
-                  <source src="assets/consumer-launch-h95/video/beoplay-h95-launch-film.mp4#t=0.4" type="video/mp4">
-                </video>
-              </div>
-              <figcaption><span>02 / Final Motion</span><strong>Rendered reveal / muted loop.</strong></figcaption>
-            </figure>
-          </div>
-        </article>
-
         <div class="h95-storyboard-grid">
           <figure><div class="h95-storyboard-frame"><img decoding="async" src="assets/consumer-launch-h95/storyboard/storyboard-01-reveal.webp" alt="Storyboard frame showing the first three-quarter headphone reveal and camera movement" width="1600" height="884" loading="lazy"></div><figcaption><span>01 / Hook</span><strong>Build recognition through a clear three-quarter silhouette.</strong></figcaption></figure>
           <figure><div class="h95-storyboard-frame"><img decoding="async" src="assets/consumer-launch-h95/storyboard/storyboard-02-detail.webp" alt="Storyboard close-up of the ear cup and transition toward a material detail" width="1600" height="879" loading="lazy"></div><figcaption><span>02 / Material</span><strong>Move from form to the tactile ear-cup surface.</strong></figcaption></figure>
@@ -253,29 +241,34 @@
         </div>
       </section>
 
-      <section class="h95-case-section section-pad" aria-labelledby="h95-production-title">
+      <section class="h95-case-section section-pad" id="attribution" aria-labelledby="h95-production-title">
         <header class="h95-section-heading">
-          <p class="eyebrow">05 / Contribution Workflow</p>
-          <h2 id="h95-production-title">From sourced geometry to authored product communication.</h2>
+          <p class="eyebrow">05 / Contribution &amp; Attribution</p>
+          <h2 id="h95-production-title">One sourced model, three authored layers of product communication.</h2>
         </header>
-        <div class="h95-workflow-grid" aria-label="Contribution workflow from sourced model to final communication">
-          <article class="is-source">
-            <div class="h95-workflow-source-art" aria-hidden="true"><i></i><i></i><i></i></div>
-            <div class="h95-workflow-body"><span>Sourced Input</span><h3>Base 3D Geometry</h3><p>External model prepared with clean hierarchy and pivots.</p><a href="https://3dskyfree.com/decor-helper-device/products-beoplay-h95-headphones-gold-tone-by-bang-olufsen/3dskyfree/" target="_blank" rel="noreferrer">Model source ↗</a></div>
-          </article>
-          <article>
-            <figure><img decoding="async" src="assets/consumer-launch-h95/details/h95-tactile-controls.jpg" alt="Final material and lighting detail showing leather, aluminum, and tactile controls" width="668" height="944" loading="lazy"></figure>
-            <div class="h95-workflow-body"><span>Authored</span><h3>Material &amp; Light</h3><p>Look development built for tactile recognition.</p></div>
-          </article>
-          <article>
-            <figure><img decoding="async" src="assets/consumer-launch-h95/storyboard/storyboard-03-transition.webp" alt="Storyboard planning camera transition from product detail to full reveal" width="1600" height="883" loading="lazy"></figure>
-            <div class="h95-workflow-body"><span>Authored</span><h3>Camera &amp; Motion</h3><p>Planned reveals, orbits, and transformation.</p></div>
-          </article>
-          <article>
-            <figure><img decoding="async" src="assets/consumer-launch-h95/h95-context-hero.webp" alt="Final composed context render used as launch communication" width="2400" height="1351" loading="lazy"></figure>
-            <div class="h95-workflow-body"><span>Authored</span><h3>Edit &amp; Application</h3><p>Shaped the film and channel-ready story.</p></div>
-          </article>
-        </div>
+        <ol class="h95-attribution-strip" aria-label="Attribution of the sourced base model and authored film work">
+          <li class="is-source">
+            <span><b>01</b>Sourced Input</span>
+            <h3>External 3D Model</h3>
+            <p>Original geometry supplied by a third party; modeling is not claimed.</p>
+            <a href="https://3dskyfree.com/decor-helper-device/products-beoplay-h95-headphones-gold-tone-by-bang-olufsen/3dskyfree/" target="_blank" rel="noreferrer">View model source ↗</a>
+          </li>
+          <li>
+            <span><b>02</b>Authored</span>
+            <h3>Scene &amp; Look Development</h3>
+            <p>I prepared the hierarchy and pivots, then rebuilt materials and lighting.</p>
+          </li>
+          <li>
+            <span><b>03</b>Authored</span>
+            <h3>Motion Direction</h3>
+            <p>I created the camera movement, product animation, and feature sequence.</p>
+          </li>
+          <li class="is-delivered">
+            <span><b>04</b>Delivered</span>
+            <h3>Final Film</h3>
+            <p>I rendered, composited, edited, and prepared the final output.</p>
+          </li>
+        </ol>
       </section>
 
       <section class="h95-case-section section-pad" id="launch-system" aria-labelledby="h95-system-title">
@@ -285,12 +278,8 @@
         </header>
         <div class="h95-social-showcase">
           <article class="h95-social-strategy">
-            <span>Concept Applications / Not Yet Produced</span>
-            <h3>One benefit per asset.</h3>
-            <dl>
-              <div><dt>9:16 Reel</dt><dd>Recognition</dd></div>
-              <div><dt>4:5 Carousel</dt><dd>Material detail</dd></div>
-            </dl>
+            <span>Concept Applications</span>
+            <h3>Not yet produced.</h3>
           </article>
 
           <figure class="h95-social-application is-reel">
@@ -330,15 +319,10 @@
           <p class="eyebrow">07 / Reflection &amp; Credits</p>
           <h2 id="h95-validation-title">Clear attribution and an honest next step.</h2>
         </header>
-        <div class="h95-validation-grid">
-          <article><span>Recognition</span><h3>Silhouette and Golden Tone stay identifiable.</h3></article>
-          <article><span>Function</span><h3>Motion explains controls and folding.</h3></article>
-          <article><span>Consistency</span><h3>Timing and light share one premium tone.</h3></article>
+        <div class="h95-validation-grid is-next-step-only">
           <article><span>Next Step</span><h3>Test message recall with target consumers.</h3></article>
         </div>
         <div class="h95-credits">
-          <div><span>Personal Contribution</span><p>Art direction, look development, animation, rendering, edit, and case-study design.</p></div>
-          <div><span>Project Status</span><p>Independent study; not commissioned by or affiliated with Bang &amp; Olufsen.</p></div>
           <div><span>Asset &amp; Music</span><p>Base model: <a href="https://3dskyfree.com/decor-helper-device/products-beoplay-h95-headphones-gold-tone-by-bang-olufsen/3dskyfree/" target="_blank" rel="noreferrer">3DSKY Decor Helper ↗</a> (original modeling not claimed). Music: HitsLab / Ievgen Poltavskyi via <a href="https://pixabay.com/music/future-bass-advertising-product-launch-commercial-music-345515/" target="_blank" rel="noreferrer">Pixabay ↗</a>.</p></div>
           <div><span>Research Sources</span><p><a href="https://www.bang-olufsen.com/it/it/cuffie/beoplay-h95?variant=beoplay-h95-goldentone" target="_blank" rel="noreferrer">Product page ↗</a> <a href="https://support.bang-olufsen.com/hc/en-us/articles/360048063092-What-is-the-Adaptive-Active-Noise-Cancellation-function-and-how-does-it-work" target="_blank" rel="noreferrer">Adaptive ANC ↗</a> <a href="https://support.bang-olufsen.com/hc/en-us/articles/360048557931-What-materials-are-used-for-the-leather-treatment-on-Beoplay-H95" target="_blank" rel="noreferrer">Materials ↗</a></p></div>
         </div>
@@ -350,7 +334,21 @@
       </nav>
     </main>
 
-    <footer class="site-footer"><p>Product &amp; Industrial Design / Product Visualization &amp; Motion / Technical Product Communication</p><a href="contact.html">Start a conversation</a></footer>
-    <script src="script.js?v=20260812a"></script>
+    <div class="selected-work-section-guide" aria-hidden="true" inert>
+      <nav class="selected-work-section-nav" aria-label="Consumer Story case study sections" data-case-study-nav>
+        <span class="selected-work-section-nav-label" aria-hidden="true">Case Guide</span>
+        <a href="#final-film" data-case-study-link><b>Film</b><span>Final Film</span></a>
+        <a href="#strategy" data-case-study-link><b>01</b><span>Context</span></a>
+        <a href="#message-strategy" data-case-study-link><b>02</b><span>Feature to Benefit</span></a>
+        <a href="#creative-direction" data-case-study-link><b>03</b><span>Creative Direction</span></a>
+        <a href="#storyboard" data-case-study-link><b>04</b><span>Storyboard &amp; Motion</span></a>
+        <a href="#attribution" data-case-study-link><b>05</b><span>Contribution</span></a>
+        <a href="#launch-system" data-case-study-link><b>06</b><span>Social Applications</span></a>
+        <a href="#reflection" data-case-study-link><b>07</b><span>Reflection</span></a>
+      </nav>
+    </div>
+
+    <footer class="site-footer"></footer>
+    <script src="script.js?v=20260816i"></script>
   </body>
 </html>

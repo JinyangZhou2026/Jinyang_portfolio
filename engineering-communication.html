@@ -18,7 +18,7 @@
     <meta name="twitter:description" content="Peroni Pompe case study connecting engineering CAD, technical animation, FAT support, sales, and exhibitions.">
     <meta name="twitter:image" content="https://zhoujinyang.com/assets/hero-project/home/peroni-pump-featured.jpg">
     <link rel="icon" type="image/png" href="assets/favicon-64.png">
-    <link rel="stylesheet" href="styles.min.css?v=20260812e">
+    <link rel="stylesheet" href="styles.min.css?v=20260816ab">
   </head>
   <body class="engineering-communication-case">
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -27,7 +27,30 @@
       <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-nav"><span></span><span></span></button>
       <nav class="site-nav tubelight-static" id="site-nav" aria-label="Primary navigation">
         <a href="index.html"><span class="nav-icon" aria-hidden="true">⌂</span><span>Home</span></a>
-        <a class="nav-work" href="index.html#featured-projects" aria-current="page"><span class="nav-icon" aria-hidden="true">□</span><span>Work</span></a>
+        <div class="nav-projects">
+          <button class="nav-projects-trigger" type="button" aria-expanded="false" aria-controls="project-navigation" aria-current="page">
+            <span class="nav-icon" aria-hidden="true">□</span><span>Work</span><span class="nav-projects-chevron" aria-hidden="true"><svg viewBox="0 0 18 18"><path d="m4.5 6.5 4.5 4.5 4.5-4.5"/></svg></span>
+          </button>
+          <div class="nav-projects-menu" id="project-navigation" aria-label="Project navigation">
+            <p class="nav-menu-label">Selected case studies</p>
+            <a class="nav-menu-case" href="engineering-communication.html" aria-current="page">
+              <span><b>01</b>Engineering Clarity</span>
+              <small>Professional · Peroni Pompe</small>
+            </a>
+            <a class="nav-menu-case" href="research-to-product-concept.html">
+              <span><b>02</b>Product System</span>
+              <small>Academic · Politecnico di Milano</small>
+            </a>
+            <a class="nav-menu-case" href="consumer-product-launch.html">
+              <span><b>03</b>Consumer Story</span>
+              <small>Independent · CGI launch study</small>
+            </a>
+            <a class="nav-menu-capabilities" href="index.html#capabilities">
+              <span>Browse Capabilities</span>
+              <small>Explore 3 complementary disciplines</small>
+            </a>
+          </div>
+        </div>
         <a class="nav-resume" href="resume.html"><span class="nav-icon" aria-hidden="true">≡</span><span>Resume</span></a>
       </nav>
     </header>
@@ -41,8 +64,7 @@
             <span class="word-animate" data-delay="300">Complexity to</span>
             <span class="word-animate" data-delay="480">Customer Clarity</span>
           </h1>
-          <p>I transformed complex high-pressure pump engineering into a reusable visual communication system for product pages, technical sales, Factory Acceptance Tests, service communication, and international exhibitions.</p>
-          <p class="engineering-hero-proof-label">Across selected Peroni Pompe work</p>
+          <p>I turned supplied pump CAD into a reusable visual system for product pages, technical sales, FATs, service, and exhibitions.</p>
           <ul class="engineering-hero-proof" aria-label="Selected Peroni Pompe project evidence">
             <li><strong>30+</strong><span>Renderings</span></li>
             <li><strong>10+</strong><span>Animations</span></li>
@@ -55,7 +77,6 @@
         </div>
         <figure class="engineering-case-hero-media peroni-hero-media">
           <img decoding="async" fetchpriority="high" src="assets/hero-project/home/peroni-pump-featured.jpg" alt="Photorealistic customer-facing rendering of a Peroni Pompe industrial plunger pump" width="1800" height="1800">
-          <figcaption>Final customer-facing render · Product pages / Technical sales / Exhibitions</figcaption>
         </figure>
       </section>
 
@@ -63,7 +84,7 @@
         <dl>
           <div><dt>Role</dt><dd><strong>Product Visualization Designer</strong><span>Owned visualization execution from supplied CAD through animation, rendering, and post-production</span></dd></div>
           <div><dt>Timeline</dt><dd>Core case: Autumn 2025 · Selected professional outputs: 2025–2026</dd></div>
-          <div><dt>Core Tools</dt><dd>SolidWorks, KeyShot, Blender, Premiere Pro, After Effects</dd></div>
+          <div><dt>Core Tools</dt><dd>SolidWorks, KeyShot, Cinema 4D, Premiere Pro, After Effects</dd></div>
           <div><dt>Deliverables</dt><dd>Renderings, 360° viewers, technical animations, catalogs, presentations, and exhibition assets</dd></div>
         </dl>
       </section>
@@ -150,12 +171,6 @@
         </div>
         <div class="engineering-deep-dive-intro">
           <p>The 3130N combines a power end, three reciprocating plunger assemblies, valve timing, and two fluid phases—relationships that an exterior view cannot explain. I structured one sequence that moves from product construction to operating principle without losing the engineering logic.</p>
-          <ul aria-label="Technical deep dive focus">
-            <li>Product architecture</li>
-            <li>Mechanical motion</li>
-            <li>Valve &amp; flow timing</li>
-            <li>Customer film</li>
-          </ul>
         </div>
 
         <div class="engineering-deep-dive-steps">
@@ -189,7 +204,6 @@
                 <li><i class="engineering-final-contribution-icon is-sequence" aria-hidden="true"></i><div><strong>Sequence structure</strong><p>Separate the major assemblies, reveal the crank and plunger paths, then move into the liquid-end section.</p></div></li>
                 <li><i class="engineering-final-contribution-icon is-clarity" aria-hidden="true"></i><div><strong>Communication logic</strong><p>Give viewers a spatial model first so valve and flow changes retain a clear mechanical cause.</p></div></li>
               </ul>
-              <p class="engineering-deep-dive-decision"><strong>Design principle</strong> Establish where motion comes from before asking the viewer to interpret hydraulic timing.</p>
             </div>
           </article>
 
@@ -241,10 +255,6 @@
                 <span class="engineering-final-contribution-icon is-marketing" aria-hidden="true"></span>
                 <div><strong>Marketing role</strong><p>Marketing defined the brand copy and publication channels.</p></div>
               </li>
-              <li>
-                <span class="engineering-final-contribution-icon is-published" aria-hidden="true"></span>
-                <div><strong>Approved release</strong><p>I produced the film without agency involvement; after approval, it was published on the official website and LinkedIn.</p></div>
-              </li>
             </ul>
           </div>
           <div class="engineering-deep-dive-final-media">
@@ -276,9 +286,9 @@
             <div class="engineering-evidence-media"><img decoding="async" width="1280" height="720" src="assets/previews/plunger-pump-live-viewer.png" alt="Titano 31.30 interactive product viewer published on the Peroni Pompe product page" loading="lazy"></div>
             <div class="engineering-evidence-copy"><p class="eyebrow">Visual 01 / Product Inspection</p><h3>Interactive 360° Viewer</h3><p>I optimized the engineering CAD and prepared a consistent rotational render sequence so customers could inspect the Titano 31.30 directly on the official product page.</p><div class="engineering-evidence-actions"><a href="https://peronipompe.com/reciprocating-pumps/plunger-pumps/titano-31-30/" target="_blank" rel="noreferrer">View the live product page ↗</a><a href="#technical-deep-dive">View the 3130N breakdown ↑</a></div></div>
           </article>
-          <article class="engineering-evidence-card"><div class="engineering-evidence-media"><video controls playsinline preload="none" poster="assets/previews/visualization-dedalo.jpg" aria-label="Dedalo seal pressure-reduction and return-flow animation"><source src="assets/Tenuta-Finale.mp4" type="video/mp4"></video></div><div class="engineering-evidence-copy"><p class="eyebrow">Visual 02 / Operating Principle</p><h3>Dedalo® Seal Flow</h3><p>A public technical animation showing progressive pressure reduction across the sealing rings and the return of residual process fluid to the pump suction line.</p><span>Section view / Pressure cues / Animation</span></div></article>
-          <article class="engineering-evidence-card"><div class="engineering-evidence-media"><video controls playsinline preload="none" poster="assets/previews/visualization-valve-assembly.jpg" aria-label="Axial double-port valve exploded-view and assembly animation"><source src="assets/Valves.mp4" type="video/mp4"></video></div><div class="engineering-evidence-copy"><p class="eyebrow">Visual 03 / Component Logic</p><h3>Axial Double-Port Valve</h3><p>The exploded sequence reveals component hierarchy and assembly order without exposing the complete engineering model.</p><span>Exploded view / Component hierarchy / Animation</span></div></article>
-          <article class="engineering-evidence-card"><div class="engineering-evidence-media"><video controls playsinline preload="none" poster="assets/previews/visualization-co2.jpg" aria-label="Customer-facing carbon dioxide injection pump presentation film"><source src="assets/PompaC02-1.mp4" type="video/mp4"></video></div><div class="engineering-evidence-copy"><p class="eyebrow">Visual 04 / Customized System</p><h3>CO₂ Injection Pump System</h3><p>A customer-facing presentation film combining controlled camera movement, 3D visualization, and technical callouts for a customized pumping unit.</p><span>CAD optimization / Rendering / Technical presentation</span></div></article>
+          <article class="engineering-evidence-card"><div class="engineering-evidence-media"><video controls playsinline preload="none" poster="assets/previews/visualization-dedalo.jpg" aria-label="Dedalo seal pressure-reduction and return-flow animation"><source src="assets/Tenuta-Finale.mp4" type="video/mp4"></video></div><div class="engineering-evidence-copy"><p class="eyebrow">Visual 02 / Operating Principle</p><h3>Dedalo® Seal Flow</h3><p>A public technical animation showing progressive pressure reduction across the sealing rings and the return of residual process fluid to the pump suction line.</p></div></article>
+          <article class="engineering-evidence-card"><div class="engineering-evidence-media"><video controls playsinline preload="none" poster="assets/previews/visualization-valve-assembly.jpg" aria-label="Axial double-port valve exploded-view and assembly animation"><source src="assets/Valves.mp4" type="video/mp4"></video></div><div class="engineering-evidence-copy"><p class="eyebrow">Visual 03 / Component Logic</p><h3>Axial Double-Port Valve</h3><p>The exploded sequence reveals component hierarchy and assembly order without exposing the complete engineering model.</p></div></article>
+          <article class="engineering-evidence-card"><div class="engineering-evidence-media"><video controls playsinline preload="none" poster="assets/previews/visualization-co2.jpg" aria-label="Customer-facing carbon dioxide injection pump presentation film"><source src="assets/PompaC02-1.mp4" type="video/mp4"></video></div><div class="engineering-evidence-copy"><p class="eyebrow">Visual 04 / Customized System</p><h3>CO₂ Injection Pump System</h3><p>A customer-facing presentation film combining controlled camera movement, 3D visualization, and technical callouts for a customized pumping unit.</p></div></article>
           <article class="engineering-evidence-card"><div class="engineering-evidence-media"><img decoding="async" width="1800" height="1276" src="assets/previews/adipec-2025-panel.jpg" alt="Peroni Pompe large-format product communication panel for ADIPEC 2025" loading="lazy"></div><div class="engineering-evidence-copy"><p class="eyebrow">Visual 05 / Final B2B Application</p><h3>ADIPEC Exhibition Panel</h3><p>Approved product renders and technical messages were adapted for rapid understanding at international exhibition scale.</p><a href="assets/PeroniPompe-ADIPEC-2025-Panel-A-345x244cm-PRINT.pdf" target="_blank" rel="noreferrer">Open the full panel PDF ↗</a></div></article>
         </div>
       </section>
@@ -288,37 +298,31 @@
           <p class="eyebrow">05 / Scope, Adoption &amp; Reach</p>
           <h2 id="engineering-impact-title">Verified production scope and real-world deployment.</h2>
         </div>
-        <p class="eyebrow engineering-impact-scope-label">Production Scope</p>
-        <div class="engineering-impact-grid">
-          <article><strong data-count-to="30" data-count-suffix="+">30+</strong><p>Customer-facing renders in a reusable industrial product library</p></article>
-          <article><strong data-count-to="10" data-count-suffix="+">10+</strong><p>Technical animations covering operation, assembly, and maintenance</p></article>
-          <article><strong data-count-to="5" data-count-suffix="+">5+</strong><p>Customer-specific engineering communication projects supported</p></article>
-          <article><strong data-count-to="4">4</strong><p>International exhibitions using adapted approved assets</p></article>
-          <article><strong data-count-to="2">2</strong><p>FATs supported with technical communication</p></article>
-        </div>
-        <div class="engineering-impact-reach-heading">
-          <p class="eyebrow">Deployment &amp; Reach</p>
-          <h3>Work that moved beyond delivery and into real customer touchpoints.</h3>
-        </div>
-        <div class="engineering-impact-reach-grid">
+        <div class="engineering-impact-unified-grid">
+          <article>
+            <span>International Deployment</span>
+            <strong data-count-to="4">4</strong>
+            <h3>International exhibitions</h3>
+            <p>Approved visuals were adapted for exhibition-scale customer communication.</p>
+          </article>
+          <article>
+            <span>Technical Review Support</span>
+            <strong data-count-to="2">2</strong>
+            <h3>Factory Acceptance Tests</h3>
+            <p>Technical visuals supported customer review and explanation during FATs.</p>
+          </article>
           <article>
             <span>Official Adoption</span>
             <strong>Live</strong>
-            <h3>Official website technical content</h3>
-            <p>Selected visualizations were published on official product pages as customer-facing technical explanation assets.</p>
+            <h3>Official product pages</h3>
+            <p>Selected visualizations were published as customer-facing technical explanation assets.</p>
           </article>
           <article>
             <span>Platform Reach</span>
             <strong data-count-to="5" data-count-suffix="K+">5K+</strong>
             <h3>Official LinkedIn publication</h3>
-            <p>Selected official posts exceeded 5,000 views. The supplied 3130N post capture recorded 84 reactions, 3 comments, and 13 reposts.</p>
+            <p>The supplied 3130N post capture recorded 84 reactions, 3 comments, and 13 reposts.</p>
             <a href="https://www.linkedin.com/posts/peronipompe-highpressurepumps-plungerpumps-ugcPost-7477280541222948865-WdxI/" target="_blank" rel="noreferrer">View the official 3130N post ↗</a>
-          </article>
-          <article>
-            <span>B2B Engagement</span>
-            <strong>B2B</strong>
-            <h3>A shared explanation across departments</h3>
-            <p>Public and exhibition use gave customers, prospects, and non-engineering stakeholders inside client companies a common visual reference for technical discussion.</p>
           </article>
         </div>
       </section>
@@ -332,10 +336,18 @@
       </nav>
     </main>
 
-    <footer class="site-footer">
-      <p>Product &amp; Industrial Design / Product Visualization &amp; Motion / Technical Product Communication</p>
-      <a href="contact.html">Start a conversation</a>
-    </footer>
-    <script src="script.js?v=20260812b"></script>
+    <div class="selected-work-section-guide" aria-hidden="true" inert>
+      <nav class="selected-work-section-nav" aria-label="Engineering Clarity case study sections" data-case-study-nav>
+        <span class="selected-work-section-nav-label" aria-hidden="true">Case Guide</span>
+        <a href="#context" data-case-study-link><b>01</b><span>Context</span></a>
+        <a href="#workflow" data-case-study-link><b>02</b><span>Workflow</span></a>
+        <a href="#technical-deep-dive" data-case-study-link><b>03</b><span>Technical Deep Dive</span></a>
+        <a href="#best-visuals" data-case-study-link><b>04</b><span>Outcomes</span></a>
+        <a href="#impact" data-case-study-link><b>05</b><span>Impact</span></a>
+      </nav>
+    </div>
+
+    <footer class="site-footer"></footer>
+    <script src="script.js?v=20260816i"></script>
   </body>
 </html>
