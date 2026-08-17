@@ -60,7 +60,7 @@ CONTENT = {
                 ],
             },
             {
-                "header": "UX Design Intern | Elihome | Milan, Italy | 2024-2025",
+                "header": "Product Design Intern | Elihome | Milan, Italy | 2024-2025",
                 "bullets": [
                     "Conducted user research and competitive benchmarking across kitchenware products.",
                     "Identified user needs and product opportunities through qualitative research.",
@@ -78,7 +78,7 @@ CONTENT = {
             },
         ],
         "education": [
-            "Bachelor's Degree in Industrial Product Design | Politecnico di Milano | 2026",
+            "Bachelor's Degree in Industrial Product Design | Politecnico di Milano | Awarded 2026",
             "Design for Social Impact, Summer School | The University of Tokyo | 2025",
         ],
         "awards": (
@@ -132,7 +132,7 @@ CONTENT = {
                 ],
             },
             {
-                "header": "Tirocinante in UX Design | Elihome | Milano, Italia | 2024-2025",
+                "header": "Tirocinante in Design di Prodotto | Elihome | Milano, Italia | 2024-2025",
                 "bullets": [
                     "Condotte ricerche utente e analisi comparative sui prodotti per cucina.",
                     "Individuati bisogni e opportunità di prodotto tramite ricerca qualitativa.",
@@ -150,7 +150,7 @@ CONTENT = {
             },
         ],
         "education": [
-            "Laurea triennale in Design del prodotto industriale | Politecnico di Milano | 2026",
+            "Laurea triennale in Design del prodotto industriale | Politecnico di Milano | Conseguimento 2026",
             "Design per l'impatto sociale, Summer School | The University of Tokyo | 2025",
         ],
         "awards": (

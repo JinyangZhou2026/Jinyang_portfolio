@@ -134,7 +134,7 @@ def build() -> None:
     story = [
         Paragraph("JINYANG ZHOU", styles["name"]),
         Paragraph(
-            "PRODUCT VISUALIZATION DESIGNER | INDUSTRIAL DESIGNER | TECHNICAL COMMUNICATION",
+            "INDUSTRIAL PRODUCT DESIGNER | PRODUCT VISUALIZATION | TECHNICAL COMMUNICATION",
             styles["headline"],
         ),
         Paragraph(
@@ -156,10 +156,10 @@ def build() -> None:
     story += section("Professional Summary", styles)
     story.append(
         Paragraph(
-            "Product and industrial designer experienced in product visualization, technical communication, "
-            "and engineering collaboration within manufacturing environments. Skilled in photorealistic "
-            "rendering, product animation, interactive 3D viewers, and communication assets for product "
-            "development, marketing, technical sales, and international customer engagement.",
+            "Industrial product designer and 2026 Politecnico di Milano graduate with manufacturing "
+            "experience in product visualization, technical communication, and engineering collaboration. "
+            "Skilled in photorealistic rendering, product animation, interactive 3D viewers, and communication "
+            "assets for product development, marketing, technical sales, and international customer engagement.",
             styles["body"],
         )
     )
@@ -184,7 +184,7 @@ def build() -> None:
     )
     story.append(Spacer(1, 1.4 * mm))
     story += role(
-        "UX Design Intern",
+        "Product Design Intern",
         "Elihome",
         "Milan, Italy",
         "2024-2025",
@@ -213,7 +213,7 @@ def build() -> None:
     story += section("Education", styles)
     story.append(
         Paragraph(
-            "<b>Bachelor's Degree in Industrial Product Design</b> | Politecnico di Milano | 2026",
+            "<b>Bachelor's Degree in Industrial Product Design</b> | Politecnico di Milano | Awarded 2026",
             styles["compact"],
         )
     )
@@ -245,7 +245,7 @@ def build() -> None:
 
     story += section("Languages", styles)
     story.append(
-        Paragraph("Chinese: Native | English: Professional | Italian: Intermediate", styles["compact"])
+        Paragraph("Chinese: Native | English: B2 | Italian: B2", styles["compact"])
     )
 
     doc.build(story)
