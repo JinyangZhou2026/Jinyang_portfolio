@@ -652,10 +652,17 @@ const carousels = document.querySelectorAll("[data-carousel]");
 carousels.forEach((carousel) => {
   const image = carousel.querySelector("[data-carousel-image]");
   const imageLink = carousel.querySelector("[data-carousel-link]");
-  const previousButton = carousel.querySelector("[data-carousel-prev]");
-  const nextButton = carousel.querySelector("[data-carousel-next]");
-  const currentLabel = carousel.querySelector("[data-carousel-current]");
-  const totalLabel = carousel.querySelector("[data-carousel-total]");
+  const controlScope = carousel.getAttribute("data-carousel-controls-scope") === "card"
+    ? carousel.closest(".melody-system-detail-card") || carousel
+    : carousel;
+  const controls = controlScope.querySelector(".carousel-controls");
+  const previousButton = controlScope.querySelector("[data-carousel-prev]");
+  const nextButton = controlScope.querySelector("[data-carousel-next]");
+  const directButtons = Array.from(controlScope.querySelectorAll("[data-carousel-index]"));
+  const currentLabel = controlScope.querySelector("[data-carousel-current]");
+  const totalLabel = controlScope.querySelector("[data-carousel-total]");
+  const statusLabel = currentLabel?.closest(".carousel-status");
+  const directStatus = controlScope.querySelector("[data-carousel-status]");
   const autoplayDelay = Number.parseInt(carousel.getAttribute("data-carousel-autoplay") || "0", 10);
   const slides = (carousel.getAttribute("data-slides") || "")
     .split(";")
@@ -665,32 +672,47 @@ carousels.forEach((carousel) => {
     })
     .filter((slide) => slide.src && slide.alt);
 
-  if (!image || !previousButton || !nextButton || slides.length === 0) return;
+  const hasDirectionalControls = Boolean(previousButton && nextButton);
+  if (!image || slides.length === 0 || (!hasDirectionalControls && directButtons.length === 0)) return;
+
+  if (controls) controls.hidden = false;
 
   let activeIndex = 0;
   let autoplayTimer;
 
-  const renderSlide = () => {
+  const renderSlide = (animate = false) => {
     const slide = slides[activeIndex];
-    carousel.classList.add("is-changing");
+    if (animate) carousel.classList.add("is-changing");
+    else carousel.classList.remove("is-changing");
     image.src = slide.src;
     image.alt = slide.alt;
     carousel.style.setProperty("--carousel-position", slide.position || "50% 50%");
 
     if (imageLink) {
       imageLink.href = slide.href || slide.src;
-      imageLink.setAttribute("aria-label", `Open ${slide.alt} at full size`);
+      const newTabSuffix = imageLink.target === "_blank" ? " in a new tab" : "";
+      imageLink.setAttribute("aria-label", `Open ${slide.alt} at full size${newTabSuffix}`);
     }
 
     if (currentLabel) currentLabel.textContent = String(activeIndex + 1);
     if (totalLabel) totalLabel.textContent = String(slides.length);
+    if (statusLabel) statusLabel.setAttribute("aria-label", `Slide ${activeIndex + 1} of ${slides.length}`);
+    directButtons.forEach((button) => {
+      const buttonIndex = Number.parseInt(button.getAttribute("data-carousel-index") || "-1", 10);
+      button.setAttribute("aria-pressed", String(buttonIndex === activeIndex));
+    });
+    if (directStatus && animate) {
+      const activeButton = directButtons.find((button) => Number.parseInt(button.getAttribute("data-carousel-index") || "-1", 10) === activeIndex);
+      const activeLabel = activeButton?.textContent?.trim() || slide.alt;
+      directStatus.textContent = `${activeLabel} shown. View ${activeIndex + 1} of ${slides.length}.`;
+    }
 
-    window.setTimeout(() => carousel.classList.remove("is-changing"), 180);
+    if (animate) window.setTimeout(() => carousel.classList.remove("is-changing"), 180);
   };
 
   const showSlide = (direction) => {
     activeIndex = (activeIndex + direction + slides.length) % slides.length;
-    renderSlide();
+    renderSlide(true);
   };
 
   const stopAutoplay = () => {
@@ -710,8 +732,17 @@ carousels.forEach((carousel) => {
     startAutoplay();
   };
 
-  previousButton.addEventListener("click", () => showManualSlide(-1));
-  nextButton.addEventListener("click", () => showManualSlide(1));
+  previousButton?.addEventListener("click", () => showManualSlide(-1));
+  nextButton?.addEventListener("click", () => showManualSlide(1));
+  directButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const requestedIndex = Number.parseInt(button.getAttribute("data-carousel-index") || "-1", 10);
+      if (requestedIndex < 0 || requestedIndex >= slides.length || requestedIndex === activeIndex) return;
+      activeIndex = requestedIndex;
+      renderSlide(true);
+      startAutoplay();
+    });
+  });
   carousel.addEventListener("pointerenter", stopAutoplay);
   carousel.addEventListener("pointerleave", startAutoplay);
   carousel.addEventListener("focusin", stopAutoplay);
