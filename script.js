@@ -1181,7 +1181,7 @@ caseStudyNavs.forEach((nav, navIndex) => {
   if (sectionPairs.length === 0) return;
 
   const selectedWorkGuide = nav.closest(".selected-work-section-guide");
-  const caseEndBoundary = document.querySelector(".engineering-case-next");
+  const caseEndBoundary = document.querySelector(".engineering-case-next, .project-next");
 
   const updateSelectedWorkGuideVisibility = () => {
     if (!selectedWorkGuide) return;

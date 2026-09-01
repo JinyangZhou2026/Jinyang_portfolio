@@ -16845,6 +16845,10 @@ h3 {
   --case-guide-accent: #d4e77d;
 }
 
+.bios-case-page .selected-work-section-guide {
+  --case-guide-accent: #dce8d3;
+}
+
 .h95-launch-case .selected-work-section-guide {
   --case-guide-accent: #e8c58c;
 }
