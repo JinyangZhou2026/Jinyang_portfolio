@@ -16388,7 +16388,20 @@ h3 {
 }
 
 .serenity-hero .hero-value-statement {
-  font-size: clamp(3rem, 5.45vw, 6.15rem);
+  max-width: 29ch;
+  font-size: clamp(2.7rem, 4.6vw, 5.35rem);
+  line-height: 1.01;
+  letter-spacing: -0.035em;
+}
+
+@media (min-width: 721px) {
+  .serenity-hero .hero-value-statement .word-animate {
+    display: block;
+  }
+
+  .serenity-hero .hero-value-statement .word-animate + .word-animate {
+    margin-left: 0;
+  }
 }
 
 .serenity-hero .hero-intro {
@@ -16396,7 +16409,7 @@ h3 {
 }
 
 .serenity-hero .hero-proof {
-  margin-top: 22px;
+  margin-top: clamp(30px, 2.5vw, 38px);
 }
 
 .serenity-hero .action-row {
@@ -16599,7 +16612,9 @@ h3 {
   }
 
   .serenity-hero .hero-value-statement {
-    font-size: clamp(2.55rem, 10.6vw, 3.3rem);
+    max-width: 100%;
+    font-size: clamp(2.25rem, 9.4vw, 3rem);
+    line-height: 1;
   }
 
   .serenity-hero .hero-intro {
@@ -16607,7 +16622,7 @@ h3 {
   }
 
   .serenity-hero .hero-proof {
-    margin-top: 17px;
+    margin-top: 24px;
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
