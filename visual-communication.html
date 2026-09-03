@@ -12,13 +12,99 @@
     <meta property="og:url" content="https://zhoujinyang.com/visual-communication.html">
     <meta property="og:title" content="Technical Product Communication — Jinyang Zhou">
     <meta property="og:description" content="Product catalogs, exhibition graphics, diagrams, and customer-facing materials for sales and international markets.">
-    <meta property="og:image" content="https://zhoujinyang.com/assets/trade-show-international-booth.jpg">
+    <meta property="og:image" content="https://zhoujinyang.com/assets/previews/adipec-2025-panel.jpg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Technical Product Communication — Jinyang Zhou">
     <meta name="twitter:description" content="Catalogs, exhibition graphics, diagrams, and customer-facing sales materials.">
-    <meta name="twitter:image" content="https://zhoujinyang.com/assets/trade-show-international-booth.jpg">
+    <meta name="twitter:image" content="https://zhoujinyang.com/assets/previews/adipec-2025-panel.jpg">
     <link rel="icon" type="image/png" href="assets/favicon-64.png">
     <link rel="stylesheet" href="styles.min.css?v=20260816aa">
+    <style>
+      .communication-featured-card.is-primary .communication-featured-media.is-exhibition-panel {
+        display: block;
+        width: 100%;
+        min-width: 0;
+        min-height: 0;
+        align-self: stretch;
+        aspect-ratio: 1800 / 1276;
+        border-top: 1px solid rgba(203, 213, 225, 0.14);
+        border-bottom: 1px solid rgba(203, 213, 225, 0.14);
+      }
+
+      .communication-featured-media.is-exhibition-panel img {
+        height: 100%;
+      }
+
+      .communication-featured-card.is-primary .communication-featured-copy {
+        min-height: 0;
+        padding: clamp(26px, 3vw, 40px);
+        justify-content: center;
+      }
+
+      .communication-featured-card.is-primary .communication-featured-facts {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        margin: 24px 0;
+      }
+
+      .communication-featured-card.is-primary .communication-featured-facts > div {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        align-content: start;
+        padding: 16px 18px;
+        border-top: 0;
+        border-right: 1px solid rgba(203, 213, 225, 0.12);
+      }
+
+      .communication-featured-card.is-primary .communication-featured-facts > div:last-child {
+        border-right: 0;
+      }
+
+      .communication-featured-card.is-primary .communication-featured-copy > a {
+        margin-top: 0;
+      }
+
+      .communication-trade-show-index li {
+        min-height: 0;
+        padding: clamp(18px, 2vw, 24px);
+      }
+
+      .communication-trade-show-index strong {
+        margin-bottom: 7px;
+      }
+
+      .communication-trade-show-index em {
+        margin: 0;
+      }
+
+      @media (max-width: 980px) {
+        .communication-featured-card.is-primary .communication-featured-media.is-exhibition-panel {
+          aspect-ratio: auto;
+        }
+
+        .communication-featured-media.is-exhibition-panel img {
+          height: auto;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .communication-featured-card.is-primary .communication-featured-facts {
+          grid-template-columns: 1fr;
+        }
+
+        .communication-featured-card.is-primary .communication-featured-facts > div {
+          border-right: 0;
+        }
+
+        .communication-featured-card.is-primary .communication-featured-facts > div + div {
+          border-top: 1px solid rgba(203, 213, 225, 0.12);
+        }
+      }
+
+      .video-select img,
+      .video-select video {
+        height: auto;
+      }
+    </style>
   </head>
   <body class="technical-communication-page">
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -79,32 +165,24 @@
         </dl>
         <div class="communication-featured-grid">
           <article class="communication-featured-card is-primary" data-card-link>
-            <div class="communication-featured-media is-trade-show-hero">
-              <img decoding="async" fetchpriority="high" width="1206" height="879" src="assets/trade-show-international-booth.jpg" alt="Peroni Pompe exhibition booth at ADIPEC 2025 in Abu Dhabi using large-format product communication panels">
+            <div class="communication-featured-media is-exhibition-panel">
+              <img decoding="async" fetchpriority="high" width="1800" height="1276" src="assets/previews/adipec-2025-panel.jpg" alt="Final ADIPEC 2025 large-format exhibition panel showing pump applications, global service locations, and the Dedalo seal visualization">
             </div>
             <div class="communication-featured-copy">
-              <p class="eyebrow">01 / Exhibition &amp; International Communication</p>
+              <p class="eyebrow">01 / Exhibition Communication</p>
               <h3>International Trade Show Communication</h3>
-              <p>For four international exhibitions, I translated industrial product information into booth-scale panels, films, and rendered assets that supported customer conversations.</p>
+              <p>Translated engineering and commercial input into clear, customer-facing communication for four international trade shows.</p>
               <dl class="communication-featured-facts">
-                <div><dt>Input</dt><dd>Product priorities, engineering material and exhibition constraints</dd></div>
-                <div><dt>Decision</dt><dd>Built a distance-aware hierarchy across panels, films and rendered assets</dd></div>
-                <div><dt>Collaboration</dt><dd>Engineering accuracy aligned with marketing and international sales needs</dd></div>
-                <div><dt>Outcome</dt><dd>Exhibition graphics and marketing assets delivered across 4 international trade shows</dd></div>
+                <div><dt>Role</dt><dd>Information design, product visualization, and production layout</dd></div>
+                <div><dt>Deliverables</dt><dd>Large-format panels, localized assets, and booth films</dd></div>
               </dl>
               <a href="#communication-library" data-communication-category-link="exhibitions" data-communication-item-link="adipec-2025">Explore exhibition outputs <span aria-hidden="true">→</span></a>
             </div>
-            <ol class="communication-process-strip" aria-label="Trade show communication workflow">
-              <li><span>01</span><strong>Product priorities</strong><small>Engineering and commercial input</small></li>
-              <li><span>02</span><strong>Information hierarchy</strong><small>Message, scale and viewing distance</small></li>
-              <li><span>03</span><strong>Format adaptation</strong><small>Panels, booth films and localized assets</small></li>
-              <li><span>04</span><strong>Final delivery</strong><small>Exhibition-ready production files</small></li>
-            </ol>
             <ol class="communication-trade-show-index" aria-label="Four international exhibitions">
-              <li><span>01</span><strong>ADIPEC 2025</strong><small>Abu Dhabi</small><em>Panel + booth application</em><time datetime="2025-11-03">3–6 November 2025</time></li>
-              <li><span>02</span><strong>Powertech 2026</strong><small>International exhibition</small><em>Large-format product panel</em><time datetime="2026">2026</time></li>
-              <li><span>03</span><strong>Sea Japan</strong><small>First-time exhibitor · Japan</small><em>Localized panel + booth film</em><time datetime="2026-04-22">22–24 April 2026</time></li>
-              <li><span>04</span><strong>Australian Energy Producers</strong><small>Adelaide</small><em>Stand graphics + booth film</em><time datetime="2026-05-18">18–21 May 2026</time></li>
+              <li><strong>ADIPEC 2025</strong><em>Large-format exhibition panel</em></li>
+              <li><strong>Powertech 2026</strong><em>Product communication panel</em></li>
+              <li><strong>Sea Japan 2026</strong><em>Localized panel + booth film</em></li>
+              <li><strong>Australian Energy Producers 2026</strong><em>Stand graphics + booth film</em></li>
             </ol>
           </article>
           <article class="communication-featured-card" data-card-link>
@@ -151,44 +229,26 @@
             <div class="video-category-list" role="tablist" aria-label="Industrial product communication categories">
               <button class="video-category is-active" id="communication-tab-exhibitions" type="button" role="tab" aria-selected="true" aria-controls="communication-panel-exhibitions" tabindex="0" data-video-category="exhibitions">Trade Shows &amp; International</button>
               <div class="video-category-panel is-active" id="communication-panel-exhibitions" role="tabpanel" aria-labelledby="communication-tab-exhibitions" data-video-panel="exhibitions">
-                <details class="video-output-more">
-                  <summary>Additional campaign applications <span>3</span></summary>
-                  <div class="video-output-more-list">
-                    <button class="video-select" type="button" data-video-context-only data-video-title="OTC 2025 Promotional Communication" data-video-kicker="OTC 2025 / Houston, Texas / 5–8 May 2025" data-video-description="Shown as application context: the product-render assets were used within OTC 2025 promotional communication, without implying direct exhibition participation." data-video-contribution="Created the industrial product-render assets incorporated into the promotional visual." data-video-poster="assets/trade-show-otc-2025-promotion.png" data-video-image="assets/trade-show-otc-2025-promotion.png" data-video-ratio="asset-card">
-                      <img width="250" height="250" src="assets/trade-show-otc-2025-promotion.png" alt="OTC 2025 promotional communication preview" loading="lazy" decoding="async">
-                      <span><strong>OTC 2025</strong><small>Campaign application / Render assets</small></span>
-                    </button>
-                    <button class="video-select" type="button" data-video-context-only data-video-title="Asia Pacific Maritime 2026 Promotional Communication" data-video-kicker="Asia Pacific Maritime / Singapore / 25–27 March 2026" data-video-description="Shown as application context: the product-render asset was used within the event campaign, without implying direct exhibition participation." data-video-contribution="Created the industrial product-render asset used as the central visual in the event promotion." data-video-poster="assets/trade-show-apm-2026-promotion.png" data-video-image="assets/trade-show-apm-2026-promotion.png" data-video-ratio="asset-card">
-                      <img width="250" height="250" src="assets/trade-show-apm-2026-promotion.png" alt="Asia Pacific Maritime 2026 promotional communication preview" loading="lazy" decoding="async">
-                      <span><strong>Asia Pacific Maritime</strong><small>Campaign application / Render asset</small></span>
-                    </button>
-                    <button class="video-select" type="button" data-video-context-only data-video-title="Australian Energy Producers 2026 Campaign Visual" data-video-kicker="Australian Energy Producers / Adelaide / 18–21 May 2026" data-video-description="A compact campaign application showing how the industrial product imagery supported event promotion." data-video-contribution="Created the industrial product-render asset incorporated into the Australian Energy Producers campaign visual." data-video-poster="assets/trade-show-aep-2026-promotion.png" data-video-image="assets/trade-show-aep-2026-promotion.png" data-video-ratio="asset-card">
-                      <img width="250" height="250" src="assets/trade-show-aep-2026-promotion.png" alt="Australian Energy Producers 2026 campaign visual preview" loading="lazy" decoding="async">
-                      <span><strong>Australian Energy Producers</strong><small>Campaign application / Render asset</small></span>
-                    </button>
-                  </div>
-                </details>
-
-                <p class="video-output-group-label"><span>01</span>Panels &amp; Booth Graphics</p>
-                <button class="video-select" type="button" data-video-title="Powertech 2026 Product Panel" data-video-kicker="Powertech 2026 / Large-format Product Communication" data-video-description="A large-format exhibition panel structured for rapid product understanding, booth-scale visibility, and customer-facing technical communication." data-video-contribution="Developed the panel layout and integrated product-render and technical communication assets for exhibition use." data-video-poster="assets/previews/powertech-2026-panel.jpg" data-video-image="assets/previews/powertech-2026-panel.jpg" data-video-ratio="panel" data-video-link="assets/2026-powertech-destra.pdf" data-video-link-label="Open full panel PDF">
+                <p class="video-output-group-label"><span>01</span>Exhibition Panels</p>
+                <button class="video-select" type="button" data-video-item="powertech-2026" data-video-title="Powertech 2026 Product Panel" data-video-kicker="Powertech 2026 / Large-format Product Communication" data-video-description="A large-format exhibition panel structured for rapid product understanding, booth-scale visibility, and customer-facing technical communication." data-video-contribution="Developed the panel layout and integrated product-render and technical communication assets for exhibition use." data-video-poster="assets/previews/powertech-2026-panel.jpg" data-video-image="assets/previews/powertech-2026-panel.jpg" data-video-ratio="panel" data-video-link="assets/2026-powertech-destra.pdf" data-video-link-label="Open full panel PDF">
                   <img width="320" height="265" src="assets/thumbnails/powertech-2026-panel.jpg" alt="Powertech 2026 large-format product panel preview" loading="lazy" decoding="async">
                   <span><strong>Powertech 2026</strong><small>Large-format Product Panel</small></span>
                 </button>
-                <button class="video-select is-active" type="button" data-video-featured="true" data-video-item="adipec-2025" data-video-title="ADIPEC 2025 Exhibition Panel &amp; Booth Application" data-video-kicker="ADIPEC 2025 / Abu Dhabi / 3–6 November 2025" data-video-description="A booth-scale exhibition panel combining product messaging, industrial imagery, and high-level technical information, shown together with its final application in the ADIPEC exhibition environment." data-video-contribution="Developed the large-format panel and assembled the product-render and communication content used in the final booth graphic." data-video-poster="assets/previews/adipec-2025-panel.jpg" data-video-image="assets/previews/adipec-2025-panel.jpg" data-video-ratio="panel" data-video-gallery="assets/previews/adipec-2025-panel.jpg|ADIPEC 2025 large-format product panel|50% 50%;assets/trade-show-international-booth.jpg|Peroni Pompe booth at ADIPEC 2025 in Abu Dhabi|50% 50%" data-video-link="assets/PeroniPompe-ADIPEC-2025-Panel-A-345x244cm-PRINT.pdf" data-video-link-label="Open full panel PDF">
+                <button class="video-select is-active" type="button" data-video-featured="true" data-video-item="adipec-2025" data-video-title="ADIPEC 2025 Exhibition Panel" data-video-kicker="ADIPEC 2025 / Abu Dhabi / 3–6 November 2025" data-video-description="A booth-scale exhibition panel combining product messaging, industrial imagery, and high-level technical information for rapid customer understanding." data-video-contribution="Developed the large-format panel and assembled the product-render, technical, and communication content for exhibition display." data-video-poster="assets/previews/adipec-2025-panel.jpg" data-video-image="assets/previews/adipec-2025-panel.jpg" data-video-ratio="panel" data-video-link="assets/PeroniPompe-ADIPEC-2025-Panel-A-345x244cm-PRINT.pdf" data-video-link-label="Open full panel PDF">
                   <img width="320" height="227" src="assets/thumbnails/adipec-2025-panel.jpg" alt="ADIPEC 2025 large-format product panel preview" loading="lazy" decoding="async">
-                  <span><strong>ADIPEC 2025</strong><small>Panel / Abu Dhabi Booth Application</small></span>
+                  <span><strong>ADIPEC 2025</strong><small>Large-format Exhibition Panel</small></span>
                 </button>
-                <button class="video-select" type="button" data-video-title="Sea Japan 2026 Exhibition Communication" data-video-kicker="Sea Japan / First-time Exhibitor / 22–24 April 2026" data-video-description="Localized exhibition communication supporting Peroni Pompe's first participation at Sea Japan, shown through the completed panel and its application in the booth environment." data-video-contribution="Developed the localized exhibition panel and supporting product-render content." data-video-poster="assets/trade-show-sea-japan-2026-booth.jpg" data-video-image="assets/trade-show-sea-japan-2026-booth.jpg" data-video-ratio="panel" data-video-gallery="assets/trade-show-sea-japan-2026-booth.jpg|Peroni Pompe booth at Sea Japan 2026|50% 50%;assets/SEAJAPAN2026-Pannello-A4-VersioneJP.webp|Sea Japan 2026 localized exhibition panel|50% 50%">
-                  <img loading="lazy" decoding="async" width="1073" height="1015" src="assets/trade-show-sea-japan-2026-booth.jpg" alt="Sea Japan 2026 exhibition communication preview">
-                  <span><strong>Sea Japan 2026</strong><small>Localized Panel / On-site Application</small></span>
+                <button class="video-select" type="button" data-video-title="Sea Japan 2026 Localized Exhibition Panel" data-video-kicker="Sea Japan / First-time Exhibitor / 22–24 April 2026" data-video-description="A localized exhibition panel supporting Peroni Pompe's first participation at Sea Japan, combining Japanese-language product information with pump visuals and service context." data-video-contribution="Created product-render and panel assets used within the exhibition stand communication." data-video-poster="assets/SEAJAPAN2026-Pannello-A4-VersioneJP.webp" data-video-image="assets/SEAJAPAN2026-Pannello-A4-VersioneJP.webp" data-video-ratio="panel">
+                  <img loading="lazy" decoding="async" width="842" height="595" src="assets/SEAJAPAN2026-Pannello-A4-VersioneJP.webp" alt="Sea Japan 2026 localized exhibition panel preview">
+                  <span><strong>Sea Japan 2026</strong><small>Localized Exhibition Panel</small></span>
                 </button>
-                <button class="video-select" type="button" data-video-title="Australian Energy Producers 2026 Panel System" data-video-kicker="Australian Energy Producers / Adelaide / 18–21 May 2026" data-video-description="A continuous nine-panel exhibition system carrying Peroni Pompe and Jetech product communication across the primary booth wall." data-video-contribution="Created product-render and panel assets used within the exhibition stand communication." data-video-poster="assets/previews/aep-2026-panels-cropped.jpg" data-video-image="assets/previews/aep-2026-panels-cropped.jpg" data-video-ratio="wide" data-video-link="assets/STAND-PeroniPompe-AEP-Australia-2026-Layout-DEF1.pdf" data-video-link-label="Open full stand-layout PDF">
-                  <img width="320" height="123" src="assets/thumbnails/aep-2026-panels-cropped.jpg" alt="Australian Energy Producers 2026 nine-panel exhibition system preview" loading="lazy" decoding="async">
+                <button class="video-select" type="button" data-video-item="aep-2026-panel-system" data-video-title="Australian Energy Producers 2026 Panel System" data-video-kicker="Australian Energy Producers / Adelaide / 18–21 May 2026" data-video-description="A continuous nine-panel exhibition system carrying Peroni Pompe and Jetech product communication across the primary booth wall." data-video-contribution="Created product-render and panel assets used within the exhibition stand communication." data-video-poster="assets/previews/aep-2026-panels-cropped.jpg" data-video-image="assets/previews/aep-2026-panels-cropped.jpg" data-video-ratio="wide" data-video-link="assets/STAND-PeroniPompe-AEP-Australia-2026-Layout-DEF1.pdf" data-video-link-label="Open full stand-layout PDF">
+                  <img width="320" height="124" src="assets/thumbnails/aep-2026-panels-cropped.jpg" alt="Australian Energy Producers 2026 continuous exhibition panel system preview" loading="lazy" decoding="async">
                   <span><strong>Australian Energy Producers</strong><small>Stand Graphics / Booth Application</small></span>
                 </button>
                 <p class="video-output-group-label"><span>02</span>Exhibition Films &amp; Motion</p>
                 <button class="video-select" type="button" data-video-title="Sea Japan Exhibition Film" data-video-kicker="Sea Japan 2026 / Visitor-facing Film" data-video-description="A visitor-facing film providing concise product context and supporting customer engagement inside the Sea Japan exhibition booth." data-video-contribution="Created the exhibition playback film and integrated the supporting product-visualization assets." data-video-poster="assets/comm-exhibition-loop.svg" data-video-src="assets/Video-Giappone-2.mp4">
-                  <img width="1073" height="1015" src="assets/trade-show-sea-japan-2026-booth.jpg" alt="Sea Japan exhibition film context preview" loading="lazy" decoding="async">
+                  <img width="842" height="595" src="assets/SEAJAPAN2026-Pannello-A4-VersioneJP.webp" alt="Sea Japan localized exhibition panel used as the film preview" loading="lazy" decoding="async">
                   <span><strong>Sea Japan 2026</strong><small>Booth Film / Customer Engagement</small></span>
                 </button>
                 <button class="video-select" type="button" data-video-title="Australian Energy Producers Exhibition Film" data-video-kicker="Australian Energy Producers 2026 / Trade-show Film" data-video-description="A trade-show film presenting product context and brand presence with concise pacing for an international customer audience in Australia." data-video-contribution="Created the exhibition playback film using product-render and communication assets for the booth audience." data-video-poster="assets/comm-exhibition-loop.svg" data-video-src="assets/Video_Australia_1205.mp4">
@@ -233,22 +293,22 @@
               <button class="video-play-mark" type="button" data-video-play-toggle aria-label="Play selected video"></button>
               <div class="carousel-controls" aria-label="Project visuals" data-video-gallery-controls hidden>
                 <button class="carousel-button" type="button" data-video-gallery-prev aria-label="Previous visual">&lsaquo;</button>
-                <span class="carousel-status" aria-live="polite" aria-atomic="true"><span data-video-gallery-current>1</span>/<span data-video-gallery-total>2</span></span>
+                <span class="carousel-status" aria-live="polite" aria-atomic="true"><span data-video-gallery-current>1</span>/<span data-video-gallery-total>1</span></span>
                 <button class="carousel-button" type="button" data-video-gallery-next aria-label="Next visual">&rsaquo;</button>
               </div>
             </div>
             <div class="video-copy">
               <p class="eyebrow" data-video-kicker>ADIPEC 2025 / Abu Dhabi / 3–6 November 2025</p>
-              <h2 data-video-title>ADIPEC 2025 Exhibition Panel &amp; Booth Application</h2>
+              <h2 data-video-title>ADIPEC 2025 Exhibition Panel</h2>
               <div class="project-status-list video-status-list" data-video-status hidden>
                 <span class="project-status-badge is-confidential">Confidential</span>
               </div>
               <p data-video-description>
-                A booth-scale exhibition panel combining product messaging, industrial imagery, and high-level technical information, shown together with its final application in the ADIPEC exhibition environment.
+                A booth-scale exhibition panel combining product messaging, industrial imagery, and high-level technical information for rapid customer understanding.
               </p>
               <div class="video-contribution" data-video-contribution>
                 <span>My Contribution</span>
-                <p data-video-contribution-text>Developed the large-format panel and assembled the product-render and communication content used in the final booth graphic.</p>
+                <p data-video-contribution-text>Developed the large-format panel and assembled the product-render, technical, and communication content for exhibition display.</p>
               </div>
               <a class="visual-file-link" target="_blank" rel="noopener noreferrer" data-video-link-target hidden>Open supporting file</a>
             </div>
