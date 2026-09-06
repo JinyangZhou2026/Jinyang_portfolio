@@ -5,6 +5,8 @@ from reportlab.lib.enums import TA_CENTER
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import mm
+from reportlab.pdfbase import pdfmetrics
+from reportlab.pdfbase.ttfonts import TTFont
 from reportlab.platypus import (
     KeepTogether,
     Paragraph,
@@ -14,7 +16,24 @@ from reportlab.platypus import (
 
 
 ROOT = Path(__file__).resolve().parents[1]
-OUTPUT = ROOT / "output" / "pdf" / "Jinyang_Zhou_ATS_Resume_EN_A4.pdf"
+OUTPUT = ROOT / "output" / "pdf" / "CV_JinyangZhou_EN_ATS_A4.pdf"
+# English content synchronized with CV_JinyangZhou_IT.pdf supplied on 2026-09-06.
+
+
+def register_fonts() -> None:
+    """Embed readable TrueType fonts, with a portable ReportLab fallback."""
+    import reportlab
+
+    arial = Path("/System/Library/Fonts/Supplemental")
+    vera = Path(reportlab.__file__).parent / "fonts"
+    regular, bold = (
+        (arial / "Arial.ttf", arial / "Arial Bold.ttf")
+        if (arial / "Arial.ttf").exists() and (arial / "Arial Bold.ttf").exists()
+        else (vera / "Vera.ttf", vera / "VeraBd.ttf")
+    )
+    pdfmetrics.registerFont(TTFont("CVSans", str(regular)))
+    pdfmetrics.registerFont(TTFont("CVSans-Bold", str(bold)))
+    pdfmetrics.registerFontFamily("CVSans", normal="CVSans", bold="CVSans-Bold")
 
 
 def section(title: str, styles: dict) -> list:
@@ -35,6 +54,7 @@ def role(title: str, organization: str, location: str, dates: str, bullets: list
 
 
 def build() -> None:
+    register_fonts()
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
 
     doc = SimpleDocTemplate(
@@ -54,7 +74,7 @@ def build() -> None:
         "name": ParagraphStyle(
             "Name",
             parent=base["Normal"],
-            fontName="Helvetica-Bold",
+            fontName="CVSans-Bold",
             fontSize=20,
             leading=22,
             alignment=TA_CENTER,
@@ -64,7 +84,7 @@ def build() -> None:
         "headline": ParagraphStyle(
             "Headline",
             parent=base["Normal"],
-            fontName="Helvetica-Bold",
+            fontName="CVSans-Bold",
             fontSize=9.7,
             leading=11.5,
             alignment=TA_CENTER,
@@ -74,18 +94,18 @@ def build() -> None:
         "contact": ParagraphStyle(
             "Contact",
             parent=base["Normal"],
-            fontName="Helvetica",
-            fontSize=8.8,
-            leading=11,
+            fontName="CVSans",
+            fontSize=9.3,
+            leading=11.5,
             alignment=TA_CENTER,
             textColor=colors.HexColor("#202020"),
         ),
         "section": ParagraphStyle(
             "Section",
             parent=base["Normal"],
-            fontName="Helvetica-Bold",
-            fontSize=10.2,
-            leading=12,
+            fontName="CVSans-Bold",
+            fontSize=10.8,
+            leading=13.2,
             textColor=colors.HexColor("#111111"),
             borderWidth=0,
             borderColor=colors.HexColor("#888888"),
@@ -95,26 +115,26 @@ def build() -> None:
         "body": ParagraphStyle(
             "Body",
             parent=base["Normal"],
-            fontName="Helvetica",
-            fontSize=9.2,
-            leading=11.2,
+            fontName="CVSans",
+            fontSize=10,
+            leading=12.2,
             textColor=colors.HexColor("#151515"),
         ),
         "role": ParagraphStyle(
             "Role",
             parent=base["Normal"],
-            fontName="Helvetica",
-            fontSize=9.2,
-            leading=11.2,
+            fontName="CVSans",
+            fontSize=10,
+            leading=12.2,
             textColor=colors.HexColor("#111111"),
             spaceBefore=1.2,
         ),
         "bullet": ParagraphStyle(
             "Bullet",
             parent=base["Normal"],
-            fontName="Helvetica",
-            fontSize=8.85,
-            leading=10.65,
+            fontName="CVSans",
+            fontSize=10,
+            leading=12.2,
             leftIndent=4 * mm,
             firstLineIndent=-3 * mm,
             textColor=colors.HexColor("#151515"),
@@ -123,9 +143,9 @@ def build() -> None:
         "compact": ParagraphStyle(
             "Compact",
             parent=base["Normal"],
-            fontName="Helvetica",
-            fontSize=8.9,
-            leading=10.8,
+            fontName="CVSans",
+            fontSize=10,
+            leading=12.2,
             textColor=colors.HexColor("#151515"),
             spaceAfter=1,
         ),
@@ -156,10 +176,10 @@ def build() -> None:
     story += section("Professional Summary", styles)
     story.append(
         Paragraph(
-            "Industrial product designer and 2026 Politecnico di Milano graduate with manufacturing "
-            "experience in product visualization, technical communication, and engineering collaboration. "
-            "Skilled in photorealistic rendering, product animation, interactive 3D viewers, and communication "
-            "assets for product development, marketing, technical sales, and international customer engagement.",
+            "Industrial and product designer experienced in product visualization, technical communication, "
+            "and engineering collaboration in manufacturing. I create photorealistic 3D renderings, animations, "
+            "interactive visualizations, and communication materials supporting product development, marketing, "
+            "and international clients. I transform complex engineered products into clear, engaging visual experiences.",
             styles["body"],
         )
     )
@@ -174,17 +194,18 @@ def build() -> None:
             "Created 30+ photorealistic renderings for industrial pump products and pumping systems.",
             "Developed interactive 3D product viewers for customer presentations.",
             "Produced 10+ product animations, including operating simulations, exploded views, and maintenance tutorials.",
-            "Designed product catalogs, corporate presentations, and promotional videos for sales, exhibitions, and international customer communication.",
-            "Produced exhibition graphics and marketing assets for 4 international trade fairs; collaborated with an external agency on the redesign of the corporate product catalog.",
+            "Designed catalogs, corporate presentations, and promotional videos for sales, exhibitions, and international clients.",
+            "Created exhibition graphics and marketing assets for 4 international trade fairs.",
+            "Collaborated with an external agency on the redesign of the corporate product catalog.",
             "Redesigned product components with engineering teams, improving aesthetics while maintaining manufacturability.",
             "Supported visualization for 5+ customized engineering projects.",
-            "Supported 2 Factory Acceptance Tests (FAT) by coordinating technical documentation and facilitating communication between engineering teams and overseas customers.",
+            "Supported 2 Factory Acceptance Tests (FAT), coordinating technical documentation and communication with international clients.",
         ],
         styles,
     )
     story.append(Spacer(1, 1.4 * mm))
     story += role(
-        "Product Design Intern",
+        "UX Design Intern",
         "Elihome",
         "Milan, Italy",
         "2024-2025",
@@ -236,8 +257,8 @@ def build() -> None:
     skill_lines = [
         "<b>Core Competencies:</b> Product visualization, industrial design, technical communication, product communication, 3D rendering, product animation, engineering collaboration, visual storytelling",
         "<b>CAD:</b> SOLIDWORKS, Alias, Rhino",
-        "<b>Visualization and Motion:</b> KeyShot, Blender, Premiere Pro, After Effects",
-        "<b>Creative and Communication:</b> InDesign, Illustrator, Photoshop, Lightroom",
+        "<b>Visualization:</b> KeyShot, Blender",
+        "<b>Creative:</b> InDesign, Illustrator, Photoshop, Premiere Pro, After Effects, Lightroom",
         "<b>Other:</b> Procreate, Figma, AI-assisted visualization tools",
     ]
     for line in skill_lines:
