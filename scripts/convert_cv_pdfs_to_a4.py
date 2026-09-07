@@ -1,3 +1,4 @@
+import argparse
 from pathlib import Path
 
 from pypdf import PdfReader, PdfWriter, Transformation
@@ -8,26 +9,21 @@ from pypdf.generic import ArrayObject, NumberObject, RectangleObject
 A4_WIDTH = 595.2756
 A4_HEIGHT = 841.8898
 
-ROOT = Path("/Users/shots/Documents/Codex/2026-06-08/i-want-to-build-a-personal")
-OUTPUT_DIR = ROOT / "output" / "pdf"
-
-FILES = {
-    Path("/Users/shots/Downloads/CV_JinyangZhou_17Ago_en.pdf"): OUTPUT_DIR
-    / "CV_JinyangZhou_EN.pdf",
-    Path("/Users/shots/Downloads/CV_JinyangZhou_17Ago_IT.pdf"): OUTPUT_DIR
-    / "CV_JinyangZhou_IT.pdf",
-}
-
-
 def convert_to_a4(source: Path, destination: Path) -> None:
+    """Fit the original vector artwork and URI links to A4 without distortion."""
+    if source.resolve() == destination.resolve():
+        raise ValueError("Use a separate destination to preserve the original CV.")
     reader = PdfReader(source)
     writer = PdfWriter()
 
     for source_page in reader.pages:
+        if source_page.rotation:
+            source_page.transfer_rotation_to_content()
         source_width = float(source_page.mediabox.width)
         source_height = float(source_page.mediabox.height)
-        scale_x = A4_WIDTH / source_width
-        scale_y = A4_HEIGHT / source_height
+        scale = min(A4_WIDTH / source_width, A4_HEIGHT / source_height)
+        offset_x = (A4_WIDTH - source_width * scale) / 2 - float(source_page.mediabox.left) * scale
+        offset_y = (A4_HEIGHT - source_height * scale) / 2 - float(source_page.mediabox.bottom) * scale
 
         a4_page = PageObject.create_blank_page(
             width=A4_WIDTH,
@@ -35,7 +31,7 @@ def convert_to_a4(source: Path, destination: Path) -> None:
         )
         a4_page.merge_transformed_page(
             source_page,
-            Transformation().scale(scale_x, scale_y),
+            Transformation().scale(scale).translate(offset_x, offset_y),
             expand=False,
         )
         # merge_transformed_page copies the original link rectangles without
@@ -52,10 +48,10 @@ def convert_to_a4(source: Path, destination: Path) -> None:
                 continue
             scaled_rectangle = RectangleObject(
                 (
-                    float(rectangle[0]) * scale_x,
-                    float(rectangle[1]) * scale_y,
-                    float(rectangle[2]) * scale_x,
-                    float(rectangle[3]) * scale_y,
+                    float(rectangle[0]) * scale + offset_x,
+                    float(rectangle[1]) * scale + offset_y,
+                    float(rectangle[2]) * scale + offset_x,
+                    float(rectangle[3]) * scale + offset_y,
                 )
             )
             writer.add_uri(
@@ -81,6 +77,9 @@ def convert_to_a4(source: Path, destination: Path) -> None:
 
 
 if __name__ == "__main__":
-    for source_path, output_path in FILES.items():
-        convert_to_a4(source_path, output_path)
-        print(output_path)
+    parser = argparse.ArgumentParser(description="Proportionally resize a CV PDF to A4, preserving URI links.")
+    parser.add_argument("source", type=Path, help="Explicit path to the latest source CV")
+    parser.add_argument("destination", type=Path, help="Separate A4 output path")
+    args = parser.parse_args()
+    convert_to_a4(args.source, args.destination)
+    print(args.destination)

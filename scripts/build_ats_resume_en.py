@@ -17,7 +17,8 @@ from reportlab.platypus import (
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "output" / "pdf" / "CV_JinyangZhou_EN_ATS_A4.pdf"
-# English content synchronized with CV_JinyangZhou_IT.pdf supplied on 2026-09-06.
+# English content synchronized with the replacement supplied on 2026-09-07.
+# Source SHA-256: 4d40d46aec87f65779a68353caf5fdd54e5f2a475191bb8ba3c4a8344a01949e
 
 
 def register_fonts() -> None:
@@ -66,7 +67,7 @@ def build() -> None:
         bottomMargin=12 * mm,
         title="Jinyang Zhou - ATS Resume EN",
         author="Jinyang Zhou",
-        subject="Product Visualization Designer, Industrial Designer, Technical Communication",
+        subject="Industrial Product Designer, Product Visualization, Technical Communication",
     )
 
     base = getSampleStyleSheet()
@@ -186,7 +187,7 @@ def build() -> None:
 
     story += section("Professional Experience", styles)
     story += role(
-        "Product Visualization Designer",
+        "Industrial Product Designer",
         "Peroni Pompe",
         "Corsico, Italy",
         "2025-Present",
@@ -198,14 +199,14 @@ def build() -> None:
             "Created exhibition graphics and marketing assets for 4 international trade fairs.",
             "Collaborated with an external agency on the redesign of the corporate product catalog.",
             "Redesigned product components with engineering teams, improving aesthetics while maintaining manufacturability.",
+            "Consulted technical drawings and engineering documentation during component development and review.",
             "Supported visualization for 5+ customized engineering projects.",
-            "Supported 2 Factory Acceptance Tests (FAT), coordinating technical documentation and communication with international clients.",
         ],
         styles,
     )
     story.append(Spacer(1, 1.4 * mm))
     story += role(
-        "UX Design Intern",
+        "User Research Designer",
         "Elihome",
         "Milan, Italy",
         "2024-2025",
@@ -257,7 +258,7 @@ def build() -> None:
     skill_lines = [
         "<b>Core Competencies:</b> Product visualization, industrial design, technical communication, product communication, 3D rendering, product animation, engineering collaboration, visual storytelling",
         "<b>CAD:</b> SOLIDWORKS, Alias, Rhino",
-        "<b>Visualization:</b> KeyShot, Blender",
+        "<b>Visualization:</b> KeyShot, Cinema 4D",
         "<b>Creative:</b> InDesign, Illustrator, Photoshop, Premiere Pro, After Effects, Lightroom",
         "<b>Other:</b> Procreate, Figma, AI-assisted visualization tools",
     ]
