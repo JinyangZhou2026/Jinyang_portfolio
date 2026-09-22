@@ -264,6 +264,7 @@ if (projectSelector) {
   const projectTabs = Array.from(projectSelector.querySelectorAll(".featured-project-tab"));
   const projectPanel = projectSelector.querySelector(".featured-project-panel");
   const projectImage = projectSelector.querySelector("[data-project-preview-image]");
+  const projectAward = projectSelector.querySelector("[data-project-preview-award]");
   const projectCategory = projectSelector.querySelector("[data-project-preview-category]");
   const projectTitle = projectSelector.querySelector("[data-project-preview-title]");
   const projectDescription = projectSelector.querySelector("[data-project-preview-description]");
@@ -322,6 +323,9 @@ if (projectSelector) {
         projectImage.style.setProperty("--project-image-scale", tab.dataset.projectImageScale || "1");
       }
       if (projectCategory) projectCategory.textContent = tab.dataset.projectCategory || "";
+      if (projectAward) {
+        projectAward.hidden = tab.dataset.projectAward !== projectAward.dataset.projectPreviewAward;
+      }
       if (projectTitle) projectTitle.textContent = tab.dataset.projectTitle || "";
       if (projectDescription) projectDescription.textContent = tab.dataset.projectDescription || "";
       if (projectRole) projectRole.textContent = tab.dataset.projectRole || "";

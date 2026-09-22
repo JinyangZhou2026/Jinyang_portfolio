@@ -3453,7 +3453,7 @@ h3 {
   pointer-events: none;
 }
 
-.featured-project-panel-visual img {
+.featured-project-panel-visual [data-project-preview-image] {
   position: absolute;
   inset: -2px;
   display: block;
@@ -3466,8 +3466,23 @@ h3 {
   transition: opacity 180ms ease, filter 320ms ease;
 }
 
-.featured-project-panel:hover .featured-project-panel-visual img {
+.featured-project-panel:hover .featured-project-panel-visual [data-project-preview-image] {
   filter: saturate(1.04) brightness(1.015);
+}
+
+.featured-project-award {
+  position: absolute;
+  top: clamp(12px, 2vw, 24px);
+  right: clamp(12px, 2vw, 24px);
+  z-index: 1;
+  width: clamp(76px, 9vw, 120px);
+  height: auto;
+  pointer-events: none;
+  transition: opacity 160ms ease;
+}
+
+.featured-project-award[hidden] {
+  display: none;
 }
 
 .featured-project-panel-copy {
@@ -10335,18 +10350,26 @@ h3 {
 }
 
 .resume-support-block {
-  min-height: 270px;
+  min-height: 0;
   padding: 28px 30px;
   border-right: 1px solid var(--line);
 }
 
-.resume-support-languages,
 .resume-support-awards {
-  grid-column: span 3;
+  grid-column: 1 / 7;
+  grid-row: 2 / 4;
+}
+
+.resume-support-languages {
+  grid-column: 7 / -1;
+  grid-row: 2;
+  border-right: 0;
+  border-bottom: 1px solid var(--line);
 }
 
 .resume-support-references {
-  grid-column: span 4;
+  grid-column: 7 / -1;
+  grid-row: 3;
   border-right: 0;
 }
 
@@ -10454,14 +10477,90 @@ h3 {
   gap: 5px;
 }
 
+.resume-support-awards .resume-awards-list > li {
+  padding-block: 22px;
+}
+
+.resume-support-awards .resume-awards-list strong {
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.resume-support-awards .resume-awards-list span {
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
+.resume-awards-list .resume-award-content {
+  gap: 8px;
+}
+
+.resume-award-results {
+  display: grid;
+  gap: 12px;
+  margin-block: 8px;
+}
+
+.resume-award-results > div {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.resume-support-awards .resume-awards-list .resume-award-distinction {
+  width: fit-content;
+  padding: 4px 8px;
+  color: #dbeafe;
+  font-size: 0.62rem;
+  font-weight: 750;
+  letter-spacing: 0.055em;
+  line-height: 1.4;
+  white-space: nowrap;
+  background: rgba(147, 197, 253, 0.1);
+  border: 1px solid rgba(147, 197, 253, 0.22);
+  border-radius: 4px;
+}
+
+.resume-award-source {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  width: fit-content;
+  min-height: 44px;
+  color: #dbeafe;
+  font-size: 0.75rem;
+  font-weight: 650;
+}
+
+.resume-award-source:hover,
+.resume-award-source:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+@media (max-width: 640px) {
+  .resume-support-awards .resume-awards-list > li {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .resume-award-results > div {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}
+
 .resume-grid .resume-reference-list li {
   gap: 6px;
 }
 
 .resume-reference-topline {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px 12px;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   justify-content: space-between;
 }
 
@@ -10885,6 +10984,7 @@ h3 {
   .resume-grid section,
   .resume-grid section:nth-child(n + 3) {
     grid-column: auto;
+    grid-row: auto;
     min-height: 0;
     border-right: 0;
   }
@@ -14877,6 +14977,64 @@ h3 {
   }
 }
 
+.melody-awards {
+  display: grid;
+  gap: 24px;
+  padding-top: 32px;
+  padding-bottom: 40px;
+}
+
+.melody-awards-heading .eyebrow {
+  margin-bottom: 10px;
+  color: var(--melody-sage);
+}
+
+.melody-awards-heading h2 {
+  margin: 0;
+  color: var(--melody-cream);
+  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-weight: 550;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+.melody-awards-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin: 0;
+}
+
+.melody-awards-list > div {
+  padding: 22px 0 0;
+  border-top: 1px solid var(--melody-line);
+}
+
+.melody-awards-list dt {
+  margin-bottom: 10px;
+  color: var(--melody-sage);
+  font-size: 0.9rem;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+}
+
+.melody-awards-list dd {
+  margin: 0;
+  color: var(--melody-cream);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.melody-awards-list dd span {
+  color: var(--melody-sand);
+}
+
+@media (max-width: 640px) {
+  .melody-awards-list {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* Melody Adventurer — project-only sage theme. */
 .melody-case-study main {
   isolation: isolate;
@@ -17530,6 +17688,7 @@ body.engineering-communication-case:not(.melody-case-study):not(.h95-launch-case
   .resume-grid section,
   .resume-grid section:nth-child(n + 3) {
     grid-column: auto;
+    grid-row: auto;
     min-height: 0;
     border-right: 0;
   }
